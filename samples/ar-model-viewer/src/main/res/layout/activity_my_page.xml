@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--实现背景最底层的蓝色-->
+    <LinearLayout
+        android:background="#6BAAE6"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <androidx.cardview.widget.CardView
+            app:cardCornerRadius="30dp"
+            android:backgroundTint="#6BAAE6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <!--我的头像-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/my_Photo"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/header_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <TextView
+            android:id="@+id/my_Name"
+            android:text="你的名字"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="#101010"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/my_Signature"
+            android:text="寒来暑往，秋收冬藏"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:textColor="#101010"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <!--我的作品-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="bottom">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/work_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--足迹和收藏-->
+    <androidx.cardview.widget.CardView
+        app:cardElevation="15dp"
+        app:cardCornerRadius="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="185dp"
+        android:layout_width="320dp"
+        android:layout_height="110dp">
+
+        <!--足迹-->
+        <ImageView
+            android:background="@drawable/foot_img"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"/>
+
+        <TextView
+            android:text="足迹"
+            android:textSize="18sp"
+            android:textColor="#101010"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="48dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--分割线-->
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/line_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!--收藏-->
+        <ImageView
+            android:background="@drawable/heart_img"
+            android:layout_gravity="right"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
+
+        <TextView
+            android:text="收藏"
+            android:textSize="18sp"
+            android:textColor="#101010"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <fragment
+        android:id="@+id/navigation_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        tools:layout="@layout/bottom_navigation_bar"
+        android:name="com.android.china.view.BottomNavigation"/>
+
+</FrameLayout>

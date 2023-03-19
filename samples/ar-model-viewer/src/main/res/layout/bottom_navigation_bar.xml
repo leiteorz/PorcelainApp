@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:minimaldivider="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/navi_find_btn"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="70dp"
+        android:backgroundTint="#FFFFFF"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/fan_img"
+        app:iconSize="35dp"
+        android:text="发现"
+        android:textColor="#101010"
+        app:iconGravity="textTop"
+        app:iconTintMode="multiply"
+        app:rippleColor="@color/blue"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/navi_create_btn"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="#FFFFFF"
+        android:layout_height="70dp"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/jar_img"
+        app:iconSize="35dp"
+        android:text="几物"
+        android:textColor="#101010"
+        app:iconGravity="textTop"
+        app:iconTintMode="multiply"
+        app:rippleColor="@color/blue"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/navi_my_btn"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="70dp"
+        android:backgroundTint="#FFFFFF"
+        app:cornerRadius="0dp"
+        app:icon="@drawable/lantern_img"
+        app:iconSize="35dp"
+        android:text="我的"
+        android:textColor="#101010"
+        app:iconGravity="textTop"
+        app:iconTintMode="multiply"
+        app:rippleColor="@color/blue"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"/>
+
+</LinearLayout>
