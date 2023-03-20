@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -46,6 +47,17 @@ public class FirstPageActivity extends AppCompatActivity {
         initRecyclerView();
         initToolbar();
         setSupportActionBar(binding.toolbarFirstPage);
+        initClick();
+    }
+    public void initClick(){
+        binding.guanCang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),ChinaGuanCangActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public void initStatus(){
         myStatusBarTransparency = new MyStatusBarTransparency();
