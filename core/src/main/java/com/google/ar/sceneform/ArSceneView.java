@@ -438,8 +438,9 @@ public class ArSceneView extends SceneView {
     @SuppressWarnings("AndroidApiChecker")
     @Override
     protected boolean onBeginFrame(long frameTimeNanos) {
-        if (isProcessingFrame.get())
+        if (isProcessingFrame.get()){
             return false;
+        }
 
         isProcessingFrame.set(true);
 

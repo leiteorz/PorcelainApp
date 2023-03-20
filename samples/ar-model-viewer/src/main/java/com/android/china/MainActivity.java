@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
 
     private List<String> mBannerList = new ArrayList<>();
-
+    //随便写的一句话来测试能不能合并
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
