@@ -41,11 +41,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
+
 }
 
 dependencies {
     //MMKV——基于 mmap 的高性能通用 key-value 组件
     implementation 'com.tencent:mmkv:1.2.15'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     //请修改为使用 DialogX 的最新版本
     def dialogx_version = "0.0.47"

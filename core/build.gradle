@@ -35,6 +35,10 @@ android {
     androidResources {
         noCompress 'filamat', 'ktx'
     }
+    viewBinding{
+        enabled = true
+        //为啥突然不能用了在新建的活动里面
+    }
 }
 
 dependencies {
