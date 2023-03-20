@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 //        initBinding();
 //        initBannerData();
 //        initBanner();
-
         goToFirtPage();
     }
 

@@ -31,6 +31,10 @@ android {
     androidResources {
         noCompress 'filamat', 'ktx'
     }
+    viewBinding{
+        enabled = true
+    }
+
 }
 
 dependencies {
