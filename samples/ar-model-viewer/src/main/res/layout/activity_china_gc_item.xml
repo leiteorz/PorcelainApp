@@ -62,7 +62,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:src="@drawable/comment_logo"
+        android:src="@drawable/collect_logo5"
+        app:backgroundTint="@color/white"
+        app:tint="@color/yellow"
+        android:backgroundTint="@color/white"
         app:layout_anchor="@id/guanCangItemAppBarLayout"
         app:layout_anchorGravity="bottom|end"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

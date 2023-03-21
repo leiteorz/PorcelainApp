@@ -90,9 +90,9 @@
 
         <!--足迹-->
         <ImageView
-            android:background="@drawable/foot_img"
+            android:background="@drawable/liulan_logo6"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:layout_width="60dp"
             android:layout_height="60dp"/>
 
@@ -108,17 +108,17 @@
 
         <!--分割线-->
         <ImageView
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/line_img"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/line_img" />
 
         <!--收藏-->
         <ImageView
-            android:background="@drawable/heart_img"
+            android:background="@drawable/my_collect_logo3"
             android:layout_gravity="right"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="18dp"
             android:layout_width="48dp"
             android:layout_height="48dp"/>
 
