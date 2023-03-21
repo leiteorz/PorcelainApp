@@ -48,10 +48,13 @@ android {
 }
 
 dependencies {
+    //Room
+    def room_version="2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     //MMKV——基于 mmap 的高性能通用 key-value 组件
     implementation 'com.tencent:mmkv:1.2.15'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-
     //请修改为使用 DialogX 的最新版本
     def dialogx_version = "0.0.47"
     //添加对应的包文件，可根据需要选择，请将 dialogx_version 的版本号与您正在使用的 DialogX 主库保持一致

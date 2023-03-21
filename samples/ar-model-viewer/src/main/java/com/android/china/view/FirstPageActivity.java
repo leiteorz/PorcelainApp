@@ -55,6 +55,9 @@ public class FirstPageActivity extends AppCompatActivity {
         initClick();
     }
     public void initClick(){
+        /**
+         * 跳转至馆藏
+         */
         binding.guanCang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +66,19 @@ public class FirstPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        /**
+         * 跳转至故事
+         */
+        binding.stroyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(FirstPageActivity.this,PorcelainStoryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
     public void initStatus(){
         myStatusBarTransparency = new MyStatusBarTransparency();
         myStatusBarTransparency.setFullscreen(true,true,this);

@@ -29,6 +29,8 @@
             android:name="com.android.china.view.ChinaGuanCangActivity"
             android:exported="false" />
 
+        <activity android:name="com.android.china.view.PorcelainStoryActivity"
+            android:exported="false"/>
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" /> <!-- diy陶瓷那个页面 -->
@@ -60,6 +62,20 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-    </application>
+    </application> <!-- Needed to load gltf from network. -->
+    <uses-feature
+        android:name="android.hardware.camera.ar"
+        android:required="true" /> <!-- Sceneform requires OpenGLES 3.0 or later. -->
+    <uses-feature
+        android:glEsVersion="0x00030000"
+        android:required="true" />
+    <!--
+ Indicates that this app requires Google Play Services for AR ("AR Required") and results in
+         the app only being visible in the Google Play Store on devices that support ARCore.
+         For an "AR Optional" app, remove this tag.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
