@@ -1,5 +1,6 @@
 package com.android.china.view;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -8,12 +9,15 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.android.china.adpter.ChinaAdapter;
+import com.android.china.adpter.GuanCangAdapter;
 import com.android.china.model.China;
+import com.android.china.model.GuanCang;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityChinaGuanCangBinding;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityMyPageBinding;
@@ -23,7 +27,7 @@ import java.util.List;
 
 public class ChinaGuanCangActivity extends AppCompatActivity {
     private ActivityChinaGuanCangBinding binding;
-    private List<China> mList = new ArrayList<>();
+    private List<GuanCang> mList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,23 +68,40 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
     }
+
+    /**
+     * ToolBar相关
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar_guancang,menu);
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId){
+            case R.id.search:
+                break;
+            case R.id.comment:
+                break;
+
+            default:
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void initChinaList(){
         for(int i = 0 ; i< 10 ;i++){
-            China china = new China("陶瓷"+"i"+"号",R.drawable.pic);
-            mList.add(china);
+            GuanCang guanCang = new GuanCang("青花瓷","青花瓷,又称白地青花瓷,常简称青花,是中国瓷器的主流品种之一,属釉下彩瓷。",R.drawable.qing_hua_ci);
+            mList.add(guanCang);
         }
     }
     public void initRecyclerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.guanCangRecyclerView.setLayoutManager(layoutManager);
-        ChinaAdapter chinaAdapter = new ChinaAdapter(mList);
-        binding.guanCangRecyclerView.setAdapter(chinaAdapter);
-
+        GuanCangAdapter adapter = new GuanCangAdapter(mList);
+        binding.guanCangRecyclerView.setAdapter(adapter);
     }
 }
