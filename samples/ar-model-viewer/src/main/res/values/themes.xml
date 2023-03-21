@@ -22,7 +22,7 @@
 
     <style name="toolbar_testStyle">
         <item name="android:textSize">24sp</item>
-<!--        <item name="android:textStyle">bold</item>-->
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="GuanCangToolbar">
         <item name="android:windowTranslucentStatus">true</item>

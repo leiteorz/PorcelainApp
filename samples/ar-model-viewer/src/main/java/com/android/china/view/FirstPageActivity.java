@@ -63,14 +63,6 @@ public class FirstPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        binding.guShi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(getApplicationContext(),ChinaGcItemActivity.class);
-                startActivity(intent);
-            }
-        });
     }
     public void initStatus(){
         myStatusBarTransparency = new MyStatusBarTransparency();

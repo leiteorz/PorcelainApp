@@ -12,13 +12,14 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:contentScrim="?android:attr/colorPrimary"
+            app:collapsedTitleTextAppearance="@color/black"
+            app:expandedTitleTextAppearance="@color/black"
+            android:theme="@style/GuanCangToolbar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:id="@+id/collapseActionView">
             <ImageView
                 android:id="@+id/guancang_item_imageview"
-                android:scaleType="center"
+                android:scaleType="fitXY"
                 app:layout_collapseMode="parallax"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
@@ -30,6 +31,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView_guanCang"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -46,6 +48,8 @@
                 android:layout_marginTop="30dp"
                 app:cardCornerRadius="4dp"/>
             <TextView
+                android:text="黑色"
+                android:textColor="@color/black"
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
