@@ -4,7 +4,7 @@
     android:id="@+id/guan_cang_item"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    app:cardBackgroundColor="@color/blue"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="15dp"
     app:cardElevation="25dp"
     android:layout_margin="15dp"

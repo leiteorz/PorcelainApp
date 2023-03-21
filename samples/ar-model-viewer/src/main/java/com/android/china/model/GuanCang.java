@@ -2,7 +2,9 @@ package com.android.china.model;
 
 import com.android.china.adpter.GuanCangAdapter;
 
-public class GuanCang {
+import java.io.Serializable;
+
+public class GuanCang implements Serializable {
     int id = -1;
     String name;    //名字
     String description; //描述
