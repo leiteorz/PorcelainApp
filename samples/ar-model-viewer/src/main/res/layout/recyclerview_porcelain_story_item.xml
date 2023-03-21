@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp"
+        android:layout_height="205dp">
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                app:cardCornerRadius="15dp"
+                android:padding="5dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_height="180dp">
+
+                <ImageView
+                    android:id="@+id/porcelain_story_image"
+                    android:background="@drawable/story_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/porcelain_story_name"
+                    android:text="魂兮归来"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/porcelain_story_description"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black70"
+                    android:text="堆塑罐是长江中下游地区的一种有堆贴塑内容的青瓷随葬品，其典型特征为在主体罐的上部堆附四只小罐或小罐变体，在颈腹间堆贴塑庭院式门楼。"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/porcelain_story_btn"
+                    android:text="查看详情"
+                    android:layout_width="120dp"
+                    android:backgroundTint="#6BAAE6"
+                    app:cornerRadius="10dp"
+                    android:gravity="center"
+                    app:rippleColor="@color/white"
+                    android:layout_gravity="bottom"
+                    android:layout_height="50dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
