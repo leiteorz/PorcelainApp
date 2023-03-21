@@ -11,7 +11,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:background="#fff"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/guanCangToolbar"
             android:layout_width="match_parent"
@@ -21,10 +21,15 @@
             android:theme="@style/GuanCangToolbar"
             app:title="馆藏"
             app:titleTextAppearance="@style/toolbar_testStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/guanCangRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
