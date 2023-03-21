@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/guan_cang_item"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/blue"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="25dp"
+    android:layout_margin="15dp"
+    android:layout_height="wrap_content">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="15dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:id="@+id/guan_cang_image"
+            android:background="@drawable/qing_hua_ci"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/guan_cang_name"
+            android:text="青花瓷"
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/guan_cang_description"
+            android:text="青花瓷,又称白地青花瓷,常简称青花,是中国瓷器的主流品种之一,属釉下彩瓷。"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black70"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
