@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,8 +41,18 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         setSupportActionBar(binding.guanCangToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.guanCangToolbar.setTitleMargin(26,26,26,26);
+        //设置toolbar背景 以及整个布局的背景
         binding.guanCangToolbar.setBackgroundColor(Color.rgb(131,175,155));
         binding.guanCangLayout.setBackgroundColor(Color.rgb(131,175,155));
+        binding.guanCangToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(ChinaGuanCangActivity.this,FirstPageActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
