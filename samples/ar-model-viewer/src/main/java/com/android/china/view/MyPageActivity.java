@@ -195,8 +195,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     private void choosePhoto(){
-        if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions((Activity) getApplicationContext(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        if(ContextCompat.checkSelfPermission(MyPageActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions((Activity) MyPageActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         }else {
             openAlbum();
         }
@@ -214,7 +214,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         }
         if (Build.VERSION.SDK_INT>=24){
             imageUri = FileProvider.getUriForFile(getApplicationContext(),
-                    "com.example.china.cameraalbumtest.fileprovider",outputImage);
+                    "com.example.chinaplus.cameraalbumtest.fileprovider",outputImage);
         }else{
             imageUri = Uri.fromFile(outputImage);
         }
@@ -238,6 +238,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                         String imageString=new String(Base64.encodeToString(byteArray, Base64.DEFAULT));
                         if(!TextUtils.isEmpty(imageString)){
                             kv.encode("take_photo",imageString);
+                            kv.removeValueForKey("choose_photo");
                         }
                     }catch (FileNotFoundException e){
                         e.printStackTrace();
@@ -347,6 +348,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         if(!TextUtils.isEmpty(imagePath))
         {
             kv.encode("choose_photo",imagePath);
+            kv.removeValueForKey("take_photo");
         }
     }
 }
