@@ -30,7 +30,7 @@
         android:backgroundTint="#FFFFFF"
         android:layout_height="70dp"
         app:cornerRadius="0dp"
-        app:icon="@drawable/div_logo"
+        app:icon="@drawable/div_china_logo"
         app:iconSize="35dp"
         android:text="几物"
         android:textColor="#101010"
