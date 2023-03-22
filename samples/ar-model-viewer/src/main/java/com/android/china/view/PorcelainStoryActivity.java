@@ -40,6 +40,8 @@ public class PorcelainStoryActivity extends AppCompatActivity {
 
     private void initToolBar(){
         binding.toolbarPorcelainStory.setTitle("陶瓷故事");
+        setSupportActionBar(binding.toolbarPorcelainStory);
+
     }
 
     private void initStatus(){
