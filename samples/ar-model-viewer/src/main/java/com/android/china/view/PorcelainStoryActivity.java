@@ -51,10 +51,12 @@ public class PorcelainStoryActivity extends AppCompatActivity {
     }
 
     private void initPorcelainStoryList(){
-        for (int i=0;i<10;i++){
-            PorcelainStory porcelainStory = new PorcelainStory("魂兮归来","堆塑罐是长江中下游地区的一种有堆贴塑内容的青瓷随葬品，其典型特征为在主体罐的上部堆附四只小罐或小罐变体，在颈腹间堆贴塑庭院式门楼。",R.drawable.story_first);
-            mList.add(porcelainStory);
-        }
+        PorcelainStory porcelainStory1 = new PorcelainStory("魂兮归来","堆塑罐是长江中下游地区的一种有堆贴塑内容的青瓷随葬品，其典型特征为在主体罐的上部堆附四只小罐或小罐变体，在颈腹间堆贴塑庭院式门楼。",R.drawable.story_first);
+        mList.add(porcelainStory1);
+        PorcelainStory porcelainStory2 = new PorcelainStory("幽蓝神采","中国古董瓷器中，元青花仿佛神一般的存在——以“鬼谷子下山”大罐为代表的元青花，多为世界各地博物馆的镇馆之宝。",R.drawable.story_2);
+        mList.add(porcelainStory2);
+        PorcelainStory porcelainStory3 = new PorcelainStory("唐代青花","中国青花瓷最早出现在唐代，唐代的巩县窑就开始使用含有钴的蓝釉彩来装饰陶瓷器，但是制作工艺还不成熟。",R.drawable.story_3);
+        mList.add(porcelainStory3);
     }
 
     private void initRecyclerView(){
