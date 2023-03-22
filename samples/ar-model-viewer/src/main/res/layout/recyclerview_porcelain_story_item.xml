@@ -28,7 +28,6 @@
 
                 <ImageView
                     android:id="@+id/porcelain_story_image"
-                    android:background="@drawable/story_first"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -40,6 +39,7 @@
                 android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
+
 
                 <TextView
                     android:id="@+id/porcelain_story_name"
@@ -58,16 +58,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/porcelain_story_btn"
-                    android:text="查看详情"
-                    android:layout_width="120dp"
-                    android:backgroundTint="#6BAAE6"
-                    app:cornerRadius="10dp"
-                    android:gravity="center"
-                    app:rippleColor="@color/white"
-                    android:layout_gravity="bottom"
-                    android:layout_height="50dp"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/porcelain_story_btn"
+                        android:text="查看详情"
+                        android:layout_width="120dp"
+                        android:backgroundTint="#6BAAE6"
+                        app:cornerRadius="10dp"
+                        android:gravity="center"
+                        app:rippleColor="@color/white"
+                        android:layout_gravity="bottom"
+                        android:layout_height="50dp"/>
+                </FrameLayout>
 
             </LinearLayout>
 
