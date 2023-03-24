@@ -8,7 +8,7 @@
 
     <!--实现背景最底层的蓝色-->
     <LinearLayout
-        android:background="#6BAAE6"
+        android:background="@color/green_wei"
         android:layout_width="match_parent"
         android:layout_height="100dp"/>
 
@@ -18,7 +18,7 @@
 
         <androidx.cardview.widget.CardView
             app:cardCornerRadius="30dp"
-            android:backgroundTint="#6BAAE6"
+            android:backgroundTint="@color/green_wei"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

@@ -38,7 +38,7 @@
             android:name="com.android.china.view.PocelainKepuActivity"
             android:exported="false" />
         <activity
-            android:name="com.android.china.view.PocelainStoryDetailPageActivity"
+            android:name="com.android.china.view.PorcelainStoryDetailPageActivity"
             android:exported="false" />
         <activity
             android:name="com.android.china.view.ChinaGcItemActivity"

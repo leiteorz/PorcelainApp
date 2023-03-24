@@ -13,19 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--toolbar-->
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_SecondPage"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetEnd="0dp"
-            app:maxButtonHeight="20dp"
-            app:titleMargin="0dp"
-            android:background="@color/white"
-            app:titleTextAppearance="@style/toolbar_testStyle"
-            app:titleTextColor="@color/black"
-            android:layout_margin="26dp"
+        <com.google.android.material.appbar.AppBarLayout
+            android:background="@color/green_wei"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_second_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="true"
+                android:layout_margin="20dp"
+                android:fitsSystemWindows="true"
+
+                android:theme="@style/GuanCangToolbar"
+                app:titleTextAppearance="@style/toolbar_testStyle" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <!--相遇天数-->
         <LinearLayout
@@ -63,6 +65,8 @@
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/diy_porcelain_recycler_view"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
@@ -81,6 +85,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ar_porcelain_recycler_view"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="150dp"/>
 
