@@ -1,14 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.android.china.view.ChinaHistoryFragment">
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/kepu_history_RecyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.android.china.view.ChinaHistoryFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/text_history"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
+    android:layout_height="match_parent"/>
 </FrameLayout>

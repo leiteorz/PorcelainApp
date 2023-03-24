@@ -20,7 +20,9 @@
             app:titleTextAppearance="@style/toolbar_testStyle"
             android:layout_height="wrap_content"/>
         <com.google.android.material.tabs.TabLayout
+            app:tabTextColor="@color/white"
             android:id="@+id/tab_layout_kepu"
+            app:tabIndicatorColor="#FDE6E0"
             app:tabGravity="start"
             app:tabMode="auto"
             android:background="@color/green_wei"

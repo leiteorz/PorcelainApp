@@ -4,19 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.android.china.adpter.PorcelainKepuFragmentAdapter;
+import com.google.android.material.tabs.TabLayout;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityPocelainKepuBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PocelainKepuActivity extends AppCompatActivity {
     private ActivityPocelainKepuBinding binding;
@@ -30,6 +34,7 @@ public class PocelainKepuActivity extends AppCompatActivity {
         initToolbar();
         initData();
         initStatusandTitlebar();
+
     }
     public void initBinding(){
         binding = ActivityPocelainKepuBinding.inflate(getLayoutInflater());

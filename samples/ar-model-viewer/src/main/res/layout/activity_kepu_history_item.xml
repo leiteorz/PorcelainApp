@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/kepu_history_item"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="25dp"
+    android:layout_margin="15dp"
+    android:layout_height="120dp">
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="15dp"
+        android:layout_height="80dp">
+        <ImageView
+            android:id="@+id/kepu_history_iamge"
+            android:background="@drawable/qing_hua_ci"
+            android:layout_width="80dp"
+            android:layout_height="80dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/kepu_history_textView"
+            android:text="六朝时期"
+            android:layout_marginLeft="110dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            android:layout_marginTop="19dp"/>
+
+        <TextView
+            android:id="@+id/kepu_history_description"
+            android:text="六朝时期（公元220年──581年），迅速兴起的佛教艺术对陶瓷也产生了相应的影响，在此季作品造型上留有明显痕迹。公元581年隋朝夺取了权力，结束了长期的南北分裂局面，但它只统治到公元618年就被唐所取代。隋朝瓷器也开始兴起于市。"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:ellipsize="end"
+            android:lines="3"
+            android:textColor="@color/black70"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
