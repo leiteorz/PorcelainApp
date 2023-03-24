@@ -48,6 +48,9 @@ android {
 }
 
 dependencies {
+    //可以拖动的悬浮按钮
+    implementation 'com.github.wangfeng19930909:DragFloatingActionButton:1.0.1'
+    //可以设置url的imageView,用法见activity_porcelain_story_detail_page及对应的activity
     implementation files('src\\lib\\android-smart-image-view-1.0.0.jar')
     //Room
     def room_version="2.4.1"
