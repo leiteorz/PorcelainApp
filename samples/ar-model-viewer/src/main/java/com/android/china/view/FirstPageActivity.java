@@ -78,6 +78,14 @@ public class FirstPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.porcelainKepu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(FirstPageActivity.this,PocelainKepuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initStatus(){
