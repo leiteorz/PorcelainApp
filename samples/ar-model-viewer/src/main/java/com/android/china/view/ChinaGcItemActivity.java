@@ -14,15 +14,18 @@ import com.android.china.utils.MyStatusBarTransparency;
 import com.bumptech.glide.Glide;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityChinaGcItemBinding;
+import com.tencent.mmkv.MMKV;
 
 public class ChinaGcItemActivity extends AppCompatActivity {
     private ActivityChinaGcItemBinding binding;
-    private GuanCang guanCang;
+
+    private MMKV kv;
     private MyStatusBarTransparency myStatusBarTransparency;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
+        initMmkv();
         initData();
         initStatusBarTransparency();
     }
@@ -52,12 +55,18 @@ public class ChinaGcItemActivity extends AppCompatActivity {
                 finish();
             }
         });
-        Intent intent = getIntent();
-        guanCang = (GuanCang) intent.getSerializableExtra("guanCang");
-        binding.collapseActionView.setTitle(guanCang.getName());
-        Glide.with(this).load(getDrawable(guanCang.getImageId())).into(binding.guancangItemImageview);
-        binding.guanCangItemText.setText(guanCang.getDescription());
-        binding.guanCangItemText.setTextColor(this.getResources().getColor(R.color.black));
-        binding.nestedScrollViewGuanCang.setBackgroundColor(Color.rgb(131,175,155));
+
+        String content = kv.decodeString("GuanCangContent");
+        String name = kv.decodeString("GuanCangName");
+        String url = kv.decodeString("GuanCangUrl");
+
+        binding.guanCangItemText.setText(content);
+        binding.guancangItemCollapsingToolbar.setTitle(name);
+        binding.guancangItemImageview.setImageUrl(url);
+    }
+
+    private void initMmkv(){
+        String rootDir = MMKV.initialize(this);
+        kv = MMKV.defaultMMKV();
     }
 }

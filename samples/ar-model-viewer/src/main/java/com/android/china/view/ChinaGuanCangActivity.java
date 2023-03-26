@@ -93,10 +93,16 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     }
 
     public void initChinaList(){
-        for(int i = 0 ; i< 10 ;i++){
-            GuanCang guanCang = new GuanCang("青花瓷","青花瓷,又称白地青花瓷,常简称青花,是中国瓷器的主流品种之一,属釉下彩瓷。",R.drawable.qing_hua_ci);
-            mList.add(guanCang);
-        }
+        GuanCang guanCang1 = new GuanCang("越窑青釉水丞","隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底",R.drawable.guancang_1);
+        mList.add(guanCang1);
+        GuanCang guanCang2 = new GuanCang("邢窑白釉鼓式钵","邢窑白瓷是我国最早的白釉瓷之一，与南方越窑青釉瓷齐名、享誉遐迩的邢窑白瓷在唐朝亦发展鼎盛",R.drawable.guancang_2);
+        mList.add(guanCang2);
+        GuanCang guanCang3 = new GuanCang("巩县窑三彩七星托盘","巩县窑在盛唐时期曾作为贡品，与邢窑白釉瓷媲美，而巩县窑的唐三彩无论在规模、品种、质量均盛极一时",R.drawable.guancang_3);
+        mList.add(guanCang3);
+        GuanCang guanCang4 = new GuanCang("龙泉窑梅子青釉弦纹三足炉","龙泉窑在宋代达到巅峰，南宋时品质最佳，以粉青、梅子青和黑胎厚釉青瓷最为有名，将青瓷推向高峰",R.drawable.guancang_4);
+        mList.add(guanCang4);
+        GuanCang guanCang5 = new GuanCang("耀州窑青釉盒","耀州窑在北宋达到鼎盛时期，耀州窑青瓷釉面光洁、匀净、色泽青幽；擅刻花、印花、划花等饰法",R.drawable.guancang_5);
+        mList.add(guanCang5);
     }
     public void initRecyclerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

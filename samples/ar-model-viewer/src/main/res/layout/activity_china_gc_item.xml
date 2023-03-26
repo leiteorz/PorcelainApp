@@ -5,67 +5,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.android.china.view.ChinaGcItemActivity">
+
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/guanCangItemAppBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/guanCangItemAppBarLayout">
+        android:layout_height="250dp">
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/guancang_item_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:collapsedTitleTextAppearance="@color/black"
-            app:expandedTitleTextAppearance="@color/black"
-            android:theme="@style/GuanCangToolbar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            android:id="@+id/collapseActionView">
-            <ImageView
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            <com.loopj.android.image.SmartImageView
                 android:id="@+id/guancang_item_imageview"
-                android:scaleType="fitXY"
-                app:layout_collapseMode="parallax"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"/>
             <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                app:layout_collapseMode="pin"
                 android:id="@+id/guanCang_item_toolbar"
+                app:layout_collapseMode="pin"
+                android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView_guanCang"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            app:cardElevation="15dp"
+            app:cardCornerRadius="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="30dp"
-                app:cardCornerRadius="4dp"/>
+            android:layout_height="match_parent">
+
             <TextView
-                android:text="黑色"
+                android:id="@+id/guanCang_item_text"
+                android:layout_margin="15dp"
+                android:textSize="16sp"
                 android:textColor="@color/black"
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/guanCang_item_text"/>
-        </LinearLayout>
+                android:text="\t\t\t\t堆塑罐是长江中下游地区的一种有堆贴塑内容的青瓷随葬品，其典型特征为在主体罐的上部堆附四只小罐或小罐变体，在颈腹间堆贴塑庭院式门楼。历来的研究者常称之为谷仓罐、魂瓶等，不一而足。\n\n\t\t\t\t一般认为堆塑罐起源于东汉中晚期的五联罐。到了吴晋，五联罐的造型开始发生变化，以罐为主体，罐口上堆塑飞鸟瑞兽、门阙楼阁、仙佛人像，其中部分器物上还有龟趺阴刻碑铭，记载制造年月、产地及吉祥文字。\n\n\t\t\t\t西晋至东晋堆塑罐逐渐消失，目前已发现最晚的一件堆塑罐出土于永昌元年东晋墓。战乱、招魂葬的禁止、越窑的衰落、佛教的被冲击，都是堆塑罐消失的因素。\n\n\t\t\t\t在众多讨论堆塑罐作用的文章中，明器是最具可能性的。以碑文内容而言，罗振玉所藏一器碑文为 “会稽出始寍（宁）用此丧葬，宜子孙作吏高，迁众无极”，更是明白地指出堆塑罐是丧葬用器，也反映了死者亲属乞求家族富贵兴。有意思的是，还有学者将堆塑罐上的佛像与其功能相联系，推测堆塑罐具有“安魂”作用。\n\n\t\t\t\t《全上古三代秦汉三国六朝文》中有记，311年洛阳沦陷之后，在众多企图流亡长江下游寻求避难的北方上层阶级中，许多人不能成行，还有许多人死于南迁之前或死于途中，尸骨未得安葬。这些未得安葬的游魂时常搅扰着死者的家人，后者不得已面对痛苦的抉择：葬而无尸，有悖儒家礼法；不葬，又会招致不孝、不义、不仁之名。对于吴越地区的许多新居民来说，当地的一种古老的丧葬习俗听起来必定显得更合理。\n\n\t\t\t\t这些文献不仅对堆塑罐的功能研究提供了当时的社会文化背景，同时也记载了堆塑罐在葬仪中的用途。而堆塑罐的很可能就是被称为“灵座”或“魂堂”的器物。在葬礼行三日之后，与椅子、供桌和饮食物品一起放置于墓中。堆塑罐作为死者灵魂的居所在下述话语中得到清楚的证明：“魂堂、几筵，设于寝，岂唯饭尸，亦以宁神也”“若乃缸魂于棺”。\n\n\t\t\t\t一些堆塑罐腹部的孔洞，被认为是象征灵魂归来的入口，有的堆塑罐上还塑有蛇出没于两孔之间，将魂瓶的下腹部分与死人之魄的去处——传统中的黄泉概念联系在一起。与此形成鲜明的对比，魂瓶顶部华丽的楼阁以及环塑于楼阁周围的各种神祇、使乐人物、门卫等等，造成了一个早期中国人所能想象得到的、拥有各种象征安全与奢华图像符号的乐土。这是灵魂的天堂，是生命所能转化的最大极限，魂兮回来，是这类器物永恒的主题。"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.cardview.widget.CardView>
+
     </androidx.core.widget.NestedScrollView>
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:background="#fff"
         android:id="@+id/floatBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#fff"
+        android:backgroundTint="@color/white"
         android:src="@drawable/collect_logo5"
         app:backgroundTint="@color/white"
-        app:tint="@color/yellow"
-        android:backgroundTint="@color/white"
         app:layout_anchor="@id/guanCangItemAppBarLayout"
-        app:layout_anchorGravity="bottom|end"/>
+        app:layout_anchorGravity="bottom|end"
+        app:tint="@color/yellow"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
