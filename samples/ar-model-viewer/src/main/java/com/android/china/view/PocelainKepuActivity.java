@@ -34,6 +34,7 @@ public class PocelainKepuActivity extends AppCompatActivity {
         initToolbar();
         initData();
         initStatusandTitlebar();
+//        git测试
 
     }
     public void initBinding(){
