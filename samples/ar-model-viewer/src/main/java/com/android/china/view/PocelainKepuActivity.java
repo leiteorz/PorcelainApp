@@ -49,10 +49,10 @@ public class PocelainKepuActivity extends AppCompatActivity {
         titleList.add("陶瓷小知识");
         fragmentList = new ArrayList<>();
         fragmentList.add(ChinaHistoryFragment.newInstance("历史页面",""));
-        fragmentList.add(ChinaHistoryFragment.newInstance("种类页面",""));
-        fragmentList.add(ChinaHistoryFragment.newInstance("工艺页面",""));
-        fragmentList.add(ChinaHistoryFragment.newInstance("瓷匠页面",""));
-        fragmentList.add(ChinaHistoryFragment.newInstance("陶瓷小知识页面",""));
+        fragmentList.add(ChinaKindFragment.newInstance("种类页面",""));
+        fragmentList.add(ChinaCraftFragment.newInstance("工艺页面",""));
+        fragmentList.add(ChinaCraftsManFragment.newInstance("瓷匠页面",""));
+        fragmentList.add(ChinaSmallKnowledgeFragment.newInstance("陶瓷小知识页面",""));
         adapter = new PorcelainKepuFragmentAdapter(getSupportFragmentManager(),fragmentList,titleList);
         binding.viewPagerKepu.setAdapter(adapter);
         binding.tabLayoutKepu.setupWithViewPager(binding.viewPagerKepu);
