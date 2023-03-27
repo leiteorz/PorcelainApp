@@ -75,7 +75,7 @@ public class ChinaCraftFragment extends Fragment {
     public void initData(){
         list = new ArrayList<>();
 //        https://baijiahao.baidu.com/s?id=1696029285507739395&wfr=spider&for=pc 后续如果要添加内容去这里找
-        for(int i = 0;i<10;i++){
+        for(int i = 0;i<1;i++){
             list.add(new ChinaHistory("采石制泥","黏土（瓷土）是制作瓷器的原料，而黏土是由地壳表层的岩石风化分解而成。工匠们需要先将矿石采回，然后再打碎制泥。\n" +
                     "\n" +
                     "简单解释一下“岩石风化”：岩石在太阳辐射、大气、水以及某些生物的作用下会发生破碎、疏松等现象，受气象（风、雨、炎热等）影响，岩石崩裂成大小不等的碎石，经过漫长岁月的洗礼，这些碎石变成了细小的土粒沉积下来，形成了土壤。\n" +

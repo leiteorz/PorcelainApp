@@ -68,7 +68,7 @@ public class ChinaKindFragment extends Fragment {
     }
     public void initKindData(){
         list = new ArrayList<>();
-        for(int i  = 0 ; i<10 ;i++){
+        for(int i  = 0 ; i<1 ;i++){
             //https://baijiahao.baidu.com/s?id=1739575714925367101&wfr=spider&for=pc 如果后期需要再来这里找
             list.add(new ChinaHistory("青瓷","青瓷，是我国古代最早的一种青色或者灰绿色瓷器。青瓷一般都是厚釉瓷，造型典雅大气，纹饰多用刻花或者浮雕技艺。我国古陶瓷历史上最为知名的青瓷是龙泉青瓷。",R.drawable.kind1));
             list.add(new ChinaHistory("白瓷","白瓷，是区别于青瓷的一个瓷器品种。白瓷中的精品有唐代邢窑白瓷、宋代定窑白瓷、明代甜白釉瓷，以及德化窑白瓷等。\n" +
