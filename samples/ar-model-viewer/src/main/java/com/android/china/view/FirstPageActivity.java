@@ -3,12 +3,14 @@ package com.android.china.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.room.Database;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +18,9 @@ import android.widget.EditText;
 
 import com.android.china.adpter.ChinaAdapter;
 import com.android.china.model.China;
+import com.android.china.model.ChinaHistory;
+//import com.android.china.room.KepuDataBase;
+import com.android.china.room.dao.KepuDao;
 import com.android.china.utils.ActivityContainer;
 import com.android.china.utils.MyApplication;
 import com.android.china.utils.MyStatusBarTransparency;
@@ -41,6 +46,8 @@ public class FirstPageActivity extends AppCompatActivity {
     private Banner mBanner;
     private ActivityFirstPageBinding binding;
     private MyStatusBarTransparency myStatusBarTransparency;
+    private KepuDao kepuDao;
+//    private KepuDataBase kepuDataBase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +61,18 @@ public class FirstPageActivity extends AppCompatActivity {
         initToolbar();
         setSupportActionBar(binding.toolbarFirstPage);
         initClick();
+//        initDataBase();
     }
+//    public void initDataBase(){
+//        kepuDataBase = KepuDataBase.getKepuDataBase(this);
+//        kepuDao = (KepuDao) kepuDataBase.getDao();
+//        ChinaHistory chinaHistory = new ChinaHistory();
+//        chinaHistory.setName("姓名测试");
+//        chinaHistory.setDescription("描述测试");
+//        chinaHistory.setImageId(R.drawable.small3);
+//        kepuDao.insert(chinaHistory);
+//        Log.d("D","数据库测试");
+//    }
     public void initClick(){
         /**
          * 跳转至馆藏
@@ -83,6 +101,15 @@ public class FirstPageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(FirstPageActivity.this,PocelainKepuActivity.class);
+                startActivity(intent);
+            }
+        });
+        binding.searchDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(FirstPageActivity.this,FirstSeachActivity.class);
+                intent.putExtra("text","我是text");
                 startActivity(intent);
             }
         });
