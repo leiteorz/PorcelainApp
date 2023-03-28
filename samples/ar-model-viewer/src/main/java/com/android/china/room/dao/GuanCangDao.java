@@ -20,6 +20,7 @@ public interface GuanCangDao {
     /**
      * 插入馆藏实例(多个)
      */
+    @Insert
     void insertGuanCangs(List<GuanCang> guanCangs);
     /**
      * 更新数据
@@ -39,6 +40,5 @@ public interface GuanCangDao {
     /**
      * 根据name查询
      */
-    @Query("select * from GuanCangs where name='%name%'")
-    List<GuanCang> queryGuanCangByName(String name);
+
 }

@@ -5,6 +5,7 @@ import com.android.china.adpter.GuanCangAdapter;
 import java.io.Serializable;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "GuanCangs")
@@ -16,17 +17,18 @@ public class GuanCang implements Serializable {
     String content; //点进去的内容
     int imageId;    //图片
 
-    public GuanCang(String _name, String _description, int _imageId){
-        this.name = _name;
-        this.description = _description;
-        this.imageId = _imageId;
+    @Ignore
+    public GuanCang(String name,String description,int imageId){
+        this.name = name;
+        this.description = description;
+        this.imageId = imageId;
     }
 
-    public GuanCang(String _name, String _description, int _imageId,String _content){
-        this.name = _name;
-        this.description = _description;
-        this.imageId = _imageId;
-        this.content = _content;
+    public GuanCang(String name,String description,int imageId,String content){
+        this.name = name;
+        this.description = description;
+        this.imageId = imageId;
+        this.content = content;
     }
 
     public int getId() {
