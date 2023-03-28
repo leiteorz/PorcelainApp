@@ -28,6 +28,7 @@ import androidx.room.Room;
 public class MainActivity extends AppCompatActivity {
     MyStatusBarTransparency myStatusBarTransparency;
     ActivityMainBinding binding;
+    AppDataBase db;
 
     private List<String> mBannerList = new ArrayList<>();
     //随便写的一句话来测试能不能合并
@@ -43,7 +44,15 @@ public class MainActivity extends AppCompatActivity {
 //        initBinding();
 //        initBannerData();
 //        initBanner();
+//        createDatabase();
         goToFirtPage();
+    }
+
+    /**
+     * 创建数据库
+     */
+    private void createDatabase(){
+        db = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,"TaoCi_db").build();
     }
 
     private void initStatus(){
