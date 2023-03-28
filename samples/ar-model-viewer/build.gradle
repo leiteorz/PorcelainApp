@@ -56,7 +56,6 @@ dependencies {
     def room_version="2.4.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-
     //MMKV——基于 mmap 的高性能通用 key-value 组件
     implementation 'com.tencent:mmkv:1.2.15'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
