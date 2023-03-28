@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/searchActivityLinearLayout"
+    tools:context="com.android.china.view.FirstSeachActivity">
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/searchActivityToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="true"
+            android:fitsSystemWindows="true"
+            android:theme="@style/GuanCangToolbar"
+            app:title="搜索"
+            app:titleTextAppearance="@style/toolbar_testStyle" />
+    </com.google.android.material.appbar.AppBarLayout>
+</LinearLayout>
