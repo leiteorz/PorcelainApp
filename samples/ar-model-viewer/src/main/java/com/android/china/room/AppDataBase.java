@@ -24,5 +24,6 @@ public abstract class AppDataBase extends RoomDatabase {
         }
         return mInstance;
     }
+//    白忙活
     public abstract GuanCangDao guanCangDao();
 }
