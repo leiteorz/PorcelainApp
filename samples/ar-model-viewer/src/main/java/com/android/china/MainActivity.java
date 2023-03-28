@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.android.china.room.AppDataBase;
 import com.android.china.utils.ActivityContainer;
+import com.android.china.utils.MyApplication;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.android.china.view.FirstPageActivity;
 import com.bumptech.glide.Glide;
@@ -21,10 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 public class MainActivity extends AppCompatActivity {
     MyStatusBarTransparency myStatusBarTransparency;
     ActivityMainBinding binding;
+    AppDataBase db;
 
     private List<String> mBannerList = new ArrayList<>();
     //随便写的一句话来测试能不能合并
@@ -40,7 +44,15 @@ public class MainActivity extends AppCompatActivity {
 //        initBinding();
 //        initBannerData();
 //        initBanner();
+//        createDatabase();
         goToFirtPage();
+    }
+
+    /**
+     * 创建数据库
+     */
+    private void createDatabase(){
+        db = Room.databaseBuilder(getApplicationContext(),AppDataBase.class,"TaoCi_db").build();
     }
 
     private void initStatus(){
