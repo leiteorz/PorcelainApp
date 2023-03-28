@@ -26,6 +26,5 @@ public abstract class AppDataBase extends RoomDatabase {
     }
 //    白忙活
 //    现在为什么不可以提交了啊
-    //？？？
     public abstract GuanCangDao guanCangDao();
 }
