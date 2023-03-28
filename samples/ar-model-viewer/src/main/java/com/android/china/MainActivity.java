@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.android.china.room.AppDataBase;
 import com.android.china.utils.ActivityContainer;
+import com.android.china.utils.MyApplication;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.android.china.view.FirstPageActivity;
 import com.bumptech.glide.Glide;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 public class MainActivity extends AppCompatActivity {
     MyStatusBarTransparency myStatusBarTransparency;

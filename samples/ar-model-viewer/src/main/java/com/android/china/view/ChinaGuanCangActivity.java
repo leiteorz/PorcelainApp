@@ -40,6 +40,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         initChinaList();
         initRecyclerView();
     }
+
     public void initToolbar(){
         setSupportActionBar(binding.guanCangToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
