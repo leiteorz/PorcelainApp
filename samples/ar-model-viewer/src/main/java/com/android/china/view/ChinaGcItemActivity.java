@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.android.china.model.GuanCang;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.GuanCangDao;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.bumptech.glide.Glide;
 import com.google.ar.sceneform.samples.gltf.R;
@@ -21,10 +23,14 @@ public class ChinaGcItemActivity extends AppCompatActivity {
 
     private MMKV kv;
     private MyStatusBarTransparency myStatusBarTransparency;
+
+    AppDataBase db;
+    GuanCangDao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
+        createDatabase();
         initMmkv();
         initData();
         initStatusBarTransparency();
@@ -40,6 +46,15 @@ public class ChinaGcItemActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
     }
+
+    /**
+     * 创建数据库
+     */
+    private void createDatabase(){
+        db = AppDataBase.getInstance(this);
+        dao = db.guanCangDao();
+    }
+
     public void initData(){
         setSupportActionBar(binding.guanCangItemToolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -56,13 +71,12 @@ public class ChinaGcItemActivity extends AppCompatActivity {
             }
         });
 
-        String content = kv.decodeString("GuanCangContent");
-        String name = kv.decodeString("GuanCangName");
-        String url = kv.decodeString("GuanCangUrl");
+        int guanCangId = getIntent().getIntExtra("guanCangId",0);
+        GuanCang guanCang = dao.queryGuanCangById(guanCangId);
 
-        binding.guanCangItemText.setText(content);
-        binding.guancangItemCollapsingToolbar.setTitle(name);
-        binding.guancangItemImageview.setImageUrl(url);
+        binding.guanCangItemText.setText(guanCang.getContent());
+        binding.guancangItemCollapsingToolbar.setTitle(guanCang.getName());
+        binding.guancangItemImageview.setImageUrl(guanCang.getUrl());
     }
 
     private void initMmkv(){
