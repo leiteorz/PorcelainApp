@@ -4,16 +4,29 @@ import com.android.china.adpter.GuanCangAdapter;
 
 import java.io.Serializable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "GuanCangs")
 public class GuanCang implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     int id = -1;
     String name;    //名字
     String description; //描述
+    String content; //点进去的内容
     int imageId;    //图片
 
     public GuanCang(String _name, String _description, int _imageId){
         this.name = _name;
         this.description = _description;
         this.imageId = _imageId;
+    }
+
+    public GuanCang(String _name, String _description, int _imageId,String _content){
+        this.name = _name;
+        this.description = _description;
+        this.imageId = _imageId;
+        this.content = _content;
     }
 
     public int getId() {
@@ -46,5 +59,13 @@ public class GuanCang implements Serializable {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

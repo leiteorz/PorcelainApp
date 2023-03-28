@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//         添加Activity到堆栈
+//        添加Activity到堆栈
         ActivityContainer.getInstance().addActivity(this);
 
 //        initStatus();
