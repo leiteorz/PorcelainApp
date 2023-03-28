@@ -16,10 +16,6 @@ public class GuanCang implements Serializable {
     String description; //描述
     String content; //点进去的内容
     int imageId;    //图片
-    public GuanCang(String _name, String _description, int _imageId){
-        this.name = _name;
-        this.description = _description;
-        this.imageId = _imageId;
     String url; //点进去的图片url
 
     @Ignore

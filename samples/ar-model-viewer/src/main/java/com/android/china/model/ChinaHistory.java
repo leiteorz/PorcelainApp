@@ -1,26 +1,14 @@
 package com.android.china.model;
 
-import androidx.room.Dao;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
-import org.jetbrains.annotations.NotNull;
-
 /**
  * @Author Crwei
  * date 2023/3/24 21:01
  */
-@Entity(tableName = "ChinaHistory")
+
 public class ChinaHistory {
-    @NotNull
-    @PrimaryKey(autoGenerate = false)
-    private String name;
-    private String description;
-    private int imageId;
-    @Ignore
-    public ChinaHistory() {
-    }
+    String name;    //名字
+    String description; //描述
+    int imageId;    //图片
 
     public ChinaHistory(String name, String description, int imageId) {
         this.name = name;

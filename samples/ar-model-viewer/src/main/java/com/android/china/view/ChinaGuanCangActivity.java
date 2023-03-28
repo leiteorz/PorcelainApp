@@ -93,12 +93,17 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
     }
+
     /**
      * ToolBar相关
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar_guancang,menu);
+
+        /**
+         * 搜索
+         */
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setQueryHint("请输入要查询的瓷器名称");
@@ -130,6 +135,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -145,6 +151,10 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 该插入方法仅作测试,检测RecyclerView的显示效果
+     * 已经弃用
+     */
     public void initChinaList(){
         GuanCang guanCang1 = new GuanCang("越窑青釉水丞","隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底",R.drawable.guancang_1);
         mList.add(guanCang1);
