@@ -86,6 +86,15 @@ public class FirstPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.searchDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(FirstPageActivity.this,SearchActivity.class);
+                intent.putExtra("editView",binding.searchEditText.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     public void initStatus(){

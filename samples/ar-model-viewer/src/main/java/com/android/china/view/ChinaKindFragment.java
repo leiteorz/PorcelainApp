@@ -7,14 +7,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.china.adpter.KepuHistoryAdapter;
 import com.android.china.model.ChinaHistory;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.ChinaHistoryDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentChinaKindBinding;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,9 @@ public class ChinaKindFragment extends Fragment {
     private FragmentChinaKindBinding binding;
     private KepuHistoryAdapter kepuHistoryAdapter;
     private List<ChinaHistory> list;
+    private AppDataBase db;
+    private ChinaHistoryDao dao;
+    private MMKV kv;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -63,8 +70,23 @@ public class ChinaKindFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initMmkv();
         initKindData();
         initRecycerView();
+        initDatabase();
+    }
+    public void initDatabase(){
+        db = AppDataBase.getInstance(getContext());
+        dao = db.ChinaHistoryDao();
+        String kind = kv.decodeString("kind");
+        if(TextUtils.isEmpty(kind)){
+            dao.insertChinaHistory(list);
+        }
+        kv.encode("kind","1");
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(getContext());
+        kv = MMKV.defaultMMKV();
     }
     public void initKindData(){
         list = new ArrayList<>();

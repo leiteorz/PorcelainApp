@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface ChinaHistoryDao {
     @Insert
-    void insertChinaHistory(ChinaHistory... chinaHistories);
+    void insertChinaHistory(List<ChinaHistory> chinaHistories);
     /**
      * 更新数据
      */
@@ -32,6 +32,6 @@ public interface ChinaHistoryDao {
     /**
      * 根据name查询
      */
-    @Query("select * from ChinaHistory where name like :name")
+    @Query("select * from ChinaHistory where name LIKE '%'||:name||'%'")
     List<ChinaHistory> queryChinaHistorysByName(String name);
 }

@@ -7,14 +7,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.china.adpter.KepuHistoryAdapter;
 import com.android.china.model.ChinaHistory;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.ChinaHistoryDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentChinaCraftBinding;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +32,9 @@ public class ChinaCraftFragment extends Fragment {
     private FragmentChinaCraftBinding binding;
     private KepuHistoryAdapter kepuHistoryAdapter;
     private List<ChinaHistory> list;
+    private MMKV kv;
+    private AppDataBase db;
+    private ChinaHistoryDao dao;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -71,6 +78,21 @@ public class ChinaCraftFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
         initRecycerView();
+        initMmkv();
+        initDatabase();
+    }
+    public void initDatabase(){
+        db = AppDataBase.getInstance(getContext());
+        dao = db.ChinaHistoryDao();
+        String craft = kv.decodeString("craft");
+        if(TextUtils.isEmpty(craft)){
+            dao.insertChinaHistory(list);
+        }
+        kv.encode("craft","1");
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(getContext());
+        kv = MMKV.defaultMMKV();
     }
     public void initData(){
         list = new ArrayList<>();
