@@ -7,14 +7,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.china.adpter.KepuHistoryAdapter;
 import com.android.china.model.ChinaHistory;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.ChinaHistoryDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentChinaSmallKnowledgeBinding;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,9 @@ public class ChinaSmallKnowledgeFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private MMKV kv;
+    private AppDataBase db;
+    private ChinaHistoryDao dao;
 
     public ChinaSmallKnowledgeFragment() {
     }
@@ -79,6 +86,21 @@ public class ChinaSmallKnowledgeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
         initRecycerView();
+        initMmkv();
+        initDatabase();
+    }
+    public void initDatabase(){
+        db = AppDataBase.getInstance(getContext());
+        dao = db.ChinaHistoryDao();
+        String smallKnowledge = kv.decodeString("smallKnowledge");
+        if(TextUtils.isEmpty(smallKnowledge)){
+            dao.insertChinaHistory(list);
+            kv .encode("smallKnowledge","1");
+        }
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(getContext());
+        kv = MMKV.defaultMMKV();
     }
     public void initData(){
         list = new ArrayList<>();

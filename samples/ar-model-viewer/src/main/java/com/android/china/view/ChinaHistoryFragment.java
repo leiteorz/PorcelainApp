@@ -7,14 +7,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.china.adpter.KepuHistoryAdapter;
 import com.android.china.model.ChinaHistory;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.ChinaHistoryDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentChinaHistoryBinding;
+import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +29,9 @@ public class ChinaHistoryFragment extends Fragment {
     private List<ChinaHistory> list;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private AppDataBase db;
+    private ChinaHistoryDao dao;
+    private MMKV kv;
     private String mParam1;
     private String mParam2;
 
@@ -62,8 +68,23 @@ public class ChinaHistoryFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initMmkv();
         initHistoryData();
         initRecycerView();
+        initDatabase();
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(getContext());
+        kv = MMKV.defaultMMKV();
+    }
+    public void initDatabase(){
+        String history = kv.decodeString("history");
+        db = AppDataBase.getInstance(getContext());
+        dao = db.ChinaHistoryDao();
+        if(TextUtils.isEmpty(history)){
+           dao.insertChinaHistory(list);
+        }
+        kv.encode("history","1");
     }
     @Override
     public void onDestroyView() {
