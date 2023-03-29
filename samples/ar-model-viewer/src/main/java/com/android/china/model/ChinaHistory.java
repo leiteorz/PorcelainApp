@@ -1,14 +1,37 @@
 package com.android.china.model;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
+
 /**
  * @Author Crwei
  * date 2023/3/24 21:01
  */
+@Entity(tableName = "ChinaHistory")
+public class ChinaHistory implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    int id;
+    String name;
+    String description;
+    int imageId;
+@Ignore
+    public ChinaHistory(int id, String name, String description, int imageId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.imageId = imageId;
+    }
 
-public class ChinaHistory {
-    String name;    //名字
-    String description; //描述
-    int imageId;    //图片
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public ChinaHistory(String name, String description, int imageId) {
         this.name = name;

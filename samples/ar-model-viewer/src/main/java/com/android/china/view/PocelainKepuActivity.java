@@ -2,6 +2,7 @@ package com.android.china.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.room.Database;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -14,6 +15,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.china.adpter.PorcelainKepuFragmentAdapter;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.ChinaHistoryDao;
 import com.google.android.material.tabs.TabLayout;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityPocelainKepuBinding;
@@ -27,6 +30,8 @@ public class PocelainKepuActivity extends AppCompatActivity {
     private List<Fragment> fragmentList;
     private List<String> titleList;
     private PorcelainKepuFragmentAdapter adapter;
+    private AppDataBase db;
+    private ChinaHistoryDao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +39,15 @@ public class PocelainKepuActivity extends AppCompatActivity {
         initToolbar();
         initData();
         initStatusandTitlebar();
-//        git测试
+        createDatabase();
+        initDatabaseData();
+    }
+    public void initDatabaseData(){
 
+    }
+    public void createDatabase(){
+        db = AppDataBase.getInstance(this);
+        dao = db.ChinaHistoryDao();
     }
     public void initBinding(){
         binding = ActivityPocelainKepuBinding.inflate(getLayoutInflater());
