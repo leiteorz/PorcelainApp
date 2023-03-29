@@ -61,7 +61,7 @@ public class GuanCangAdapter extends RecyclerView.Adapter<GuanCangAdapter.ViewHo
                  */
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(),ChinaGcItemActivity.class);
-                intent.putExtra("guanCangId",position);
+                intent.putExtra("guanCangId",position+1);
                 view.getContext().startActivity(intent);
             }
         });

@@ -119,7 +119,6 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                 }
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (newText.equals("")){
