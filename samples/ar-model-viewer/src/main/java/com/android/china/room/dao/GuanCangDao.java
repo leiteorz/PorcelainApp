@@ -40,7 +40,7 @@ public interface GuanCangDao {
     /**
      * 根据name查询
      */
-    @Query("select * from GuanCangs where name like :name")
+    @Query("select * from GuanCangs where name like '%'||:name||'%'")
     List<GuanCang> queryGuanCangsByName(String name);
 
     @Query("select * from GuanCangs where id=:id")
