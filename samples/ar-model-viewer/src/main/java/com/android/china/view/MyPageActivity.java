@@ -48,6 +48,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class MyPageActivity extends AppCompatActivity implements View.OnClickListener {
@@ -305,8 +306,9 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
      * 初始化作品RecyclerView
      */
     private void initRecyclerView(){
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.workRecyclerView.setLayoutManager(layoutManager);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         myWorkAdapter = new MyWorkAdapter(myWorkList);
         binding.workRecyclerView.setAdapter(myWorkAdapter);
     }
