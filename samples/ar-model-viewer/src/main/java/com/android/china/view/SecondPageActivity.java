@@ -39,7 +39,6 @@ public class SecondPageActivity extends AppCompatActivity {
 
         initBinding();
         initNavigationStatus();
-        initToolbar();
         initStatus();
 
         initMmkv();
@@ -66,11 +65,6 @@ public class SecondPageActivity extends AppCompatActivity {
         myStatusBarTransparency = new MyStatusBarTransparency();
         myStatusBarTransparency.setFullscreen(true,true,this);
         myStatusBarTransparency.setAndroidNativeLightStatusBar(this,true);
-    }
-
-    @SuppressLint({"ResourceAsColor", "ResourceType"})
-    public void initToolbar(){
-        binding.toolbarSecondPage.setTitle("陶瓷创作");
     }
 
     public void initArPorcelainRecyclerView(){
