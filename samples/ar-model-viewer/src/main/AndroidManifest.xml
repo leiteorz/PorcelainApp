@@ -36,6 +36,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.android.china.view.SearchActivity"
+            android:windowSoftInputMode="adjustPan"
+
             android:exported="false" />
         <activity
             android:name="com.android.china.view.PocelainKepuActivity"
@@ -48,6 +50,7 @@
             android:exported="false" />
         <activity
             android:name="com.android.china.view.ChinaGuanCangActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name="com.android.china.view.PorcelainStoryActivity"
