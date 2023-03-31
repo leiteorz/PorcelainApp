@@ -2,6 +2,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
+    android:background="@color/green_wei"
 tools:context="com.android.china.view.ChinaHistoryFragment">
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/kepu_history_RecyclerView"

@@ -65,7 +65,7 @@
                         android:id="@+id/porcelain_story_btn"
                         android:text="查看详情"
                         android:layout_width="120dp"
-                        android:backgroundTint="#6BAAE6"
+                        android:backgroundTint="@color/green_wei"
                         app:cornerRadius="10dp"
                         android:gravity="center"
                         app:rippleColor="@color/white"

@@ -69,4 +69,10 @@ public class KepuHistoryAdapter extends RecyclerView.Adapter<KepuHistoryAdapter.
     public int getItemCount() {
         return mList.size();
     }
+    public void refreshData(List<ChinaHistory> list){
+        this.mList = list;
+        notifyDataSetChanged();
+
+    }
+
 }

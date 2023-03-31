@@ -9,10 +9,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.china.adpter.ChinaAdapter;
 import com.android.china.model.China;
@@ -89,10 +95,28 @@ public class FirstPageActivity extends AppCompatActivity {
         binding.searchDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FirstPageActivity.this,SearchActivity.class);
-                intent.putExtra("editView",binding.searchEditText.getText().toString());
-                startActivity(intent);
+                if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
+                    Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent();
+                    intent.setClass(FirstPageActivity.this,SearchActivity.class);
+                    intent.putExtra("editView",binding.searchEditText.getText().toString());
+                    startActivity(intent);
+                }
+            }
+        });
+        binding.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if ((i == EditorInfo.IME_ACTION_UNSPECIFIED || i == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null&& !TextUtils.isEmpty(binding.searchEditText.getText().toString())) {
+                    Intent intent = new Intent();
+                    intent.setClass(FirstPageActivity.this,SearchActivity.class);
+                    intent.putExtra("editView",binding.searchEditText.getText().toString());
+                    startActivity(intent);
+                }else if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
+                    Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
+                }
+                return false;
             }
         });
     }
