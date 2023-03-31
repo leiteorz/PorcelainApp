@@ -53,9 +53,30 @@ public class ArPorcelainAdapter extends RecyclerView.Adapter<ArPorcelainAdapter.
             @Override
             public void onClick(View view) {
                 int position = holder.getAbsoluteAdapterPosition();
-                //青花瓷
+                //青花瓷_1
                 if(position == 0){
                     kv.encode("ArModel","models/QingHuaCi.glb");
+                    Intent intent = new Intent();
+                    intent.setClass(view.getContext(), Activity.class);
+                    view.getContext().startActivity(intent);
+                }
+                //青花瓷_2
+                if(position == 1){
+                    kv.encode("ArModel","models/model_2.glb");
+                    Intent intent = new Intent();
+                    intent.setClass(view.getContext(), Activity.class);
+                    view.getContext().startActivity(intent);
+                }
+                //白瓷
+                if (position == 2){
+                    kv.encode("ArModel","models/model_4.glb");
+                    Intent intent = new Intent();
+                    intent.setClass(view.getContext(), Activity.class);
+                    view.getContext().startActivity(intent);
+                }
+                //青花瓷_3
+                if(position == 3){
+                    kv.encode("ArModel","models/model_3.glb");
                     Intent intent = new Intent();
                     intent.setClass(view.getContext(), Activity.class);
                     view.getContext().startActivity(intent);
