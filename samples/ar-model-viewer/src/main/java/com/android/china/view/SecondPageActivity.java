@@ -84,10 +84,14 @@ public class SecondPageActivity extends AppCompatActivity {
     }
 
     private void initArPorcelains(){
-        for (int i=0;i<8;i++){
-            ArPorcelain arPorcelain = new ArPorcelain("青花瓷", R.drawable.qing_hua_ci);
-            arPorcelainList.add(arPorcelain);
-        }
+        ArPorcelain arPorcelain1 = new ArPorcelain("青花瓷_1", R.drawable.qing_hua_ci);
+        arPorcelainList.add(arPorcelain1);
+        ArPorcelain arPorcelain2 = new ArPorcelain("青花瓷_2",R.drawable.model_2);
+        arPorcelainList.add(arPorcelain2);
+        ArPorcelain arPorcelain4 = new ArPorcelain("白瓷",R.drawable.model_4);
+        arPorcelainList.add(arPorcelain4);
+        ArPorcelain arPorcelain3 = new ArPorcelain("青花瓷_3",R.drawable.model_3);
+        arPorcelainList.add(arPorcelain3);
     }
 
     private void initDiyPorcelains(){
