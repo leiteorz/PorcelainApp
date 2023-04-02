@@ -44,7 +44,6 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         initToolbar();
         createDatabase();
         initMmkv();
-//        initChinaList();
         initGuanCangListFromDb();
         initRecyclerView();
     }

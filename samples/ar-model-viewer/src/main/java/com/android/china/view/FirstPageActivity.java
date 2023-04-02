@@ -153,11 +153,11 @@ public class FirstPageActivity extends AppCompatActivity {
     }
 
     private void initData(){
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgCategories.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgbeijingtu.png");
+        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgCache_-68b9853ad839dee4.jpg");
+        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgCache_-40a567fb8d8c357.jpg");
         mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgTags.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgdefault.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/img20221013113552.png");
+        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/img20220913205647.png");
+        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgarticlebeijingtu.png");
         mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/img20220923113255.png");
     }
     private void initBanner(){
@@ -186,9 +186,12 @@ public class FirstPageActivity extends AppCompatActivity {
         mBanner.start();
     }
     public void initChinaList(){
-        for(int i = 0 ; i< 10 ;i++){
-            China china = new China("陶瓷"+"i"+"号",R.drawable.pic);
+        for(int i = 0 ; i< 1 ;i++){
+            China china = new China("\t\t\t\t\t\t\t\t如果你接触陶瓷时间不算久，正处于兴趣萌芽期， 以下三本内容权威、扎实，又十分系统的“初学者必读读物”，能够让刚接触陶瓷的朋友，对源远流长、丰富绮丽的中国陶瓷史形成一个初步概念。 兴趣能满足、疑难可解答，爱好者们在这一阶段的诉求，它们照单全收。\n\t\t\t\t\t\t\t\t《中国陶瓷史》作者叶喆民先生家学渊源，自幼随父叶麟趾教授学习陶瓷，后在故宫博物院的十六年间，他得到陈万里、孙瀛洲等名师亲" +
+                    "自指导，并追随二位前往全国各地探访，进行陶瓷鉴定与窑址考察工作。收货全明星教育阵容指导、注重将理论与实际相结合的叶喆民，不但出版过多部古陶瓷研究专著，发表了百余篇学术论文，就连我们再熟悉不过的汝窑窑址，也是叶先生首先发现并认定的。",R.drawable.book1,"博物馆里的奇妙中国","作者：约翰夫斯基");
             mList.add(china);
+            China china1 = new China("\t\t\t\t\t\t\t\t瓷器是中国的创造，是世界的语言。瓷器是水、火、土的完美结合，是人类想像力和创造力的最好体现，是自然与人文交汇的结晶。瓷器凝结了我们祖先的智慧，满足了社会生活的需要，积聚了时代与民族的精华，成为中国乃至世界科技、工艺、文化史上的一项伟大发明，成为外国语汇里中国的代名词。\n\t\t\t\t\t\t\t\t《瓷器中国》一书用权威、通俗的语言，配以大量高清图片，讲述了中国瓷器三千年的发展历程，展现了中华民族博大精深的精神世界和审美情怀。",R.drawable.book2,"瓷器中国","作者：陈克伦");
+            mList.add(china1);
         }
     }
 
