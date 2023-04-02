@@ -1,17 +1,39 @@
 package com.android.china.model;
 
+import java.io.Serializable;
+
 /**
  * @Author Crwei
  * date 2023/3/14 21:01
  */
 
-public class China {
+public class China implements Serializable {
     private String describe;
     private int imageId;
+    private String bookName;
+    private String bookAuthor;
 
-    public China(String describe, int imageId) {
+    public China(String describe, int imageId, String bookName, String bookAuthor) {
         this.describe = describe;
         this.imageId = imageId;
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
     }
 
     public String getDescribe() {

@@ -27,7 +27,6 @@ public class PorcelainStoryActivity extends AppCompatActivity {
         initBinding();
         initStatus();
         initToolBar();
-
         initPorcelainStoryList();
         initRecyclerView();
     }

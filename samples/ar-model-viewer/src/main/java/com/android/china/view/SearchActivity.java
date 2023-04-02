@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,14 +36,15 @@ public class SearchActivity extends AppCompatActivity {
     private List<ChinaHistory> list;
     private ChinaHistoryDao dao;
     private AppDataBase db;
+    private KepuHistoryAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
         initToolbar();
         initDatabase();
-        initData();
         initRecycerView();
+        initData();
     }
     public void initDatabase(){
         db = AppDataBase.getInstance(getApplicationContext());
@@ -52,12 +54,12 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getStringExtra("editView");
         list = dao.queryChinaHistorysByName(name);
-        Log.d("List", name);
+        adapter.refreshData(list);
     }
     public void initRecycerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(MyApplication.getContext());
         binding.searchRv.setLayoutManager(layoutManager);
-        KepuHistoryAdapter adapter = new KepuHistoryAdapter(list);
+        adapter = new KepuHistoryAdapter(list);
         binding.searchRv.setAdapter(adapter);
     }
     public void initBinding(){
@@ -104,11 +106,22 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if(TextUtils.isEmpty(query)){
+                    list = dao.queryAllChinaHistory();
+                    adapter.notifyDataSetChanged();
+                }
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(TextUtils.isEmpty(newText)){
+                    list = dao.queryAllChinaHistory();
+                    adapter.refreshData(list);
+                }else{
+                    list = dao.queryChinaHistorysByName(newText);
+                    adapter.refreshData(list);
+                }
                 return true;
             }
         });
