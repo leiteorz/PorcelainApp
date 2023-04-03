@@ -72,6 +72,6 @@
         app:backgroundTint="@color/white"
         app:layout_anchor="@id/guanCangItemAppBarLayout"
         app:layout_anchorGravity="bottom|end"
-        app:tint="@color/yellow"
+        app:tint="@color/black40"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

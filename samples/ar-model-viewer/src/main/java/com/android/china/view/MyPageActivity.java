@@ -115,6 +115,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         binding.myPhoto.setOnClickListener(this);
         binding.myName.setOnClickListener(this);
         binding.mySignature.setOnClickListener(this);
+        binding.jumpCollectionBtn.setOnClickListener(this);
     }
     public void initMyPageActivityStatus(){
         myStatusBarTransparency = new MyStatusBarTransparency();
@@ -191,6 +192,10 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
                         })
                         .show();
                 break;
+            case R.id.jump_collection_btn:
+                Intent intent = new Intent();
+                intent.setClass(MyPageActivity.this,MyCollectionActivity.class);
+                startActivity(intent);
             default:
                 break;
         }

@@ -6,10 +6,10 @@ import android.view.View;
 
 import com.android.china.room.AppDataBase;
 import com.android.china.utils.ActivityContainer;
-import com.android.china.utils.MyApplication;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.android.china.view.FirstPageActivity;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideExtension;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.ar.sceneform.samples.gltf.R;

@@ -59,6 +59,7 @@
                 android:layout_height="30dp"/>
 
             <ImageView
+                android:id="@+id/jump_collection_btn"
                 android:background="@drawable/my_collect_logo3"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="55dp"

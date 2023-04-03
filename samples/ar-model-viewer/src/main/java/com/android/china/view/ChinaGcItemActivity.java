@@ -3,8 +3,10 @@ package com.android.china.view;
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +15,6 @@ import com.android.china.model.GuanCang;
 import com.android.china.room.AppDataBase;
 import com.android.china.room.dao.GuanCangDao;
 import com.android.china.utils.MyStatusBarTransparency;
-import com.bumptech.glide.Glide;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityChinaGcItemBinding;
 import com.tencent.mmkv.MMKV;
@@ -34,12 +35,13 @@ public class ChinaGcItemActivity extends AppCompatActivity {
         initMmkv();
         initData();
         initStatusBarTransparency();
+
+        onClick();
     }
     public void initStatusBarTransparency(){
         myStatusBarTransparency = new MyStatusBarTransparency();
         myStatusBarTransparency.setFullscreen(true,true,this);
         myStatusBarTransparency.setAndroidNativeLightStatusBar(this,true);
-
     }
     public void initBinding(){
         binding = ActivityChinaGcItemBinding.inflate(getLayoutInflater());
@@ -82,5 +84,31 @@ public class ChinaGcItemActivity extends AppCompatActivity {
     private void initMmkv(){
         String rootDir = MMKV.initialize(this);
         kv = MMKV.defaultMMKV();
+    }
+
+    /**
+     * 点击事件
+     */
+    private void onClick(){
+        /**
+         * 收藏按钮的点击事件
+         */
+        binding.floatBtn.setOnClickListener(new View.OnClickListener() {
+            int flag = 0;   //flag为0:未收藏 flag为1:收藏
+            @Override
+            public void onClick(View v) {
+                if (flag == 0){
+                    //未收藏变成已收藏,设置Tint为yellow
+                    binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                            (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.yellow)));
+                    flag = 1;
+                }else if(flag == 1){
+                    //已收藏变成未收藏,设置Tint为black40
+                    binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                            (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.black40)));
+                    flag = 0;
+                }
+            }
+        });
     }
 }

@@ -37,6 +37,7 @@
         <activity
             android:name="com.android.china.view.BookActivity"
             android:exported="false" />
+        <activity android:name="com.android.china.view.MyCollectionActivity"/>
         <activity
             android:name="com.android.china.view.SearchActivity"
             android:exported="false"
