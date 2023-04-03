@@ -50,13 +50,15 @@ android {
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
-    //可以拖动的悬浮按钮
-    implementation 'com.github.wangfeng19930909:DragFloatingActionButton:1.0.1'
-    //可以设置url的imageView,用法见activity_porcelain_story_detail_page及对应的activity
+//    可以侧滑的item
+//    用法见 https://github.com/mcxtzhang/SwipeDelMenuLayout
+//    implementation 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
+//    可以拖动的悬浮按钮
+//    implementation 'com.github.wangfeng19930909:DragFloatingActionButton:1.0.1'
+//    可以设置url的imageView,用法见activity_porcelain_story_detail_page及对应的activity
     implementation files('src\\lib\\android-smart-image-view-1.0.0.jar')
     //Room
     def room_version="2.4.1"
@@ -81,8 +83,8 @@ dependencies {
     //一个圆角图片的导包
     implementation 'com.makeramen:roundedimageview:2.3.0'
     //Glide加载图片库
-    implementation 'com.github.bumptech.glide:glide:4.15.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
     //banner库
     implementation 'io.github.youth5201314:banner:2.2.2'
 

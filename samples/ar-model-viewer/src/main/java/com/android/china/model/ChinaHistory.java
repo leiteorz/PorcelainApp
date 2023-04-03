@@ -17,7 +17,7 @@ public class ChinaHistory implements Serializable {
     String name;
     String description;
     int imageId;
-@Ignore
+    @Ignore
     public ChinaHistory(int id, String name, String description, int imageId) {
         this.id = id;
         this.name = name;

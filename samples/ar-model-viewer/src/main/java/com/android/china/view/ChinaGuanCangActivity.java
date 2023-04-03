@@ -174,7 +174,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
          * 如果InsertGuanCang=0,则插入数据
          */
         int flag = kv.decodeInt("InsertGuanCangs",0);
-        Log.d("leiteorz", "initGuanCangListFromDb: "+flag);
+        Log.d("leiteorz", "initGuanCangListFromDb: " + flag);
         if (flag == 0){
             List<GuanCang> list = new ArrayList<>();
 
