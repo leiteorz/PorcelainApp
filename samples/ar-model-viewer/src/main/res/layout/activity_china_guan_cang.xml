@@ -20,7 +20,7 @@
             android:clipToPadding="true"
             android:fitsSystemWindows="true"
             android:theme="@style/GuanCangToolbar"
-            app:title="馆藏"
+            app:title="瓷馆"
             app:titleTextAppearance="@style/toolbar_testStyle" />
     </com.google.android.material.appbar.AppBarLayout>
 
