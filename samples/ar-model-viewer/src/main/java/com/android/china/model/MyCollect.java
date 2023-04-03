@@ -3,7 +3,7 @@ package com.android.china.model;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 
-@Entity(tableName = "MyCollects")
+@Entity(tableName = "MyCollects",primaryKeys = {"id","kind"})
 public class MyCollect {
     /**
      * 这个id指的是收藏的东西的id
@@ -27,7 +27,6 @@ public class MyCollect {
 
     int image;
 
-    @Ignore
     public MyCollect(int id,int kind,int isCollected,String name,String description,int image){
         this.id = id;
         this.kind = kind;

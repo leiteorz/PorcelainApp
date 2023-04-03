@@ -4,10 +4,13 @@ import com.android.china.model.MyCollect;
 
 import java.util.List;
 
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
+@Dao
 public interface MyCollectionDao {
     /**
      * 插入收藏实例(单个)
@@ -38,4 +41,16 @@ public interface MyCollectionDao {
      */
     @Query("select * from MyCollects where id=:id and kind=:kind")
     MyCollect queryMyCollectionByIdAndKind(int id,int kind);
+
+    /**
+     * 查询是否收藏
+     */
+    @Query("select isCollected from MyCollects where id=:id and kind=:kind")
+    int queryIfCollectedById(int id,int kind);
+
+    /**
+     * 根据flag、id和kind更新isCollected
+     */
+    @Query("update MyCollects set isCollected=:flag where id=:id and kind=:kind")
+    int updateIsCollected(int flag,int id,int kind);
 }

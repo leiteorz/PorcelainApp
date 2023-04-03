@@ -16,8 +16,10 @@ import android.widget.SearchView;
 
 import com.android.china.adpter.GuanCangAdapter;
 import com.android.china.model.GuanCang;
+import com.android.china.model.MyCollect;
 import com.android.china.room.AppDataBase;
 import com.android.china.room.dao.GuanCangDao;
+import com.android.china.room.dao.MyCollectionDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityChinaGuanCangBinding;
 import com.tencent.mmkv.MMKV;
@@ -36,6 +38,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     private MMKV kv;
     AppDataBase db;
     GuanCangDao dao;
+    MyCollectionDao myCollectionDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     private void createDatabase(){
         db = AppDataBase.getInstance(this);
         dao = db.guanCangDao();
+        myCollectionDao = db.myCollectionDao();
     }
 
     public void initToolbar(){
@@ -177,6 +181,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         Log.d("leiteorz", "initGuanCangListFromDb: " + flag);
         if (flag == 0){
             List<GuanCang> list = new ArrayList<>();
+            List<MyCollect> myCollectList = new ArrayList<>();
 
             GuanCang guanCang1 = new GuanCang("越窑青釉水丞",
                     "隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底",
@@ -185,6 +190,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/guancang1.png"
             );
             list.add(guanCang1);
+            myCollectList.add(new MyCollect(0,1,0,"越窑青釉水丞","隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底",R.drawable.guancang_1));
 
             GuanCang guanCang2 = new GuanCang("邢窑白釉鼓式钵",
                     "邢窑白瓷是我国最早的白釉瓷之一，与南方越窑青釉瓷齐名、享誉遐迩的邢窑白瓷在唐朝亦发展鼎盛",
@@ -193,6 +199,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/guancang2.png"
             );
             list.add(guanCang2);
+            myCollectList.add(new MyCollect(1,1,0,"邢窑白釉鼓式钵","邢窑白瓷是我国最早的白釉瓷之一，与南方越窑青釉瓷齐名、享誉遐迩的邢窑白瓷在唐朝亦发展鼎盛",R.drawable.guancang_2));
 
             GuanCang guanCang3 = new GuanCang("巩县窑三彩七星托盘",
                     "巩县窑在盛唐时期曾作为贡品，与邢窑白釉瓷媲美，而巩县窑的唐三彩无论在规模、品种、质量均盛极一时",
@@ -201,6 +208,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/guancang3.png"
             );
             list.add(guanCang3);
+            myCollectList.add(new MyCollect(2,1,0,"邢窑白釉鼓式钵","巩县窑在盛唐时期曾作为贡品，与邢窑白釉瓷媲美，而巩县窑的唐三彩无论在规模、品种、质量均盛极一时",R.drawable.guancang_3));
 
             GuanCang guanCang4 = new GuanCang("龙泉窑梅子青釉弦纹三足炉",
                     "龙泉窑在宋代达到巅峰，南宋时品质最佳，以粉青、梅子青和黑胎厚釉青瓷最为有名，将青瓷推向高峰",
@@ -209,6 +217,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/guancang4.jpg"
             );
             list.add(guanCang4);
+            myCollectList.add(new MyCollect(3,1,0,"龙泉窑梅子青釉弦纹三足炉","龙泉窑在宋代达到巅峰，南宋时品质最佳，以粉青、梅子青和黑胎厚釉青瓷最为有名，将青瓷推向高峰",R.drawable.guancang_4));
 
             GuanCang guanCang5 = new GuanCang("耀州窑青釉盒",
                     "耀州窑在北宋达到鼎盛时期，耀州窑青瓷釉面光洁、匀净、色泽青幽；擅刻花、印花、划花等饰法",
@@ -217,10 +226,12 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/guancang5.png"
             );
             list.add(guanCang5);
+            myCollectList.add(new MyCollect(4,1,0,"耀州窑青釉盒","耀州窑在北宋达到鼎盛时期，耀州窑青瓷釉面光洁、匀净、色泽青幽；擅刻花、印花、划花等饰法",R.drawable.guancang_5));
             /**
              * 将list插入数据库中
              */
             dao.insertGuanCangs(list);
+            myCollectionDao.insertMyCollections(myCollectList);
             //加载了馆藏列表,则将InsertGuanCangs设置为1
             kv.encode("InsertGuanCangs",1);
         }

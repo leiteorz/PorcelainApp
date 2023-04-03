@@ -21,6 +21,10 @@ public class MyCollectionAdapter extends RecyclerView.Adapter<MyCollectionAdapte
 
     private static MMKV kv;
 
+    public MyCollectionAdapter(List<MyCollect> list){
+        this.mList = list;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView myCollectionImage;
         TextView myCollectionName;
