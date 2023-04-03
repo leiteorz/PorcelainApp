@@ -33,11 +33,12 @@
 
             <EditText
                 android:id="@+id/search_editText"
-                android:layout_width="match_parent"
+                android:layout_width="400dp"
                 android:imeOptions="actionSearch"
                 android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginEnd="26dp"
                 android:background="@drawable/search_bg"
                 android:hint="搜索"
@@ -63,12 +64,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.youth.banner.Banner
+
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             app:banner_radius="5dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="8dp" />
+            android:layout_margin="18dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -128,7 +130,7 @@
                     android:textColor="#101010"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="陶瓷馆藏"
+                    android:text="瓷馆"
                     android:textSize="18dp" />
 
                 <TextView
@@ -137,7 +139,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textColor="#101010"
-                    android:text="陶瓷故事"
+                    android:text="故瓷"
                     android:textSize="18dp" />
 
                 <TextView
@@ -145,15 +147,24 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="陶瓷科普"
+                    android:text="科普"
                     android:textColor="#101010"
                     android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>
-
+        <TextView
+            android:text="热门推荐"
+            android:layout_margin="8dp"
+            android:textSize="18dp"
+            android:textColor="#4A766E"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <androidx.recyclerview.widget.RecyclerView

@@ -69,7 +69,7 @@
                 android:id="@+id/bookText"
                 android:background="@drawable/border_white"
                 android:layout_marginLeft="18dp"
-                android:textSize="28dp"
+                android:textSize="18dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </ScrollView>
