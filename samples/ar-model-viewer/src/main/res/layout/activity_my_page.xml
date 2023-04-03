@@ -8,7 +8,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/my_Photo"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="160dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/header_img"
         android:layout_width="110dp"
@@ -18,19 +18,19 @@
     <LinearLayout
         android:background="@drawable/my_background"
         android:layout_width="match_parent"
-        android:layout_height="270dp"/>
+        android:layout_height="280dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="210dp"
         app:cardCornerRadius="20dp">
 
         <TextView
             android:id="@+id/my_Name"
             android:text="你的名字"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="75dp"
             android:textSize="18sp"
             android:textColor="#101010"
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         <TextView
             android:id="@+id/my_Signature"
             android:text="寒来暑往，秋收冬藏"
-            android:layout_marginTop="94dp"
+            android:layout_marginTop="130dp"
             android:textSize="18sp"
             android:textColor="#101010"
             android:layout_gravity="center_horizontal"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="180dp"
             android:layout_width="match_parent"
             android:layout_height="60dp">
 
@@ -83,36 +83,35 @@
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="185dp"
             android:layout_height="2dp"/>
 
         <com.google.android.material.divider.MaterialDivider
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="240dp"
             android:layout_height="2dp"/>
 
         <TextView
             android:text="我的作品"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:layout_marginTop="210dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginTop="290dp"
+            android:layout_marginLeft="23dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <ScrollView
-            android:layout_marginTop="230dp"
+            android:layout_marginTop="340dp"
             android:layout_width="match_parent"
-            android:layout_height="230dp">
+            android:layout_height="250dp">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="10dp"
                 android:id="@+id/work_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </ScrollView>
 
