@@ -14,6 +14,7 @@ import android.view.View;
 import com.android.china.model.GuanCang;
 import com.android.china.room.AppDataBase;
 import com.android.china.room.dao.GuanCangDao;
+import com.android.china.room.dao.MyCollectionDao;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityChinaGcItemBinding;
@@ -27,13 +28,16 @@ public class ChinaGcItemActivity extends AppCompatActivity {
 
     AppDataBase db;
     GuanCangDao dao;
+    MyCollectionDao myCollectionDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
         createDatabase();
         initMmkv();
+
         initData();
+        setCollectionBtnColor();
         initStatusBarTransparency();
 
         onClick();
@@ -55,6 +59,7 @@ public class ChinaGcItemActivity extends AppCompatActivity {
     private void createDatabase(){
         db = AppDataBase.getInstance(this);
         dao = db.guanCangDao();
+        myCollectionDao = db.myCollectionDao();
     }
 
     public void initData(){
@@ -87,14 +92,28 @@ public class ChinaGcItemActivity extends AppCompatActivity {
     }
 
     /**
+     * 设置收藏按钮的颜色
+     */
+    private void setCollectionBtnColor(){
+        int guanCangId = getIntent().getIntExtra("guanCangId",0);
+        int flag = myCollectionDao.queryIfCollectedById(guanCangId,1);   //flag为0:未收藏 flag为1:收藏
+
+        if (flag == 1) binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.yellow)));
+        else if(flag == 0) binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.black40)));
+    }
+
+    /**
      * 点击事件
      */
     private void onClick(){
+        int guanCangId = getIntent().getIntExtra("guanCangId",0);
         /**
          * 收藏按钮的点击事件
          */
         binding.floatBtn.setOnClickListener(new View.OnClickListener() {
-            int flag = 0;   //flag为0:未收藏 flag为1:收藏
+            int flag = myCollectionDao.queryIfCollectedById(guanCangId,1);   //flag为0:未收藏 flag为1:收藏
             @Override
             public void onClick(View v) {
                 if (flag == 0){
@@ -102,11 +121,13 @@ public class ChinaGcItemActivity extends AppCompatActivity {
                     binding.floatBtn.setImageTintList(ColorStateList.valueOf
                             (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.yellow)));
                     flag = 1;
+                    myCollectionDao.updateIsCollected(flag,guanCangId,1);
                 }else if(flag == 1){
                     //已收藏变成未收藏,设置Tint为black40
                     binding.floatBtn.setImageTintList(ColorStateList.valueOf
                             (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.black40)));
                     flag = 0;
+                    myCollectionDao.updateIsCollected(flag,guanCangId,1);
                 }
             }
         });

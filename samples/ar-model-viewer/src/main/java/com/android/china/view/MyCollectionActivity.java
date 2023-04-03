@@ -2,6 +2,7 @@ package com.android.china.view;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -47,6 +48,8 @@ public class MyCollectionActivity extends AppCompatActivity {
         initBinding();
         initStatusBarTransparency();
         initMmkv();
+
+        initRecyclerView();
     }
 
     public void initBinding(){
@@ -62,11 +65,18 @@ public class MyCollectionActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.myCollectionToolbar);
         ActionBar actionBar = getSupportActionBar();
-        binding.myCollectionToolbar.setTitle("我的收藏");
+        actionBar.setTitle("我的收藏");
     }
 
     private void initMmkv(){
         String rootDir = MMKV.initialize(this);
         kv = MMKV.defaultMMKV();
+    }
+
+    private void initRecyclerView(){
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.myCollectionsRecyclerView.setLayoutManager(layoutManager);
+        adapter = new MyCollectionAdapter(mList);
+        binding.myCollectionsRecyclerView.setAdapter(adapter);
     }
 }
