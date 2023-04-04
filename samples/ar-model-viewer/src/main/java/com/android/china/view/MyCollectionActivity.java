@@ -49,6 +49,15 @@ public class MyCollectionActivity extends AppCompatActivity {
         initStatusBarTransparency();
         initMmkv();
 
+        /**
+         * 数据库
+         */
+        initDatabase();
+
+        /**
+         * 加载列表
+         */
+        initData();
         initRecyclerView();
     }
 
@@ -63,9 +72,9 @@ public class MyCollectionActivity extends AppCompatActivity {
         myStatusBarTransparency.setFullscreen(true,true,this);
         myStatusBarTransparency.setAndroidNativeLightStatusBar(this,true);
 
-        setSupportActionBar(binding.myCollectionToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("我的收藏");
+//        setSupportActionBar(binding.myCollectionToolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("");
     }
 
     private void initMmkv(){
@@ -78,5 +87,14 @@ public class MyCollectionActivity extends AppCompatActivity {
         binding.myCollectionsRecyclerView.setLayoutManager(layoutManager);
         adapter = new MyCollectionAdapter(mList);
         binding.myCollectionsRecyclerView.setAdapter(adapter);
+    }
+
+    private void initData(){
+        mList = dao.queryAllMyCollections();
+    }
+
+    private void initDatabase(){
+        db = AppDataBase.getInstance(this);
+        dao = db.myCollectionDao();
     }
 }

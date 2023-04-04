@@ -33,7 +33,7 @@ public interface MyCollectionDao {
     /**
      * 查询全部
      */
-    @Query("select * from MyCollects")
+    @Query("select * from MyCollects where isCollected=1")
     List<MyCollect> queryAllMyCollections();
 
     /**

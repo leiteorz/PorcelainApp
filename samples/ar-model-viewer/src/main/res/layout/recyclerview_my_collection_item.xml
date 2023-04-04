@@ -1,57 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/collection_item"
-    android:orientation="horizontal"
+<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="25dp"
-    android:layout_margin="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:show_mode="pull_out"
     android:layout_height="110dp">
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="90dp"
-        android:layout_gravity="center_vertical"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="15dp"
-        android:layout_height="90dp">
-        <ImageView
-            android:id="@+id/collection_image"
-            android:layout_width="90dp"
-            android:layout_gravity="center"
-            android:layout_height="90dp"/>
-    </androidx.cardview.widget.CardView>
-
+    <!-- Bottom View Start-->
     <LinearLayout
-        android:layout_marginLeft="12dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/collection_name"
-            android:text="青花瓷"
-            android:layout_marginLeft="90dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"/>
-
-        <TextView
-            android:id="@+id/collection_description"
-            android:text="青花瓷,又称白地青花瓷,常简称青花,是中国瓷器的主流品种之一,属釉下彩瓷。"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="5dp"
-            android:textSize="15sp"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/black70"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+        android:background="@color/white"
+        android:layout_width="110dp"
+        android:weightSum="1"
+        android:layout_height="match_parent">
+        <!--What you want to show-->
+        <com.google.android.material.button.MaterialButton
+            android:text="删除"
+            app:icon="@drawable/trash_can"
+            android:textColor="@color/white"
+            app:iconTint="@color/white"
+            android:backgroundTint="@color/red500"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"/>
     </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    <!-- Bottom View End-->
+
+    <!-- Surface View Start -->
+    <com.google.android.material.card.MaterialCardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/collection_item"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
+        android:layout_height="110dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="90dp"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="15dp"
+            android:layout_height="90dp">
+            <ImageView
+                android:id="@+id/collection_image"
+                android:layout_width="90dp"
+                android:layout_gravity="center"
+                android:layout_height="90dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_marginLeft="12dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/collection_name"
+                android:text="青花瓷"
+                android:layout_marginLeft="90dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/collection_description"
+                android:text="青花瓷,又称白地青花瓷,常简称青花,是中国瓷器的主流品种之一,属釉下彩瓷。"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="5dp"
+                android:textSize="15sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black70"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="400dp"
+            android:layout_height="0.5dp"
+            app:dividerColor="@color/black40"
+            android:layout_gravity="bottom|center_horizontal"/>
+    </com.google.android.material.card.MaterialCardView>
+    <!-- Surface View End -->
+</com.daimajia.swipe.SwipeLayout>
