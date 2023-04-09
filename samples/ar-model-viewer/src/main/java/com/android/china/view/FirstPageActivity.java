@@ -156,10 +156,10 @@ public class FirstPageActivity extends AppCompatActivity {
     private void initData(){
         mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgCache_-68b9853ad839dee4.jpg");
         mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgCache_-40a567fb8d8c357.jpg");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgTags.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/img20220913205647.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/imgarticlebeijingtu.png");
-        mBannerList.add("https://picgo-wei.oss-cn-shenzhen.aliyuncs.com/img20220923113255.png");
+        mBannerList.add("https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/A1E7BEBFDE1D4987A89DC12D2C3097E2.jpg");
+        mBannerList.add("https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/E77DAC60958E24B8B10B67CB97CBA787.jpg");
+        mBannerList.add("https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/2FDC2F90282E2F0B31A442017EA9C26F.jpg");
+        mBannerList.add("https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/F533302960D9F6102809CAFABCAA9B81.jpg");
     }
     private void initBanner(){
         mBanner = findViewById(R.id.banner);
