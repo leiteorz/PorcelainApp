@@ -70,7 +70,7 @@ public class FirstPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(getApplicationContext(),ChinaGuanCangActivity.class);
+                intent.setClass(FirstPageActivity.this,ChinaGuanCangActivity.class);
                 startActivity(intent);
             }
         });
