@@ -34,4 +34,10 @@ public interface ChinaHistoryDao {
      */
     @Query("select * from ChinaHistory where name LIKE '%'||:name||'%'")
     List<ChinaHistory> queryChinaHistorysByName(String name);
+
+    @Query("select * from ChinaHistory where name LIKE '%'||:name||'%'")
+    ChinaHistory queryChinaHistoryByName(String name);
+
+    @Query("select * from ChinaHistory where id=:id")
+    ChinaHistory queryChinaHistoryById(int id);
 }

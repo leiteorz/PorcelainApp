@@ -13,16 +13,17 @@ import java.io.Serializable;
 @Entity(tableName = "ChinaHistory")
 public class ChinaHistory implements Serializable {
     @PrimaryKey(autoGenerate = true)
-    int id;
+    int id = 0;
     String name;
     String description;
+    String imageUrl = "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/127BF99700BFAFEF3D3AF6C4C6B0DAC8.jpg";
     int imageId;
     @Ignore
-    public ChinaHistory(int id, String name, String description, int imageId) {
-        this.id = id;
+    public ChinaHistory(String name, String description, int imageId,String imageUrl) {
         this.name = name;
         this.description = description;
         this.imageId = imageId;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -70,5 +71,13 @@ public class ChinaHistory implements Serializable {
 
     public void setImageId(int imageId) {
         this.imageId = imageId;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
