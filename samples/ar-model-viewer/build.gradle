@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
     //可以侧滑的RecyclerView的item
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
     //可以设置url的imageView,用法见activity_porcelain_story_detail_page及对应的activity

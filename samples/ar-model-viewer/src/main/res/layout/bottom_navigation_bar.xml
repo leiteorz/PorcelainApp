@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="55dp"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="#fff"
         app:cornerRadius="0dp"
         app:icon="@drawable/find_logo"
         app:iconSize="20dp"
@@ -27,6 +27,7 @@
         android:id="@+id/navi_create_btn"
         android:layout_width="0dp"
         android:layout_weight="1"
+
         android:backgroundTint="#FFFFFF"
         android:layout_height="55dp"
         app:cornerRadius="0dp"
@@ -39,9 +40,9 @@
         app:rippleColor="@color/blue"
         android:insetBottom="0dp"
         android:insetTop="0dp"/>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/navi_my_btn"
+
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="55dp"
@@ -56,5 +57,4 @@
         app:rippleColor="@color/blue"
         android:insetBottom="0dp"
         android:insetTop="0dp"/>
-
 </LinearLayout>

@@ -9,6 +9,8 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,14 +37,17 @@ public class PocelainKepuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTransition();
         initBinding();
         initToolbar();
         initData();
         initStatusandTitlebar();
         createDatabase();
-        initDatabaseData();
     }
-    public void initDatabaseData(){
+    public void initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Explode());
+        getWindow().setExitTransition(new Explode());
 
     }
     public void createDatabase(){

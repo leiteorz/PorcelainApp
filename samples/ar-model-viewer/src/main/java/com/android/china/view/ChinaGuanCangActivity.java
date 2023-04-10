@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +44,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTransition();
         initBinding();
         initToolbar();
         createDatabase();
@@ -50,7 +52,12 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         initGuanCangListFromDb();
         initRecyclerView();
     }
+    public void initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Explode());
+        getWindow().setExitTransition(new Explode());
 
+    }
     private void initMmkv(){
         String rootDir = MMKV.initialize(this);
         kv = MMKV.defaultMMKV();

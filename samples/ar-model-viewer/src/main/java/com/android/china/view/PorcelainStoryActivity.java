@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.View;
+import android.view.Window;
 
 import com.android.china.adpter.PorcelainStoryAdapter;
 import com.android.china.model.PorcelainStory;
@@ -23,14 +27,18 @@ public class PorcelainStoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initTransition();
         initBinding();
         initStatus();
         initToolBar();
         initPorcelainStoryList();
         initRecyclerView();
     }
-
+    public void initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Fade());
+        getWindow().setExitTransition(new Fade());
+    }
     private void initBinding(){
         binding = ActivityPorcelainStoryBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();

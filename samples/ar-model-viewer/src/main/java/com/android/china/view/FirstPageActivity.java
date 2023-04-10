@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -59,66 +60,51 @@ public class FirstPageActivity extends AppCompatActivity {
         initChinaList();
         initRecyclerView();
         initToolbar();
-        setSupportActionBar(binding.toolbarFirstPage);
         initClick();
     }
     public void initClick(){
         /**
          * 跳转至馆藏
          */
-        binding.guanCang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FirstPageActivity.this,ChinaGuanCangActivity.class);
-                startActivity(intent);
-            }
+        binding.guanCang.setOnClickListener(view -> {
+            Intent intent = new Intent(FirstPageActivity.this,ChinaGuanCangActivity.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         });
         /**
          * 跳转至故事
          */
-        binding.stroyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(FirstPageActivity.this,PorcelainStoryActivity.class);
-                startActivity(intent);
+        binding.stroyBtn.setOnClickListener( view -> {
+            Intent intent = new Intent(FirstPageActivity.this,PorcelainStoryActivity.class);
+            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        });
+        /**
+         * 跳转至科普
+         */
+        binding.porcelainKepu.setOnClickListener(view -> {
+            Intent intent = new Intent(FirstPageActivity.this,PocelainKepuActivity.class);
+            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        });
+        /**
+         * 搜索框以及回车查询
+         */
+        binding.searchDiary.setOnClickListener(view -> {
+            if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
+                Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(FirstPageActivity.this,SearchActivity.class);
+                intent.putExtra("editView",binding.searchEditText.getText().toString());
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
             }
         });
-        binding.porcelainKepu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(FirstPageActivity.this,PocelainKepuActivity.class);
-                startActivity(intent);
+        binding.searchEditText.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if ((i == EditorInfo.IME_ACTION_UNSPECIFIED || i == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null&& !TextUtils.isEmpty(binding.searchEditText.getText().toString())) {
+                Intent intent = new Intent(FirstPageActivity.this,SearchActivity.class);
+                intent.putExtra("editView",binding.searchEditText.getText().toString());
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            }else if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
+                Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
             }
-        });
-        binding.searchDiary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
-                    Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent();
-                    intent.setClass(FirstPageActivity.this,SearchActivity.class);
-                    intent.putExtra("editView",binding.searchEditText.getText().toString());
-                    startActivity(intent);
-                }
-            }
-        });
-        binding.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if ((i == EditorInfo.IME_ACTION_UNSPECIFIED || i == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null&& !TextUtils.isEmpty(binding.searchEditText.getText().toString())) {
-                    Intent intent = new Intent();
-                    intent.setClass(FirstPageActivity.this,SearchActivity.class);
-                    intent.putExtra("editView",binding.searchEditText.getText().toString());
-                    startActivity(intent);
-                }else if(TextUtils.isEmpty(binding.searchEditText.getText().toString())){
-                    Toast.makeText(FirstPageActivity.this,"请输入查询内容！",Toast.LENGTH_SHORT).show();
-                }
-                return false;
-            }
+            return false;
         });
     }
 
@@ -130,6 +116,7 @@ public class FirstPageActivity extends AppCompatActivity {
     @SuppressLint({"ResourceAsColor", "ResourceType"})
     public void initToolbar(){
         binding.toolbarFirstPage.setTitle("首页");
+        setSupportActionBar(binding.toolbarFirstPage);
     }
     public void initRecyclerView(){
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

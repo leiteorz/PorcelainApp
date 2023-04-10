@@ -1,6 +1,7 @@
 package com.android.china.view;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.android.china.viewModel.NavigationStatusModel;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.BottomNavigationBarBinding;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -33,6 +35,9 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!NavigationStatusModel.status.getValue().equals(0)){
+
+                    binding.naviFindBtn.setRippleColor(ColorStateList.valueOf
+                            (ContextCompat.getColor(getContext(),R.color.green_wei)));
                     //跳转
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), FirstPageActivity.class);
@@ -70,7 +75,6 @@ public class BottomNavigation extends Fragment {
                 }
             }
         });
-
         return view;
     }
 }

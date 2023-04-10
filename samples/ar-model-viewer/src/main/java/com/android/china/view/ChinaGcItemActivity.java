@@ -98,10 +98,13 @@ public class ChinaGcItemActivity extends AppCompatActivity {
         int guanCangId = getIntent().getIntExtra("guanCangId",0);
         int flag = myCollectionDao.queryIfCollectedById(guanCangId,1);   //flag为0:未收藏 flag为1:收藏
 
-        if (flag == 1) binding.floatBtn.setImageTintList(ColorStateList.valueOf
-                (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.yellow)));
-        else if(flag == 0) binding.floatBtn.setImageTintList(ColorStateList.valueOf
-                (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.black40)));
+        if (flag == 1) {
+            binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                    (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.yellow)));
+        } else if(flag == 0) {
+            binding.floatBtn.setImageTintList(ColorStateList.valueOf
+                    (ContextCompat.getColor(ChinaGcItemActivity.this,R.color.black40)));
+        }
     }
 
     /**
