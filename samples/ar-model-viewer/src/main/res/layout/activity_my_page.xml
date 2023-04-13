@@ -16,9 +16,11 @@
         android:layout_height="110dp"/>
 
     <LinearLayout
+        android:id="@+id/my_background"
         android:background="@drawable/my_background"
         android:layout_width="match_parent"
-        android:layout_height="280dp"/>
+        android:layout_height="280dp"
+        tools:ignore="Orientation" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

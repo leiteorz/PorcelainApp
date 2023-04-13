@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.android.china.view.Activity">
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/containerFragment"
         android:layout_width="match_parent"

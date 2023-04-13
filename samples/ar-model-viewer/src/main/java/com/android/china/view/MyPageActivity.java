@@ -81,18 +81,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         signature_default = kv.decodeString("signature");
         take_photo = kv.decodeString("take_photo");
         choose_photo = kv.decodeString("choose_photo");
-        if(!TextUtils.isEmpty(name_default)){
-            binding.myName.setText(name_default);
-        }else{
-            binding.myName.setText("你的名字");
-            name_default = "你的名字";
-        }
-        if(!TextUtils.isEmpty(signature_default)){
-            binding.mySignature.setText(signature_default);
-        }else{
-            binding.mySignature.setText("寒来暑往，秋收冬藏");
-            signature_default = "寒来暑往，秋收冬藏";
-        }
+        binding.myName.setText(TextUtils.isEmpty(name_default) ? "你的名字" : name_default);
+        binding.mySignature.setText(TextUtils.isEmpty(signature_default) ? "寒来暑往，秋收冬藏" : signature_default);
         if(!TextUtils.isEmpty(take_photo)){
             //将String数据转为Bitmap取出
             byte[] byteArray= Base64.decode(take_photo, Base64.DEFAULT);
@@ -176,7 +166,8 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
             case  R.id.my_Signature:
                 DialogX.globalStyle = new IOSStyle();
                 new InputDialog("个性签名", "编辑个签，展示我的独特态度", "确定", "取消", signature_default)
-                        .setCancelable(false)
+                        .setCancelable(true)
+
                         .setOkButton(new OnInputDialogButtonClickListener<InputDialog>() {
                             @Override
                             public boolean onClick(InputDialog baseDialog, View v, String inputStr) {

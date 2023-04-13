@@ -35,7 +35,6 @@ public class BottomNavigation extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!NavigationStatusModel.status.getValue().equals(0)){
-
                     binding.naviFindBtn.setRippleColor(ColorStateList.valueOf
                             (ContextCompat.getColor(getContext(),R.color.green_wei)));
                     //跳转

@@ -1,5 +1,6 @@
 package com.android.china.adpter;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import androidx.room.Insert;
 
 public class ChinaAdapter extends RecyclerView.Adapter<ChinaAdapter.ViewHolder> {
     private List<China> mList;
+
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView textView;
@@ -42,15 +44,11 @@ public class ChinaAdapter extends RecyclerView.Adapter<ChinaAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_first_item,parent,false);
         ViewHolder holder = new ViewHolder(view);
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(view.getContext(), BookActivity.class);
-                China china = mList.get(holder.getPosition());
-                intent.putExtra("china", china);
-                view.getContext().startActivity(intent);
-            }
+        holder.imageView.setOnClickListener(view1 -> {
+            Intent intent = new Intent(view1.getContext(), BookActivity.class);
+            China china = mList.get(holder.getPosition());
+            intent.putExtra("china", china);
+            view1.getContext().startActivity(intent);
         });
         return holder;
     }

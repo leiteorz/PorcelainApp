@@ -24,6 +24,7 @@ import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityPocelainKepuBinding;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,19 +60,16 @@ public class PocelainKepuActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
     }
     public void initData(){
-        titleList = new ArrayList<>();
-        titleList.add("历史");
-        titleList.add("种类");
-        titleList.add("工艺");
-        titleList.add("瓷匠");
-        titleList.add("陶瓷小知识");
-        fragmentList = new ArrayList<>();
-        fragmentList.add(ChinaHistoryFragment.newInstance("历史页面",""));
-        fragmentList.add(ChinaKindFragment.newInstance("种类页面",""));
-        fragmentList.add(ChinaCraftFragment.newInstance("工艺页面",""));
-        fragmentList.add(ChinaCraftsManFragment.newInstance("瓷匠页面",""));
-        fragmentList.add(ChinaSmallKnowledgeFragment.newInstance("陶瓷小知识页面",""));
-        adapter = new PorcelainKepuFragmentAdapter(getSupportFragmentManager(),fragmentList,titleList);
+        titleList = Arrays.asList("历史", "种类", "工艺", "瓷匠", "陶瓷小知识");
+
+        fragmentList = Arrays.asList(
+                ChinaHistoryFragment.newInstance("历史页面", ""),
+                ChinaKindFragment.newInstance("种类页面", ""),
+                ChinaCraftFragment.newInstance("工艺页面", ""),
+                ChinaCraftsManFragment.newInstance("瓷匠页面", ""),
+                ChinaSmallKnowledgeFragment.newInstance("陶瓷小知识页面", "")
+        );
+        adapter = new PorcelainKepuFragmentAdapter(getSupportFragmentManager(), fragmentList, titleList);
         binding.viewPagerKepu.setAdapter(adapter);
         binding.tabLayoutKepu.setupWithViewPager(binding.viewPagerKepu);
     }
