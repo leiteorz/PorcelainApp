@@ -2,17 +2,18 @@ package com.android.china.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.china.model.China;
-import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityBookBinding;
 
 public class BookActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class BookActivity extends AppCompatActivity {
         initToolbar();
         initIntent();
     }
+
     public void initIntent(){
         Intent intent = getIntent();
         china = (China) intent.getSerializableExtra("china");
@@ -45,14 +47,10 @@ public class BookActivity extends AppCompatActivity {
         binding.bookLinearLayout.setBackgroundColor(Color.rgb(131,175,155));
         //设置toolbar背景 以及整个布局的背景
         binding.BookToolbar.setBackgroundColor(Color.rgb(131,175,155));
-        binding.BookToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(BookActivity.this,FirstPageActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.BookToolbar.setNavigationOnClickListener(view -> {
+            Intent intent = new Intent(BookActivity.this,FirstPageActivity.class);
+            startActivity(intent);
+            finish();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

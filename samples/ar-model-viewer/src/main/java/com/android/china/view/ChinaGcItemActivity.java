@@ -96,7 +96,8 @@ public class ChinaGcItemActivity extends AppCompatActivity {
      */
     private void setCollectionBtnColor(){
         int guanCangId = getIntent().getIntExtra("guanCangId",0);
-        int flag = myCollectionDao.queryIfCollectedById(guanCangId,1);   //flag为0:未收藏 flag为1:收藏
+        //flag为0:未收藏 flag为1:收藏
+        int flag = myCollectionDao.queryIfCollectedById(guanCangId,1);
 
         if (flag == 1) {
             binding.floatBtn.setImageTintList(ColorStateList.valueOf

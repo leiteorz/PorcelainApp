@@ -79,14 +79,10 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         //设置toolbar背景 以及整个布局的背景
         binding.guanCangToolbar.setBackgroundColor(Color.rgb(131,175,155));
         binding.guanCangLayout.setBackgroundColor(Color.rgb(131,175,155));
-        binding.guanCangToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(ChinaGuanCangActivity.this,FirstPageActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.guanCangToolbar.setNavigationOnClickListener(view -> {
+            Intent intent = new Intent(ChinaGuanCangActivity.this,FirstPageActivity.class);
+            startActivity(intent);
+            finish();
         });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();

@@ -84,22 +84,16 @@ public class SecondPageActivity extends AppCompatActivity {
     }
 
     private void initArPorcelains(){
-        ArPorcelain arPorcelain1 = new ArPorcelain("青花瓷_1", R.drawable.qing_hua_ci);
-        arPorcelainList.add(arPorcelain1);
-        ArPorcelain arPorcelain2 = new ArPorcelain("青花瓷_2",R.drawable.model_2);
-        arPorcelainList.add(arPorcelain2);
-        ArPorcelain arPorcelain4 = new ArPorcelain("白瓷",R.drawable.model_4);
-        arPorcelainList.add(arPorcelain4);
-        ArPorcelain arPorcelain3 = new ArPorcelain("青花瓷_3",R.drawable.model_3);
-        arPorcelainList.add(arPorcelain3);
+        arPorcelainList.add(new ArPorcelain("青花瓷_1", R.drawable.qing_hua_ci));
+        arPorcelainList.add(new ArPorcelain("青花瓷_2",R.drawable.model_2));
+        arPorcelainList.add(new ArPorcelain("白瓷",R.drawable.model_4));
+        arPorcelainList.add(new ArPorcelain("青花瓷_3",R.drawable.model_3));
     }
 
     private void initDiyPorcelains(){
         for (int i=0;i<3;i++){
-            DiyPorcelain diyPorcelain1 = new DiyPorcelain("花浇形",R.drawable.qing_hua_ci);
-            diyPorcelainList.add(diyPorcelain1);
-            DiyPorcelain diyPorcelain2 = new DiyPorcelain("军持形",R.drawable.qing_hua_ci);
-            diyPorcelainList.add(diyPorcelain2);
+            diyPorcelainList.add(new DiyPorcelain("花浇形",R.drawable.qing_hua_ci));
+            diyPorcelainList.add(new DiyPorcelain("军持形",R.drawable.qing_hua_ci));
         }
     }
 
