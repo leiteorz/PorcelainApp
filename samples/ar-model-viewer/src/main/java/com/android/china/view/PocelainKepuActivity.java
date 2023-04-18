@@ -61,7 +61,6 @@ public class PocelainKepuActivity extends AppCompatActivity {
     }
     public void initData(){
         titleList = Arrays.asList("历史", "种类", "工艺", "瓷匠", "陶瓷小知识");
-
         fragmentList = Arrays.asList(
                 ChinaHistoryFragment.newInstance("历史页面", ""),
                 ChinaKindFragment.newInstance("种类页面", ""),
@@ -77,16 +76,11 @@ public class PocelainKepuActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbarKepu);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.toolbarKepu.setTitleMargin(26,26,26,26);
-
         binding.toolbarKepu.setBackgroundColor(Color.rgb(131,175,155));
-        binding.toolbarKepu.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(PocelainKepuActivity.this,FirstPageActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        binding.toolbarKepu.setNavigationOnClickListener(view -> {
+            Intent intent = new Intent(PocelainKepuActivity.this,FirstPageActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
     public void initStatusandTitlebar(){
