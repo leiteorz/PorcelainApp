@@ -1,77 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.android.china.view.BookActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/bookLinearLayout"
-    android:orientation="vertical"
-    tools:context="com.android.china.view.BookActivity">
-    <com.google.android.material.appbar.AppBarLayout
-        android:background="#fff"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/BookToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="true"
-            android:fitsSystemWindows="true"
-            android:theme="@style/GuanCangToolbar"
-            app:title="书籍"
-            app:titleTextAppearance="@style/toolbar_testStyle" />
-    </com.google.android.material.appbar.AppBarLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="160dp">
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/bookImageView"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/book1"
-            android:scaleType="fitXY"
-            android:layout_marginTop="8dp"
-            app:riv_corner_radius="20dp"
-            android:layout_marginLeft="24dp"/>
+        android:layout_height="match_parent"
+        android:id="@+id/bookFrameLayout"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_marginTop="18dp"
-            android:orientation="vertical"
+            android:id="@+id/book_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:background="@drawable/book1"
+            android:layout_height="220dp"
+            android:orientation="horizontal" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="#FFFAFA"
+            android:layout_marginTop="210dp"
+            app:cardCornerRadius="40dp">
             <TextView
-                android:id="@+id/bookName"
-                android:textColor="#fff"
+                android:id="@+id/book_name"
                 android:layout_marginLeft="20dp"
-                android:text="博物馆里的奇妙中国"
-                android:textSize="26dp"
+                android:layout_marginTop="10dp"
+                android:textSize="24dp"
                 android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="《古瓷之光》" />
             <TextView
-                android:id="@+id/bookAuthor"
-                android:textColor="#fff"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="6dp"
-                android:text="作者：约翰夫斯基"
+                android:id="@+id/book_author"
+                android:layout_marginTop="45dp"
+                android:textSize="20dp"
+                android:layout_marginLeft="30dp"
+                android:text="作者:涂睿明"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/bookText"
-                android:background="@drawable/border_white"
-                android:layout_marginLeft="18dp"
-                android:textSize="18dp"
-                android:layout_width="match_parent"
+                android:id="@+id/book_discribe"
+                android:layout_marginTop="75dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="20dp"
+                android:text="\t《古瓷之光》是知名瓷人、陶瓷文化研究者涂睿明的全新力作。以朝代为序，遴选了中国陶瓷艺术史上77件至美珍宝，记录下陶艺与中华文明碰撞的每个精彩瞬间，深入讲述中国陶瓷艺术的美学变迁。\n\n\t从古瓷的造型、色彩、材质、工艺、历史背景等角度切入，全方位展现中国陶瓷征服世界的美学魅力，重点解读其美在何处、普通人如何欣赏以及这些陶瓷器在中国古代社会文化中的功能与角色，让我们得以从一件件陶瓷作品中，探寻到历代的审美雅趣、民俗风情与匠心工艺。\n\n\t读完本书，当我们在博物馆中面对一件瓷器时，便懂得如何去欣赏它造型的优雅、颜色的美妙、画面的意趣、细节的深意、背后的故事……对中国陶瓷的美，产生更加具体、深刻的认知和感受，而不再只是用简单的一个“美”字笼统概括。"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </ScrollView>
-    </LinearLayout>
-</LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>
