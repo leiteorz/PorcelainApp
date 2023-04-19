@@ -30,7 +30,6 @@ public class ChinaAdapter extends RecyclerView.Adapter<ChinaAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView textView;
         public ViewHolder(View view){
             super(view);
             imageView = view.findViewById(R.id.recycle_image_view);
