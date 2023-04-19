@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.android.china.view.SecondPageActivity">
+    android:orientation="vertical">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -51,22 +49,18 @@
             android:layout_marginTop="3dp"
             android:layout_height="2dp"/>
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/test_tablayout"
-            android:background="#FFB6C1"
-            app:tabIndicatorHeight="0dp"
             android:layout_width="match_parent"
             tools:ignore="SpeakableTextPresentCheck"
             app:tabGravity="fill"
             app:tabMode="fixed"
             android:layout_height="wrap_content"/>
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_test"
+            android:id="@+id/viewPager_kepu"
             android:layout_weight="1"
             tools:ignore="SpeakableTextPresentCheck"
 
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
-
     </LinearLayout>
 
     <fragment
@@ -76,4 +70,5 @@
         android:layout_gravity="bottom"
         tools:layout="@layout/bottom_navigation_bar"
         android:name="com.android.china.view.BottomNavigation"/>
+
 </FrameLayout>

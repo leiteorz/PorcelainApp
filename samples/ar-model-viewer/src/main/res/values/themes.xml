@@ -28,5 +28,8 @@
         <item name="android:windowTranslucentStatus">true</item>
 <!--        <item name="colorPrimary">#DBDBDB</item>-->
     </style>
+    <style name="btn">
+        <item name="android:background">#4A4A4B</item>
+    </style>
 
 </resources>
