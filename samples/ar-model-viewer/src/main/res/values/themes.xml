@@ -31,5 +31,15 @@
     <style name="btn">
         <item name="android:background">#4A4A4B</item>
     </style>
+    <declare-styleable name="CustomButton">
+        <!-- 是否反光 -->
+        <attr name="reflectLight" format="boolean"/>
+        <!-- 背景 -->
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="bgColor" format="boolean"/>
 
+    </declare-styleable>
 </resources>
+

@@ -50,23 +50,34 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
             android:layout_height="2dp"/>
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/test_tablayout"
-            android:background="#FFB6C1"
-            app:tabIndicatorHeight="0dp"
+        <FrameLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
-            tools:ignore="SpeakableTextPresentCheck"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
-            android:layout_height="wrap_content"/>
+            android:layout_marginTop="10dp"
+
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="8dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/test_tablayout"
+                    android:background="#033649"
+                    app:tabIndicatorHeight="0dp"
+                    android:layout_width="match_parent"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed"
+                    android:layout_height="wrap_content"/>
+            </androidx.cardview.widget.CardView>
+        </FrameLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager_test"
             android:layout_weight="1"
-            tools:ignore="SpeakableTextPresentCheck"
-
             android:layout_width="match_parent"
             android:layout_height="0dp"/>
-
     </LinearLayout>
 
     <fragment
