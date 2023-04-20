@@ -32,7 +32,7 @@ public class ArPorcelainAdapter extends RecyclerView.Adapter<ArPorcelainAdapter.
             kv = MMKV.defaultMMKV();
 
             arPorcelainImage = (ImageView) view.findViewById(R.id.ar_porcelain_item_picture);
-            arPorcelainName = (TextView) view.findViewById(R.id.ar_porcelain_item_name);
+            arPorcelainName = (TextView) view.findViewById(R.id.Ar_Btn);
         }
     }
 
@@ -98,4 +98,5 @@ public class ArPorcelainAdapter extends RecyclerView.Adapter<ArPorcelainAdapter.
     public int getItemCount() {
         return mArPorcelainList.size();
     }
+
 }
