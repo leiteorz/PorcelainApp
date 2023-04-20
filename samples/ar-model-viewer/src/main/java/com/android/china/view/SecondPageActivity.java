@@ -4,6 +4,7 @@ import static com.android.china.utils.MyApplication.getContext;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -56,67 +58,47 @@ public class SecondPageActivity extends AppCompatActivity {
         initStatus();
 
         initMmkv();
-        initData();
-//        initDiyTabLayout();
-
-//        initArPorcelains();
-//        initArPorcelainRecyclerView();
-
-//        initDiyPorcelains();
-//        initDiyPorcelainRecyclerView();
+        initTabLayout();
     }
-    public void initDiyTabLayout(){
-        titleList = Arrays.asList("DIY", "AR","识别");
-        for(int i = 0;i<3;i++){
-            Context context = getContext();
-            TabLayout.Tab tab = binding.testTablayout.newTab();
-            View view = LayoutInflater.from(this).inflate(R.layout.test_tablayout,null);
-            TextView textView = view.findViewById(R.id.choose_icon_tab_tv);
-            textView.setText(titleList.get(i));
-            tab.setCustomView(view);
-            binding.testTablayout.addTab(tab);
-        }
-    }
-    public void initData(){
+    public void initTabLayout(){
+
         titleList = Arrays.asList("DIY", "AR","识别");
         fragmentList = Arrays.asList(
                 TestFragment2.newInstance("DIY",""),
-                TestFragment2.newInstance("AR",""),
+                ArFragment.newInstance("AR",""),
                 TestFragment2.newInstance("识别","")
                 );
-//        for(int i = 0;i<3;i++){
-//            Context context = getContext();
-//            TabLayout.Tab tab = binding.testTablayout.newTab();
-//            View view = LayoutInflater.from(this).inflate(R.layout.test_tablayout,null);
-//            TextView textView = view.findViewById(R.id.choose_icon_tab_tv);
-//            textView.setText(titleList.get(i));
-//            tab.setCustomView(view);
-//            binding.testTablayout.addTab(tab);
-//            binding.testTablayout.setupWithViewPager(binding.viewPagerTest);
-//        }
         adapter = new PorcelainKepuFragmentAdapter(getSupportFragmentManager(), fragmentList, titleList);
         binding.viewPagerTest.setAdapter(adapter);
         binding.testTablayout.setupWithViewPager(binding.viewPagerTest);
         for (int i = 0; i < adapter.getCount(); i++) {
-            TabLayout.Tab tab = binding.testTablayout.getTabAt(i);//获得每一个tab
-            tab.setCustomView(R.layout.test_tablayout);//给每一个tab设置view
+            //获得每一个tab
+            TabLayout.Tab tab = binding.testTablayout.getTabAt(i);
+            //给每一个tab设置view
+            tab.setCustomView(R.layout.test_tablayout);
+
             if (i == 0) {
                 // 设置第一个tab的TextView是被选择的样式
-                tab.getCustomView().findViewById(R.id.choose_icon_tab_tv).setSelected(true);//第一个tab被选中
+                //第一个tab被选中
+                tab.getCustomView().findViewById(R.id.choose_icon_tab_tv).setSelected(true);
+//                tab.getCustomView().findViewById(R.id.choose_icon_tab_cardView).setSelected(true);
             }
             TextView textView = (TextView) tab.getCustomView().findViewById(R.id.choose_icon_tab_tv);
-            textView.setText(titleList.get(i));//设置tab上的文字
+            //设置tab上的文字
+            textView.setText(titleList.get(i));
         }
         binding.testTablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 tab.getCustomView().findViewById(R.id.choose_icon_tab_tv).setSelected(true);
+//                tab.getCustomView().findViewById(R.id.choose_icon_tab_cardView).setSelected(true);
                 binding.viewPagerTest.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 tab.getCustomView().findViewById(R.id.choose_icon_tab_tv).setSelected(false);
+//                tab.getCustomView().findViewById(R.id.choose_icon_tab_cardView).setSelected(false);
             }
 
             @Override

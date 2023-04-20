@@ -1,0 +1,16 @@
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+
+tools:context="com.android.china.view.ArFragment">
+<!--    这里存在问题 这个recyclerview底部显示会缺一点 只能靠    android:paddingBottom="135px" android:clipToPadding="false" 勉强拯救-->
+<androidx.recyclerview.widget.RecyclerView
+
+    android:id="@+id/ar_recyclerview"
+    android:paddingBottom="155px"
+    android:clipToPadding="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+</FrameLayout>
