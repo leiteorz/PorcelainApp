@@ -19,7 +19,9 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="logo">@drawable/logo</item>
     </style>
-
+    <style name="btn_diy">
+        <item name="android:background">#4A4B4C</item>
+    </style>
     <style name="toolbar_testStyle">
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
