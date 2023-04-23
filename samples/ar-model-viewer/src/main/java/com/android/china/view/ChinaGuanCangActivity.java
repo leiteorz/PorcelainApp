@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,7 +57,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     public void initTransition(){
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
-        getWindow().setExitTransition(new Explode());
+        getWindow().setExitTransition(new Fade());
 
     }
     private void initMmkv(){

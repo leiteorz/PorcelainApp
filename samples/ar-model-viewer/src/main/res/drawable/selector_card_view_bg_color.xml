@@ -2,9 +2,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/red_wei" android:state_checked="true" />
+    <item android:drawable="@color/blue_wei1" android:state_checked="true" />
 
-    <item android:drawable="@color/red_wei" android:state_selected="true" />
+    <item android:drawable="@color/blue_wei1" android:state_selected="true" />
 
     <item android:drawable="@color/blue_wei" android:state_selected="false"/>
 

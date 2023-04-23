@@ -11,9 +11,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.transition.Explode;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -52,7 +54,8 @@ public class FirstPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initNavigationStatus(); //设置导航栏状态为0
+        initTransition();
+        initNavigationStatus();
         initBinding();
         initStatus();
         initData();
@@ -61,6 +64,13 @@ public class FirstPageActivity extends AppCompatActivity {
         initRecyclerView();
         initToolbar();
         initClick();
+
+    }
+    public void  initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Explode());
+        getWindow().setExitTransition(new Explode());
+
     }
     public void initClick(){
         /**
@@ -134,6 +144,7 @@ public class FirstPageActivity extends AppCompatActivity {
      * 设置导航栏状态
      */
     private void initNavigationStatus(){
+        //设置导航栏状态为0
         final NavigationStatusModel model = ViewModelProviders.of(this).get(NavigationStatusModel.class);
         model.setStatus(0);
         //         添加Activity到堆栈

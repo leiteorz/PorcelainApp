@@ -14,8 +14,11 @@ import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.util.Base64;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.android.china.adpter.MyWorkAdapter;
@@ -68,6 +71,7 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initTransition();
         initMyPageActivityStatus();
         initBinding();
         initNavigationStatus(); //设置导航栏状态为2
@@ -75,6 +79,12 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
         initWorks();
         initMmkv();
         initData();
+    }
+    public void  initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Slide());
+        getWindow().setExitTransition(new Explode());
+
     }
     public void initData(){
         name_default = kv.decodeString("name");

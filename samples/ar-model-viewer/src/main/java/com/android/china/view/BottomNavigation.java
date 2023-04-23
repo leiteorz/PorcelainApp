@@ -1,5 +1,6 @@
 package com.android.china.view;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class BottomNavigation extends Fragment {
                     //跳转
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), FirstPageActivity.class);
-                    startActivity(intent);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 }
             }
         });
@@ -55,7 +56,7 @@ public class BottomNavigation extends Fragment {
                     //跳转
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), MyPageActivity.class);
-                    startActivity(intent);
+                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 }
             }
         });
@@ -70,7 +71,7 @@ public class BottomNavigation extends Fragment {
                     //跳转
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), SecondPageActivity.class);
-                    startActivity(intent);
+                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 }
             }
         });

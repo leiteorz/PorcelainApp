@@ -6,8 +6,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.android.china.adpter.ArPorcelainAdapter;
@@ -52,7 +55,7 @@ public class SecondPageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        initTransition();
         initBinding();
         initNavigationStatus();
         initStatus();
@@ -60,11 +63,17 @@ public class SecondPageActivity extends AppCompatActivity {
         initMmkv();
         initTabLayout();
     }
+    public void  initTransition(){
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        getWindow().setEnterTransition(new Slide());
+        getWindow().setExitTransition(new Slide());
+
+    }
     public void initTabLayout(){
 
         titleList = Arrays.asList("DIY", "AR","识别");
         fragmentList = Arrays.asList(
-                TestFragment2.newInstance("DIY",""),
+                DiyFragment.newInstance("DIY",""),
                 ArFragment.newInstance("AR",""),
                 TestFragment2.newInstance("识别","")
                 );
