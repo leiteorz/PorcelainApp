@@ -10,6 +10,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:padding="3dp"
         android:elevation="15dp"
@@ -18,26 +19,18 @@
         <ImageView
             android:id="@+id/ar_porcelain_item_picture"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"/>
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:elevation="25dp"
-        android:layout_width="match_parent"
-        android:layout_marginTop="235dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginRight="140dp"
-        app:cardCornerRadius="10dp"
-        android:layout_height="18pt">
-        <com.android.china.view.CustomButton
-            android:id="@+id/Ar_Btn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="AR展示"
-            android:textColor="#FFFFFF"
-            android:textSize="8pt"
-            app:bgColor="@color/green_wei"
-            app:radius="6pt"
-            app:reflectLight="true" />
-    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Ar_Btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="AR展示"
+        android:textColor="#FFFFFF"
+        android:textSize="8pt"
+        android:backgroundTint="@color/green_wei"/>
 </FrameLayout>
