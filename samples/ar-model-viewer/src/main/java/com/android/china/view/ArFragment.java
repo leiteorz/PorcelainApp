@@ -80,9 +80,8 @@ public class ArFragment extends Fragment {
         binding.arRecyclerview.setAdapter(arPorcelainAdapter);
     }
     private void initArPorcelains(){
-        arPorcelainList.add(new ArPorcelain("青花瓷_1", R.drawable.qing_hua_ci));
-        arPorcelainList.add(new ArPorcelain("青花瓷_2",R.drawable.model_2));
-        arPorcelainList.add(new ArPorcelain("白瓷",R.drawable.model_4));
-        arPorcelainList.add(new ArPorcelain("青花瓷_3",R.drawable.model_3));
+        arPorcelainList.add(new ArPorcelain("花纹青瓷瓶", R.drawable.qing_hua_ci));
+        arPorcelainList.add(new ArPorcelain("龙纹青瓷瓶",R.drawable.model_2));
+        arPorcelainList.add(new ArPorcelain("祥龙白瓷瓶",R.drawable.model_4));
     }
 }

@@ -51,37 +51,55 @@
         <LinearLayout
             android:layout_marginTop="180dp"
             android:layout_width="match_parent"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
             android:layout_height="60dp">
 
-            <ImageView
-                android:background="@drawable/liulan_logo6"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="55dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/jump_collection_btn"
+                    android:background="@drawable/my_collect_logo3"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
 
-            <ImageView
-                android:id="@+id/jump_collection_btn"
-                android:background="@drawable/my_collect_logo3"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="55dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/my_collect_logo3"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
 
-            <ImageView
-                android:background="@drawable/liulan_logo6"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="55dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/my_collect_logo3"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
 
-            <ImageView
-                android:background="@drawable/my_collect_logo3"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="55dp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
-
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/my_collect_logo3"
+                    android:layout_gravity="center"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </FrameLayout>
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
