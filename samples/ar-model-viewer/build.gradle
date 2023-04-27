@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.code.gson:gson:2.9.1'
+
     implementation 'com.airbnb.android:lottie:6.0.0'
 
     //可以侧滑的RecyclerView的item
@@ -98,7 +100,7 @@ dependencies {
 
     // Material
     implementation "com.google.android.material:material:$material_version"
-
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     // Sceneform
     releaseImplementation "com.gorisse.thomas.sceneform:sceneform:1.21.0"
     debugApi project(":sceneform")
