@@ -55,7 +55,6 @@ public class TestFragment2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textView = view.findViewById(R.id.tvtest);
-        textView.setText(mParam1);
+
     }
 }

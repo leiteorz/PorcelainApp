@@ -76,7 +76,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- 启动页 -->
@@ -85,7 +84,6 @@
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.chinaplus.cameraalbumtest.fileprovider"
@@ -96,5 +94,4 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
 </manifest>

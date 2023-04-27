@@ -2,6 +2,7 @@ package com.android.china.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -47,8 +48,10 @@ public class DiyPatternActivity extends AppCompatActivity {
         list.add(pattern3);
         Pattern pattern4 = new Pattern("4", R.drawable.pattern_4);
         list.add(pattern4);
-        Pattern pattern5 = new Pattern("4", R.drawable.pattern_5);
+        Pattern pattern5 = new Pattern("5", R.drawable.pattern_5);
         list.add(pattern5);
+        Pattern pattern6 = new Pattern("6",R.drawable.pattern_7);
+        list.add(pattern6);
     }
     public void initToolbar(){
         setSupportActionBar(binding.patternToolbar);
@@ -56,6 +59,7 @@ public class DiyPatternActivity extends AppCompatActivity {
         binding.patternToolbar.setTitleMargin(26,26,26,26);
         //设置toolbar背景 以及整个布局的背景
         binding.patternToolbar.setBackgroundColor(Color.rgb(131,175,155));
+//        binding.patternLayout.setBackgroundColor(Color.rgb(81,117,115));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
@@ -67,8 +71,9 @@ public class DiyPatternActivity extends AppCompatActivity {
         }
     }
     public void initRecyclerView(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         binding.patternRecyclerView.setLayoutManager(layoutManager);
         adapter = new PatternAdapter(list);
         binding.patternRecyclerView.setAdapter(adapter);
