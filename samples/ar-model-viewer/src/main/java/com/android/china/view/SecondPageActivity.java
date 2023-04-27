@@ -59,7 +59,6 @@ public class SecondPageActivity extends AppCompatActivity {
         initBinding();
         initNavigationStatus();
         initStatus();
-
         initMmkv();
         initTabLayout();
     }

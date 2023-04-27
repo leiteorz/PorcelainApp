@@ -17,35 +17,36 @@
         app:titleTextAppearance="@style/toolbar_testStyle"
         app:titleTextColor="@color/black"
         android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/search_editText"
                 android:layout_width="match_parent"
-                android:imeOptions="actionSearch"
                 android:layout_height="48dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="23dp"
                 android:layout_marginTop="65dp"
                 android:layout_marginEnd="26dp"
                 android:background="@drawable/search_bg"
                 android:hint="搜索"
+                android:imeOptions="actionSearch"
                 android:inputType="text"
+                android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="#000"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:maxLines="1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/search_diary"
@@ -65,9 +66,9 @@
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            app:banner_radius="5dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="18dp" />
+            android:layout_margin="18dp"
+            app:banner_radius="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,7 +90,7 @@
                     android:layout_weight="1"
                     android:src="@drawable/china_collect_img"
                     app:civ_border_color="#E5E5E5"
-                    app:civ_border_width="2dp"/>
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/stroy_btn"
@@ -101,20 +102,20 @@
                     android:layout_weight="1"
                     android:src="@drawable/china_story_img"
                     app:civ_border_color="#E5E5E5"
-                    app:civ_border_width="2dp"/>
+                    app:civ_border_width="2dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/porcelain_kepu"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/porcelain_kepu"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_marginTop="20dp"
                     android:layout_weight="1"
+                    android:elevation="15dp"
                     android:src="@drawable/china_popular_img"
                     app:civ_border_color="#E5E5E5"
-                    app:civ_border_width="2dp"
-                    android:elevation="15dp" />
+                    app:civ_border_width="2dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -124,10 +125,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#101010"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="瓷馆"
+                    android:textColor="#101010"
                     android:textSize="18dp" />
 
                 <TextView
@@ -135,8 +136,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#101010"
                     android:text="故瓷"
+                    android:textColor="#101010"
                     android:textSize="18dp" />
 
                 <TextView
@@ -149,17 +150,18 @@
                     android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>
+
         <TextView
-            android:text="热门推荐"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="15dp"
-            android:textSize="18dp"
-            android:textColor="#4A766E"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:text="热门推荐"
+            android:textColor="#4A766E"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
