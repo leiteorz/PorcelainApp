@@ -36,9 +36,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         getModel()
-
         arFragment = (childFragmentManager.findFragmentById(R.id.arFragment) as ArFragment).apply {
             setOnSessionConfigurationListener { session, config ->
                 // Modify the AR session configuration here
@@ -53,36 +51,29 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             loadModels()
         }
     }
-
     private suspend fun loadModels() {
-        model = ModelRenderable.builder()
+        model = ModelRenderable.builder()//构建一个ModelRenderable对象，设置模型的源文件和解析模式，
             .setSource(context, Uri.parse(MODEL_URI))
             .setIsFilamentGltf(true)
             .await()
-        modelView = ViewRenderable.builder()
+        modelView = ViewRenderable.builder()//构建一个ViewRenderable对象,设置视图的源文件，R.layout.view_renderable_infos是视图文件的资源ID
             .setView(context, R.layout.view_renderable_infos)
             .await()
     }
-
     private fun onTapPlane(hitResult: HitResult, plane: Plane, motionEvent: MotionEvent) {
-        if (model == null || modelView == null) {
+        if (model == null || modelView == null) {//模型判空
             Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
             return
         }
-
-        // Create the Anchor.
-        scene.addChild(
+        scene.addChild(//创建一个锚点（Anchor）并添加到场景中
             AnchorNode(hitResult.createAnchor()).apply {
-            // Create the transformable model and add it to the anchor.
             addChild(
                 TransformableNode(arFragment.transformationSystem)
                     .apply {
-                renderable = model
-                renderableInstance.setCulling(false)
-                renderableInstance.animate(true).start()
-                // Add the View
-                addChild(Node().apply {
-                    // Define the relative position
+                renderable = model//禁用可渲染实例的剔除功能
+                renderableInstance.setCulling(false)//启动可渲染实例的动画效果
+                        renderableInstance.animate(true).start()
+                addChild(Node().apply {//添加一个子节点的视图（Node），并设置其相对位置和缩放
                     localPosition =
                         Vector3(0.0f, 1f, 0.0f)
                     localScale =
@@ -92,7 +83,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             })
         })
     }
-
     /**
      * 拿到模型
      */
