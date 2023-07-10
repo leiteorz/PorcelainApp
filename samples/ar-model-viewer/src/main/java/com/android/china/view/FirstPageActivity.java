@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.transition.Explode;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,7 +46,7 @@ import com.youth.banner.transformer.ZoomOutPageTransformer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirstPageActivity extends AppCompatActivity {
+public class FirstPageActivity extends AppCompatActivity{
     private List<China> mList = new ArrayList<>();
     private List<String> mBannerList = new ArrayList();
     private Banner mBanner;
@@ -66,6 +67,7 @@ public class FirstPageActivity extends AppCompatActivity {
         initClick();
 
     }
+
     public void  initTransition(){
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
