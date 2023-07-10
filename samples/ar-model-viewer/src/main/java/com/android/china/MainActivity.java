@@ -104,5 +104,6 @@ public class MainActivity extends AppCompatActivity {
         binding.launchPageBanner.start();
 
 //        Log.d("leiteorz",String.valueOf(binding.launchPageBanner.getCurrentItem()));
+
     }
 }
