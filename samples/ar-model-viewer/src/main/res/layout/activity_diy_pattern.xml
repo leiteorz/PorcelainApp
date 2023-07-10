@@ -25,11 +25,9 @@
     <ImageView
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/fengewei_1"
+        android:src="@drawable/cixin_1"
         android:layout_width="240dp"
         android:layout_height="240dp"/>
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="10dp"
         android:id="@+id/pattern_recyclerView"
