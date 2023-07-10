@@ -29,6 +29,7 @@ public class BottomNavigation extends Fragment {
         binding = BottomNavigationBarBinding.inflate(inflater,container,false);
         view = binding.getRoot();
 
+
         /**
          * 点击跳转至首页
          */
