@@ -8,6 +8,7 @@ package com.android.china.model;
 public class Pattern {
     String tab;
     int id;
+    int check = 0;
 
     public Pattern(String tab, int id) {
         this.tab = tab;
@@ -28,5 +29,13 @@ public class Pattern {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getCheck() {
+        return check;
+    }
+
+    public void setCheck(int check) {
+        this.check = check;
     }
 }
