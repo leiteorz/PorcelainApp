@@ -25,8 +25,13 @@ buildscript {
         maven {
             url 'https://maven.aliyun.com/repository/jcenter'
         }
+//        maven { url 'https://mvnrepository.com/artifact/com.github.gundy/semver4j' }  //添加
+
         maven {
             url 'https://maven.aliyun.com/repository/google'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/central'
         }
         maven { url 'https://jitpack.io' }
         jcenter()
@@ -47,6 +52,8 @@ allprojects {
         maven {
             url 'https://maven.aliyun.com/repository/jcenter'
         }
+//        maven { url 'https://mvnrepository.com/artifact/com.github.gundy/semver4j' }  //添加
+
         maven {
             url 'https://maven.aliyun.com/repository/google'
         }
