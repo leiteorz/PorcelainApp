@@ -21,6 +21,7 @@ public class MyWork {
         this.picture_id = _picture_id;
     }
 
+    public MyWork(){};
     /**
      * getter and setter
      */

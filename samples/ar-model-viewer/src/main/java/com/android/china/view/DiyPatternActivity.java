@@ -2,9 +2,11 @@ package com.android.china.view;
 
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,10 +15,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 
 import com.android.china.adpter.GuanCangAdapter;
 import com.android.china.adpter.PatternAdapter;
+import com.android.china.model.DiyWork;
 import com.android.china.model.Pattern;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.DiyWorkDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityDiyPatternBinding;
 import com.tencent.mmkv.MMKV;
@@ -24,18 +30,21 @@ import com.tencent.mmkv.MMKV;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiyPatternActivity extends AppCompatActivity {
+public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDialogFragment.SaveDiyDialogListener {
     private String TAG = "leiteorz";
     private ActivityDiyPatternBinding binding;
     private PatternAdapter adapter;
     private List<Pattern> list;
     private MMKV shapeKv;
     private MMKV patternKv;
+    AppDataBase db;
+    DiyWorkDao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
         initMmkv();
+        createDataBase();
         initShape();
         initData();
         initToolbar();
@@ -164,5 +173,34 @@ public class DiyPatternActivity extends AppCompatActivity {
                 }
             }
         });
+        /**
+         * 点击保存按钮
+         */
+        binding.savePatternBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SaveDiyDialogFragment dialog = new SaveDiyDialogFragment();
+                dialog.show(getSupportFragmentManager(),"dialog");
+            }
+        });
+    }
+
+    @Override
+    public void onDialogPositiveClick(SaveDiyDialogFragment dialog) {
+        Dialog d = dialog.getDialog();
+        EditText et = d.findViewById(R.id.et_diy_work_name);
+        /**
+         * 存储作品
+         */
+        String diyWorkName = et.getText().toString();   //作品名字
+        int shape = shapeKv.decodeInt("shape");
+        int pattern = patternKv.decodeInt("pattern");
+        DiyWork diyWork = new DiyWork(shape,pattern,diyWorkName);
+        dao.insertDiyWork(diyWork);
+    }
+
+    private void createDataBase(){
+        db = AppDataBase.getInstance(this);
+        dao = db.diyWorkDao();
     }
 }
