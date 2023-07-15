@@ -63,8 +63,10 @@
                     android:id="@+id/jump_collection_btn"
                     android:background="@drawable/my_collect_logo3"
                     android:layout_gravity="center"
+                    android:backgroundTint="@color/blue_wei"
                     android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="2dp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -73,10 +75,11 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:background="@drawable/my_collect_logo3"
+                    android:background="@drawable/police_badge_outline"
                     android:layout_gravity="center"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -84,10 +87,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:background="@drawable/my_collect_logo3"
+                    android:background="@drawable/book"
                     android:layout_gravity="center"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
             </FrameLayout>
 
             <FrameLayout
@@ -95,10 +99,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:background="@drawable/my_collect_logo3"
+                    android:background="@drawable/cog"
                     android:layout_gravity="center"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
             </FrameLayout>
         </LinearLayout>
 

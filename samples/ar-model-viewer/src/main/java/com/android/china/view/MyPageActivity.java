@@ -22,7 +22,10 @@ import android.view.Window;
 import android.widget.Toast;
 
 import com.android.china.adpter.MyWorkAdapter;
+import com.android.china.model.DiyWork;
 import com.android.china.model.MyWork;
+import com.android.china.room.AppDataBase;
+import com.android.china.room.dao.DiyWorkDao;
 import com.android.china.utils.MyStatusBarTransparency;
 import com.android.china.viewModel.NavigationStatusModel;
 import com.google.ar.sceneform.samples.gltf.R;
@@ -68,17 +71,28 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     private String signature_default ;
     private String take_photo ;
     private String choose_photo;
+    /**
+     * 数据库
+     */
+    private AppDataBase db;
+    private DiyWorkDao diyWorkDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTransition();
         initMyPageActivityStatus();
         initBinding();
+        createDataBase();
         initNavigationStatus(); //设置导航栏状态为2
         initRecyclerView();
         initWorks();
         initMmkv();
         initData();
+    }
+
+    private void createDataBase(){
+        db = AppDataBase.getInstance(this);
+        diyWorkDao = db.diyWorkDao();
     }
     public void  initTransition(){
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
@@ -320,12 +334,54 @@ public class MyPageActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     /**
-     * @Test
-     * 加载作品RecyclerView(仅作为测试)
+     * 加载作品
      */
     private void initWorks(){
-        for(int i=0;i<10;i++){
-            MyWork work = new MyWork("作品表述："+i+"号",R.drawable.china_collect_img);
+        List<DiyWork> diyWorks = diyWorkDao.queryDiyWorks();
+        for(DiyWork i : diyWorks){
+            int shape = i.getShape();
+            int pattern = i.getPattern();
+            String name = i.getName();
+
+            MyWork work = new MyWork();
+            work.setName(name);
+
+            if (shape == 1){
+                if (pattern == 1) work.setPicture_id(R.drawable.diy11);
+                if (pattern == 2) work.setPicture_id(R.drawable.diy12);
+                if (pattern == 3) work.setPicture_id(R.drawable.diy13);
+                if (pattern == 4) work.setPicture_id(R.drawable.diy14);
+                if (pattern == 5) work.setPicture_id(R.drawable.diy15);
+            }
+            if (shape == 2){
+                if (pattern == 1) work.setPicture_id(R.drawable.diy21);
+                if (pattern == 2) work.setPicture_id(R.drawable.diy22);
+                if (pattern == 3) work.setPicture_id(R.drawable.diy23);
+                if (pattern == 4) work.setPicture_id(R.drawable.diy24);
+                if (pattern == 5) work.setPicture_id(R.drawable.diy25);
+            }
+            if (shape == 3){
+                if (pattern == 1) work.setPicture_id(R.drawable.diy31);
+                if (pattern == 2) work.setPicture_id(R.drawable.diy32);
+                if (pattern == 3) work.setPicture_id(R.drawable.diy33);
+                if (pattern == 4) work.setPicture_id(R.drawable.diy34);
+                if (pattern == 5) work.setPicture_id(R.drawable.diy35);
+            }
+            if (shape == 4){
+                if (pattern == 1) work.setPicture_id(R.drawable.diy41);
+                if (pattern == 2) work.setPicture_id(R.drawable.diy42);
+                if (pattern == 3) work.setPicture_id(R.drawable.diy43);
+                if (pattern == 4) work.setPicture_id(R.drawable.diy44);
+                if (pattern == 5) work.setPicture_id(R.drawable.diy45);
+            }
+            if (shape == 5){
+                if (pattern == 1) work.setPicture_id(R.drawable.diy51);
+                if (pattern == 2) work.setPicture_id(R.drawable.diy52);
+                if (pattern == 3) work.setPicture_id(R.drawable.diy53);
+                if (pattern == 4) work.setPicture_id(R.drawable.diy54);
+                if (pattern == 5) work.setPicture_id(R.drawable.diy55);
+            }
+
             myWorkList.add(work);
         }
     }
