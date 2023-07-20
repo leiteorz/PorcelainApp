@@ -25,24 +25,33 @@ import com.android.china.room.AppDataBase;
 import com.android.china.room.dao.DiyWorkDao;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.ActivityDiyPatternBinding;
+import com.kongzue.dialogx.DialogX;
+import com.kongzue.dialogx.dialogs.InputDialog;
+import com.kongzue.dialogx.dialogs.PopTip;
+import com.kongzue.dialogx.interfaces.OnInputDialogButtonClickListener;
+import com.kongzue.dialogx.style.IOSStyle;
+import com.kongzue.dialogx.style.MIUIStyle;
+import com.kongzue.dialogxmaterialyou.style.MaterialYouStyle;
 import com.tencent.mmkv.MMKV;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDialogFragment.SaveDiyDialogListener {
+public class DiyPatternActivity extends AppCompatActivity {
     private String TAG = "leiteorz";
     private ActivityDiyPatternBinding binding;
     private PatternAdapter adapter;
     private List<Pattern> list;
     private MMKV shapeKv;
     private MMKV patternKv;
-    AppDataBase db;
-    DiyWorkDao dao;
+    private AppDataBase db;
+    private DiyWorkDao dao;
+    private String diyWorkName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initBinding();
+        initDialog();
         initMmkv();
         createDataBase();
         initShape();
@@ -51,6 +60,13 @@ public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDial
         initRecyclerView();
         initData();
         onClick();
+    }
+    public void initDialog(){
+        //初始化
+        DialogX.init(this);
+        DialogX.globalStyle = new MaterialYouStyle();
+
+
     }
     public void initBinding(){
         binding = ActivityDiyPatternBinding.inflate(getLayoutInflater());
@@ -64,6 +80,7 @@ public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDial
     }
 
     public void initData() {
+
         list = new ArrayList<>();
         Pattern pattern1 = new Pattern("1", R.drawable.pattern_2);
         list.add(pattern1);
@@ -84,6 +101,11 @@ public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDial
         binding.patternToolbar.setTitleMargin(26,26,26,26);
         //设置toolbar背景 以及整个布局的背景
         binding.patternToolbar.setBackgroundColor(Color.rgb(131,175,155));
+        binding.patternToolbar.setNavigationOnClickListener(view -> {
+            Intent intent = new Intent(DiyPatternActivity.this,SecondPageActivity.class);
+            startActivity(intent);
+            finish();
+        });
 //        binding.patternLayout.setBackgroundColor(Color.rgb(81,117,115));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -179,26 +201,26 @@ public class DiyPatternActivity extends AppCompatActivity implements SaveDiyDial
         binding.savePatternBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaveDiyDialogFragment dialog = new SaveDiyDialogFragment();
-                dialog.show(getSupportFragmentManager(),"dialog");
+                DialogX.globalStyle = new IOSStyle();
+                new InputDialog("作品保存", "快为你的专属瓷器儿起名吧！", "确定", "取消", "")
+                        .setCancelable(false)
+                        .setOkButton(new OnInputDialogButtonClickListener<InputDialog>() {
+                            @Override
+                            public boolean onClick(InputDialog baseDialog, View v, String inputStr) {
+                                diyWorkName = inputStr;
+                                int shape = shapeKv.decodeInt("shape");
+                                int pattern = patternKv.decodeInt("pattern");
+                                DiyWork diyWork = new DiyWork(shape,pattern,diyWorkName);
+                                dao.insertDiyWork(diyWork);
+                                PopTip.show(R.drawable.diy_sucessful, "作品已完成")
+                                        .setAutoTintIconInLightOrDarkMode(false);
+                                return false;
+                            }
+                        })
+                        .show();
             }
         });
     }
-
-    @Override
-    public void onDialogPositiveClick(SaveDiyDialogFragment dialog) {
-        Dialog d = dialog.getDialog();
-        EditText et = d.findViewById(R.id.et_diy_work_name);
-        /**
-         * 存储作品
-         */
-        String diyWorkName = et.getText().toString();   //作品名字
-        int shape = shapeKv.decodeInt("shape");
-        int pattern = patternKv.decodeInt("pattern");
-        DiyWork diyWork = new DiyWork(shape,pattern,diyWorkName);
-        dao.insertDiyWork(diyWork);
-    }
-
     private void createDataBase(){
         db = AppDataBase.getInstance(this);
         dao = db.diyWorkDao();
