@@ -61,7 +61,7 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
                     notifyItemChanged(last_check);
                 }
                 //设置当前图案为选中模式
-                holder.cardView.setCardBackgroundColor(Color.BLUE);
+                holder.cardView.setCardBackgroundColor(Color.rgb(131,175,155));
                 list.get(holder.getAbsoluteAdapterPosition()).setCheck(1);
                 kv.encode("patternCheck",holder.getAbsoluteAdapterPosition());
                 /**
@@ -86,7 +86,7 @@ public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHold
         holder.imageView.setImageResource(pattern.getId());
         //设置颜色
         if (pattern.getCheck() == 0) holder.cardView.setCardBackgroundColor(Color.WHITE);
-        else if (pattern.getCheck() == 1) holder.cardView.setCardBackgroundColor(Color.BLUE);
+        else if (pattern.getCheck() == 1) holder.cardView.setCardBackgroundColor(Color.rgb(131,175,155));
     }
 
     @Override

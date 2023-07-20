@@ -47,7 +47,7 @@
     <androidx.cardview.widget.CardView
         android:layout_margin="5dp"
         app:cardBackgroundColor="#b6c9cd"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
@@ -78,6 +78,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/check_pattern_btn"
             android:text="选择"
+            app:cornerRadius="15dp"
             android:textColor="#fff"
             android:layout_width="100dp"
             android:layout_height="50dp"
@@ -91,6 +92,7 @@
             android:text="保存"
             android:textColor="#fff"
             android:layout_width="100dp"
+            app:cornerRadius="15dp"
             android:layout_height="50dp"
             app:backgroundTint="#b6c9cd"
             android:layout_margin="10dp"

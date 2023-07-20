@@ -36,7 +36,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.android.china.view.DiyPatternActivity"
-            android:exported="false" />
+            android:windowSoftInputMode="adjustPan"
+        android:exported="false" />
         <activity android:name="com.android.china.view.PopularizationDetailPage" />
         <activity
             android:name="com.android.china.view.BookActivity"
