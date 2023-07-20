@@ -13,20 +13,21 @@
         android:id="@+id/shibie_name"
         android:text="瓷器的名称"
         android:textColor="#fff"
-        android:textSize="12dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
         android:layout_gravity="bottom"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="230dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/shibie_accuracy"
-        android:text="识别精确度"
-        android:textSize="12dp"
-        android:textColor="#fff"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="bottom|right"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="150dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:text="文本描述"
+        android:textColor="#fff"
+        android:textSize="12dp" />
 </FrameLayout>
