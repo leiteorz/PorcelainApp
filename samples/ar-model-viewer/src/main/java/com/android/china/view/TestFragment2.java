@@ -82,6 +82,8 @@ public class TestFragment2 extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private File outputImage;
     private Map<String,String> map;
+    private boolean isVisibleToUser = false;
+
     private String mParam1;
     private String url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ciyuliling";
     private String mParam2;
@@ -120,7 +122,6 @@ public class TestFragment2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initData();
-        initDialog();
         initClick();
     }
     public void initClick(){
@@ -131,6 +132,21 @@ public class TestFragment2 extends Fragment {
 //                测试 可以删除
             }
         });
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        this.isVisibleToUser = isVisibleToUser;
+
+        if (isVisibleToUser) {
+            // 当前 Fragment 可见，调用特定方法
+            yourMethod();
+        }
+    }
+
+    private void yourMethod() {
+        // 这里是你想要调用的特定方法的代码
+        initDialog();
     }
     public void initData(){
         map = new HashMap<>();
