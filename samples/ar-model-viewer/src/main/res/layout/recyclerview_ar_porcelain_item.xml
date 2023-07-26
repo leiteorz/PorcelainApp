@@ -25,7 +25,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/Ar_Btn"
-        android:layout_width="150dp"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="bottom|center_horizontal"
