@@ -48,6 +48,7 @@ import com.android.china.taocishibie.FileUtil;
 import com.android.china.taocishibie.GsonUtils;
 import com.android.china.taocishibie.HttpUtil;
 import com.android.china.utils.MyApplication;
+import com.android.china.utils.PostToken;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentTest2Binding;
 import com.google.gson.Gson;
@@ -60,6 +61,9 @@ import com.kongzue.dialogx.interfaces.OnBindView;
 import com.kongzue.dialogx.interfaces.OnIconChangeCallBack;
 import com.kongzue.dialogx.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialogx.style.IOSStyle;
+import com.tencent.mmkv.MMKV;
+
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -73,6 +77,12 @@ import java.util.Objects;
 
 import javax.xml.transform.Result;
 
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 
 public class TestFragment2 extends Fragment {
     private static final int TAKE_PHOTO = 1;
@@ -81,9 +91,10 @@ public class TestFragment2 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private File outputImage;
+    private  String accessToken;
     private Map<String,String> map;
     private boolean isVisibleToUser = false;
-
+    private MMKV kv;
     private String mParam1;
     private String url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ciyuliling";
     private String mParam2;
@@ -123,6 +134,12 @@ public class TestFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
         initClick();
+        initMmkv();
+
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(getActivity());
+        kv = MMKV.defaultMMKV();
     }
     public void initClick(){
         binding.pictureShibie.setOnClickListener(new View.OnClickListener() {
@@ -264,7 +281,6 @@ public class TestFragment2 extends Fragment {
                 WaitDialog.show("正在识别中！ ");
                 thread.start();
             }
-//            测试 可以删
         }
     }
     private String handleImageOnKitKat(@NonNull Intent data){
@@ -294,7 +310,7 @@ public class TestFragment2 extends Fragment {
             // 处理和显示结果
             System.out.println("这是处理和显示结果：" + result);
         } else {
-            System.out.println("请求失败");
+            System.out.println("请求失败,请根据日志情况查询错误原因");
             WaitDialog.dismiss();
             TipDialog.show("图片过大，请重新选择图片!", WaitDialog.TYPE.ERROR, 800);
         }
@@ -331,8 +347,22 @@ public class TestFragment2 extends Fragment {
                     map1.put("image", imageBase64);
                     map1.put("top_num", "5");
                     String param = GsonUtils.toJson(map1);
-                    // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
-                    String accessToken = "24.13d1f190b326120e566dead4b1fb2b96.2592000.1691554464.282335-35874216";
+                    Response response = PostToken.getToken();
+                    String responseBody = response.body().string();
+                    JSONObject jsonObject = new JSONObject(responseBody);
+                    // 获取access_token的值 30天更新一次
+                    String mmkvToken = kv.decodeString("token");
+                    int mmkvToken_day = kv.decodeInt("time");
+                    if(!TextUtils.isEmpty(mmkvToken)||mmkvToken_day>=28){
+                        accessToken = jsonObject.getString("access_token");
+                        kv.encode("token",accessToken);
+                        kv.removeValueForKey("time");
+                        kv.encode("time",1);
+                    }else{
+                        accessToken = mmkvToken;
+                        kv.encode("time",mmkvToken_day+1);
+                    }
+                    System.out.println(accessToken);
                     String result = HttpUtil.post(url, accessToken, "application/json", param);
                     handleResult(result);
                     Gson gson = new Gson();
@@ -342,7 +372,6 @@ public class TestFragment2 extends Fragment {
                     getActivity().runOnUiThread(() -> {
                         WaitDialog.dismiss();
                         System.out.println(firstResult.name + "，识别度: " + String.format("%.2f", firstResult.score));
-
                         CustomDialog.build()
                                 .setCustomView(new OnBindView<CustomDialog>(R.layout.shi_bie_result_dialog) {
                                     @Override
@@ -354,7 +383,6 @@ public class TestFragment2 extends Fragment {
                                         String text = map.get(firstResult.name);
                                         accuracy.setText(text);
 //                                        accuracy.setText(("准确度："+(int)(firstResult.score*100)+ "%"));
-
                                         imageView.setImageBitmap(bitmapDialog);
                                     }
                                 })
@@ -370,6 +398,7 @@ public class TestFragment2 extends Fragment {
         }
     }
     private String compressAndEncodeImage(byte[] imgData, int maxSize) {
+//        图片压缩算法
         // 获取图像的原始宽度和高度
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
@@ -409,40 +438,4 @@ public class TestFragment2 extends Fragment {
                 .replaceAll(System.lineSeparator(), "");
     }
 
-    private Bitmap resizeBitmap(Bitmap bitmap, int minDimension, int maxDimension) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float scale = Math.max((float) minDimension / Math.min(width, height), (float) maxDimension / Math.max(width, height));
-
-        Matrix matrix = new Matrix();
-        matrix.postScale(scale, scale);
-
-        return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
-    }
-
-    private Bitmap compressBitmap(Bitmap bitmap, int maxSize) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos); // 最初压缩质量为100%
-        int quality = 100;
-
-        while (baos.toByteArray().length > maxSize && quality > 0) {
-            baos.reset(); // 重置输出流
-
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, baos);
-            quality -= 10; // 每次降低质量10%
-
-            if (quality <= 0) {
-                return null; // 压缩失败
-            }
-        }
-
-        byte[] bitmapBytes = baos.toByteArray();
-        return BitmapFactory.decodeByteArray(bitmapBytes, 0, bitmapBytes.length);
-    }
-
-    private byte[] bitmapToByteArray(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        return baos.toByteArray();
-    }
 }
