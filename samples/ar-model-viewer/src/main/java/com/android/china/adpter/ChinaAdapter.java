@@ -20,10 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Insert;
 
-/**
- * @Author Crwei
- * date 2023/3/14 20:58
- */
+
 
 public class ChinaAdapter extends RecyclerView.Adapter<ChinaAdapter.ViewHolder> {
     private List<China> mList;

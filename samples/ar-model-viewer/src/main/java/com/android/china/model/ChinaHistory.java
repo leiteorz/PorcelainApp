@@ -6,10 +6,6 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-/**
- * @Author Crwei
- * date 2023/3/24 21:01
- */
 @Entity(tableName = "ChinaHistory")
 public class ChinaHistory implements Serializable {
     @PrimaryKey(autoGenerate = true)

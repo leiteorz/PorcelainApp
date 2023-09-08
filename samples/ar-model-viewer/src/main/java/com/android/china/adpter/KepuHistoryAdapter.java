@@ -26,10 +26,7 @@ import java.util.List;
 
 import static com.android.china.utils.MyApplication.getContext;
 
-/**
- * @Author Crwei
- * date 2023/3/24 20:43
- */
+
 
 public class KepuHistoryAdapter extends RecyclerView.Adapter<KepuHistoryAdapter.ViewHolder> {
     private List<ChinaHistory> mList;

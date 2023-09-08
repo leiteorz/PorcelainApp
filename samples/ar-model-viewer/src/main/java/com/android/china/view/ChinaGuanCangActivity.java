@@ -54,13 +54,15 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         initGuanCangListFromDb();
         initRecyclerView();
     }
-    public void initTransition(){
+
+    public void initTransition() {
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         getWindow().setEnterTransition(new Explode());
         getWindow().setExitTransition(new Fade());
 
     }
-    private void initMmkv(){
+
+    private void initMmkv() {
         String rootDir = MMKV.initialize(this);
         kv = MMKV.defaultMMKV();
     }
@@ -68,21 +70,21 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     /**
      * 创建数据库
      */
-    private void createDatabase(){
+    private void createDatabase() {
         db = AppDataBase.getInstance(this);
         dao = db.guanCangDao();
         myCollectionDao = db.myCollectionDao();
     }
 
-    public void initToolbar(){
+    public void initToolbar() {
         setSupportActionBar(binding.guanCangToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        binding.guanCangToolbar.setTitleMargin(26,26,26,26);
+        binding.guanCangToolbar.setTitleMargin(26, 26, 26, 26);
         //设置toolbar背景 以及整个布局的背景
-        binding.guanCangToolbar.setBackgroundColor(Color.rgb(131,175,155));
-        binding.guanCangLayout.setBackgroundColor(Color.rgb(131,175,155));
+        binding.guanCangToolbar.setBackgroundColor(Color.rgb(131, 175, 155));
+        binding.guanCangLayout.setBackgroundColor(Color.rgb(131, 175, 155));
         binding.guanCangToolbar.setNavigationOnClickListener(view -> {
-            Intent intent = new Intent(ChinaGuanCangActivity.this,FirstPageActivity.class);
+            Intent intent = new Intent(ChinaGuanCangActivity.this, FirstPageActivity.class);
             startActivity(intent);
             finish();
         });
@@ -96,7 +98,8 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
         }
     }
-    public void initBinding(){
+
+    public void initBinding() {
         binding = ActivityChinaGuanCangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -106,8 +109,8 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
      * ToolBar相关
      */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.toolbar_guancang,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_guancang, menu);
 
         /**
          * 搜索
@@ -118,21 +121,22 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.equals("")){
+                if (query.equals("")) {
                     mList = dao.queryAllGuanCangs();
                     adapter.refreshData(mList);
-                }else {
+                } else {
                     mList = dao.queryGuanCangsByName(query);
                     adapter.refreshData(mList);
                 }
                 return true;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (newText.equals("")){
+                if (newText.equals("")) {
                     mList = dao.queryAllGuanCangs();
                     adapter.refreshData(mList);
-                }else {
+                } else {
                     mList = dao.queryGuanCangsByName(newText);
                     adapter.refreshData(mList);
                 }
@@ -146,7 +150,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
-        switch (itemId){
+        switch (itemId) {
             case R.id.search:
 
                 break;
@@ -162,29 +166,29 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
      * 该插入方法仅作测试,检测RecyclerView的显示效果
      * 已经弃用
      */
-    public void initChinaList(){
-        GuanCang guanCang1 = new GuanCang("越窑青釉水丞","隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底",R.drawable.guancang_1);
+    public void initChinaList() {
+        GuanCang guanCang1 = new GuanCang("越窑青釉水丞", "隋越窑系青釉水丞是隋朝时期制作的工艺品，高10.5厘米，口径17厘米，束口，圆鼓腹，平底", R.drawable.guancang_1);
         mList.add(guanCang1);
-        GuanCang guanCang2 = new GuanCang("邢窑白釉鼓式钵","邢窑白瓷是我国最早的白釉瓷之一，与南方越窑青釉瓷齐名、享誉遐迩的邢窑白瓷在唐朝亦发展鼎盛",R.drawable.guancang_2);
+        GuanCang guanCang2 = new GuanCang("邢窑白釉鼓式钵", "邢窑白瓷是我国最早的白釉瓷之一，与南方越窑青釉瓷齐名、享誉遐迩的邢窑白瓷在唐朝亦发展鼎盛", R.drawable.guancang_2);
         mList.add(guanCang2);
-        GuanCang guanCang3 = new GuanCang("巩县窑三彩七星托盘","巩县窑在盛唐时期曾作为贡品，与邢窑白釉瓷媲美，而巩县窑的唐三彩无论在规模、品种、质量均盛极一时",R.drawable.guancang_3);
+        GuanCang guanCang3 = new GuanCang("巩县窑三彩七星托盘", "巩县窑在盛唐时期曾作为贡品，与邢窑白釉瓷媲美，而巩县窑的唐三彩无论在规模、品种、质量均盛极一时", R.drawable.guancang_3);
         mList.add(guanCang3);
-        GuanCang guanCang4 = new GuanCang("龙泉窑梅子青釉弦纹三足炉","龙泉窑在宋代达到巅峰，南宋时品质最佳，以粉青、梅子青和黑胎厚釉青瓷最为有名，将青瓷推向高峰",R.drawable.guancang_4);
+        GuanCang guanCang4 = new GuanCang("龙泉窑梅子青釉弦纹三足炉", "龙泉窑在宋代达到巅峰，南宋时品质最佳，以粉青、梅子青和黑胎厚釉青瓷最为有名，将青瓷推向高峰", R.drawable.guancang_4);
         mList.add(guanCang4);
-        GuanCang guanCang5 = new GuanCang("耀州窑青釉盒","耀州窑在北宋达到鼎盛时期，耀州窑青瓷釉面光洁、匀净、色泽青幽；擅刻花、印花、划花等饰法",R.drawable.guancang_5);
+        GuanCang guanCang5 = new GuanCang("耀州窑青釉盒", "耀州窑在北宋达到鼎盛时期，耀州窑青瓷釉面光洁、匀净、色泽青幽；擅刻花、印花、划花等饰法", R.drawable.guancang_5);
         mList.add(guanCang5);
     }
 
     /**
      * 从数据库加载馆藏列表
      */
-    public void initGuanCangListFromDb(){
+    public void initGuanCangListFromDb() {
         /**
          * 如果InsertGuanCang=0,则插入数据
          */
-        int flag = kv.decodeInt("InsertGuanCangs",0);
+        int flag = kv.decodeInt("InsertGuanCangs", 0);
         Log.d("leiteorz", "initGuanCangListFromDb: " + flag);
-        if (flag == 0){
+        if (flag == 0) {
             List<GuanCang> list = new ArrayList<>();
             List<MyCollect> myCollectList = new ArrayList<>();
 
@@ -195,7 +199,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/1.png"
             );
             list.add(guanCang1);
-            myCollectList.add(new MyCollect(0,1,0,"釉下五彩镂空葡萄纹瓷瓶","现收藏于湖南博物馆",R.drawable.guancang_1));
+            myCollectList.add(new MyCollect(0, 1, 0, "釉下五彩镂空葡萄纹瓷瓶", "现收藏于湖南博物馆", R.drawable.guancang_1));
 
             GuanCang guanCang2 = new GuanCang("釉下五彩花卉瓷瓶",
                     "现藏于湖南博物馆",
@@ -204,7 +208,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/2.png"
             );
             list.add(guanCang2);
-            myCollectList.add(new MyCollect(1,1,0,"釉下五彩花卉瓷瓶","现藏于湖南博物馆",R.drawable.guancang_2));
+            myCollectList.add(new MyCollect(1, 1, 0, "釉下五彩花卉瓷瓶", "现藏于湖南博物馆", R.drawable.guancang_2));
 
             GuanCang guanCang3 = new GuanCang("釉下五彩葫芦形瓷瓶",
                     "现藏于湖南博物馆",
@@ -213,7 +217,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/3.png"
             );
             list.add(guanCang3);
-            myCollectList.add(new MyCollect(2,1,0,"釉下五彩葫芦形瓷瓶","现藏于湖南博物馆",R.drawable.guancang_3));
+            myCollectList.add(new MyCollect(2, 1, 0, "釉下五彩葫芦形瓷瓶", "现藏于湖南博物馆", R.drawable.guancang_3));
 
             GuanCang guanCang4 = new GuanCang("釉下彩凤尾瓷瓶",
                     "现藏于湖南博物馆",
@@ -222,7 +226,7 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/4.png"
             );
             list.add(guanCang4);
-            myCollectList.add(new MyCollect(3,1,0,"釉下彩凤尾瓷瓶","现藏于湖南博物馆",R.drawable.guancang_4));
+            myCollectList.add(new MyCollect(3, 1, 0, "釉下彩凤尾瓷瓶", "现藏于湖南博物馆", R.drawable.guancang_4));
 
             GuanCang guanCang5 = new GuanCang("山水人物纹瓷瓶",
                     "现藏于长沙市博物馆",
@@ -231,22 +235,22 @@ public class ChinaGuanCangActivity extends AppCompatActivity {
                     "https://leiteorz.oss-cn-hangzhou.aliyuncs.com/img/5.png"
             );
             list.add(guanCang5);
-            myCollectList.add(new MyCollect(4,1,0,"山水人物纹瓷瓶","现藏于长沙市博物馆",R.drawable.guancang_5));
+            myCollectList.add(new MyCollect(4, 1, 0, "山水人物纹瓷瓶", "现藏于长沙市博物馆", R.drawable.guancang_5));
             /**
              * 将list插入数据库中
              */
             dao.insertGuanCangs(list);
             myCollectionDao.insertMyCollections(myCollectList);
             //加载了馆藏列表,则将InsertGuanCangs设置为1
-            kv.encode("InsertGuanCangs",1);
+            kv.encode("InsertGuanCangs", 1);
         }
         /**
          * 从数据库中查询所有馆藏item为mList赋值
          */
-         mList = dao.queryAllGuanCangs();
+        mList = dao.queryAllGuanCangs();
     }
 
-    public void initRecyclerView(){
+    public void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.guanCangRecyclerView.setLayoutManager(layoutManager);
         adapter = new GuanCangAdapter(mList);

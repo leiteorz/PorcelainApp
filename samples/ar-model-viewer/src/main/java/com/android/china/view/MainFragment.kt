@@ -22,18 +22,14 @@ import com.google.ar.sceneform.ux.TransformableNode
 import com.google.ar.sceneform.samples.gltf.R
 import com.gorisse.thomas.sceneform.scene.await
 import com.tencent.mmkv.MMKV
-
 class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var MODEL_URI: String
     private lateinit var kv: MMKV
-
     private lateinit var arFragment: ArFragment
     private val arSceneView: ArSceneView get() = arFragment.arSceneView
     private val scene get() = arSceneView.scene
-
     private var model: Renderable? = null
     private var modelView: ViewRenderable? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getModel()

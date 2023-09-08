@@ -7,10 +7,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-/**
- * @Author Crwei
- * date 2023/3/24 16:11
- */
 
 public class PorcelainKepuFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragmentList;

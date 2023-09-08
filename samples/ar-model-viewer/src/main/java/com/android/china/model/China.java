@@ -2,10 +2,6 @@ package com.android.china.model;
 
 import java.io.Serializable;
 
-/**
- * @Author Crwei
- * date 2023/3/14 21:01
- */
 
 public class China implements Serializable {
     private String describe;
