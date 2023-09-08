@@ -18,10 +18,7 @@ import com.tencent.mmkv.MMKV;
 
 import java.util.List;
 
-/**
- * @Author Crwei
- * date 2023/4/23 20:06
- */
+
 
 public class PatternAdapter extends RecyclerView.Adapter<PatternAdapter.ViewHolder> {
     private List<Pattern> list;

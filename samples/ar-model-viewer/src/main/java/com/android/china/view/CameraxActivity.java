@@ -1,14 +1,18 @@
 package com.android.china.view;
 
-import static android.app.Activity.RESULT_OK;
-import static com.kongzue.dialogx.interfaces.BaseDialog.getApplicationContext;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.Preview;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.ContentResolver;
-import android.content.Intent;
+import android.content.ContentValues;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,152 +23,186 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.util.Size;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.china.model.ResultEasydl;
 import com.android.china.model.Results;
-import com.android.china.taocishibie.Base64Util;
 import com.android.china.taocishibie.FileUtil;
 import com.android.china.taocishibie.GsonUtils;
 import com.android.china.taocishibie.HttpUtil;
-import com.android.china.utils.MyApplication;
+import com.android.china.utils.MyStatusBarTransparency;
 import com.android.china.utils.PostToken;
 import com.google.ar.sceneform.samples.gltf.R;
-import com.google.ar.sceneform.samples.gltf.databinding.FragmentTest2Binding;
+import com.google.ar.sceneform.samples.gltf.databinding.ActivityCameraxBinding;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
 import com.kongzue.dialogx.DialogX;
 import com.kongzue.dialogx.dialogs.CustomDialog;
-import com.kongzue.dialogx.dialogs.PopMenu;
 import com.kongzue.dialogx.dialogs.TipDialog;
 import com.kongzue.dialogx.dialogs.WaitDialog;
+import com.kongzue.dialogx.interfaces.DialogLifecycleCallback;
 import com.kongzue.dialogx.interfaces.OnBindView;
-import com.kongzue.dialogx.interfaces.OnIconChangeCallBack;
-import com.kongzue.dialogx.interfaces.OnMenuItemClickListener;
 import com.kongzue.dialogx.style.IOSStyle;
 import com.tencent.mmkv.MMKV;
 
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
-import javax.xml.transform.Result;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
-public class TestFragment2 extends Fragment {
-    private static final int TAKE_PHOTO = 1;
-    private static FragmentTest2Binding binding;
-    private static final int CHOOSE_PHOTO = 2;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private File outputImage;
-    private  String accessToken;
-    private Map<String,String> map;
-    private boolean isVisibleToUser = false;
+public class CameraxActivity extends AppCompatActivity {
+    private ActivityCameraxBinding binding;
+    private Preview preview;
+    private ProcessCameraProvider processCameraProvider;
     private MMKV kv;
-    private String mParam1;
+    private Map<String,String> map;
+    private MyStatusBarTransparency myStatusBarTransparency;
+    //权限
+    private static final String[] REQUIRE_PERMISSIONS = new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
+    public static final int REQUEST_CODE_PERMISSIONS = 10;
+    //capture 预览摄像处理
+    ImageCapture imageCapture;
+    private  String accessToken;
     private String url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ciyuliling";
-    private String mParam2;
-    //    拍照的图片保存至bitmapDialog
     private Bitmap bitmapDialog;
-    public TestFragment2() {
-        // Required empty public constructor
-    }
-
-
-    public static TestFragment2 newInstance(String param1, String param2) {
-        TestFragment2 fragment = new TestFragment2();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    ListenableFuture<ProcessCameraProvider> processCameraProviderListenableFuture;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = FragmentTest2Binding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        initBing();
         initData();
-        initClick();
+        initMyPageActivityStatus();
         initMmkv();
+        initDialog();
+        initCamera();
+        initClick();
 
     }
-    public void initMmkv(){
-        String rootDir = MMKV.initialize(getActivity());
-        kv = MMKV.defaultMMKV();
+    public void initDialog(){
+        DialogX.init(getApplication());
+        DialogX.globalStyle = new IOSStyle();
+    }
+    public void initBing(){
+        binding = ActivityCameraxBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
     }
     public void initClick(){
-        binding.pictureShibie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initDialog();
-//                测试 可以删除
-            }
+        binding.camerax.setOnClickListener(view -> {
+            takePhoto();
         });
     }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        this.isVisibleToUser = isVisibleToUser;
-
-        if (isVisibleToUser) {
-            // 当前 Fragment 可见，调用特定方法
-            yourMethod();
+    public void initMyPageActivityStatus(){
+        myStatusBarTransparency = new MyStatusBarTransparency();
+        myStatusBarTransparency.setFullscreen(true,true,this);
+        myStatusBarTransparency.setAndroidNativeLightStatusBar(this,true);
+    }
+    //拍照
+    private void takePhoto() {
+        if (imageCapture != null) {
+            //ContentValues
+            String name = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS", Locale.SIMPLIFIED_CHINESE).format(System.currentTimeMillis());
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/CameraXImage");
+            }
+            //图片输出
+            ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions
+                    .Builder(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                    .build();
+            imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this), new ImageCapture.OnImageSavedCallback() {
+                @Override
+                public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                    Log.i("CameraXTest", Objects.requireNonNull(outputFileResults.getSavedUri()).toString());
+                    Thread thread = new Thread(new CameraxActivity.NetworkTask(getImagePath(outputFileResults.getSavedUri())));
+                    WaitDialog.show("正在识别中！");
+                    thread.start();
+                }
+                @Override
+                public void onError(@NonNull ImageCaptureException exception) {
+                    Log.e("CameraXTest", exception.toString());
+                }
+            });
         }
     }
+    public String getImagePath(Uri uri) {
+//        对拿到的Uri数据获得真实存储地址
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String path = cursor.getString(column_index);
+        cursor.close();
+        return path;
+    }
 
-    private void yourMethod() {
-        // 这里是你想要调用的特定方法的代码
-        initDialog();
+    //初始化Camera
+    private void initCamera() {
+        if (havePermissions()){
+            ///实例化（可以设置许多属性)
+            imageCapture = new ImageCapture.Builder()
+//                    .setTargetResolution(new Size(1080, 1920))
+                    .build();
+            processCameraProviderListenableFuture = ProcessCameraProvider.getInstance(this);
+            processCameraProviderListenableFuture.addListener(() -> {
+                try {
+                    //配置预览(https://developer.android.google.cn/training/camerax/preview?hl=zh-cn)
+//                    binding.previewView.setScaleType(PreviewView.ScaleType.FIT_CENTER);
+//                    设置预览去全屏
+                    binding.previewView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    preview = new Preview.Builder().build();
+                    preview.setSurfaceProvider(binding.previewView.getSurfaceProvider());
+                    //绑定到生命周期
+                    processCameraProvider = processCameraProviderListenableFuture.get();
+                    processCameraProvider.bindToLifecycle(this, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageCapture);
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }, ContextCompat.getMainExecutor(this));
+        }else {
+            ActivityCompat.requestPermissions(this, REQUIRE_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
+        }
+    }
+    //判断权限是否获取
+    private boolean havePermissions() {
+        for (String permission : REQUIRE_PERMISSIONS) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void initMmkv(){
+        String rootDir = MMKV.initialize(this);
+        kv = MMKV.defaultMMKV();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == REQUEST_CODE_PERMISSIONS) {
+            initCamera();
+        } else {
+            finish();
+        }
     }
     public void initData(){
         map = new HashMap<>();
@@ -189,151 +227,6 @@ public class TestFragment2 extends Fragment {
         map.put("釉下彩松鹤纹瓷瓶","釉下彩松鹤纹瓷瓶是一种以松树和鹤为主题的陶瓷艺术品，松树象征着坚强、长寿、忍耐和勇气,被誉为“君子之木”，而鹤在中国文化中也是吉祥的象征，代表着祥瑞、长寿和幸福。釉下彩松鹤纹瓷瓶以其精美的图案和独特的艺术风格展示和传承着中国传统陶瓷文化的精髓。");
         map.put("釉下祭蓝瓶","祭蓝釉天球瓶，霁蓝釉是以钴为呈色剂的一种蓝釉，其起源可追溯到唐三彩陶器。高温钴蓝釉瓷器则是元代景德镇发明的。钴是青色的呈色剂，融入釉中，即可烧成钴蓝釉，呈色十分稳定。");
     }
-
-    private void initDialog(){
-        DialogX.init(getActivity());
-        DialogX.globalStyle = new IOSStyle();
-        PopMenu.show(new String[]{"拍照识别", "相册选择", "取消"})
-                .setOnMenuItemClickListener(new OnMenuItemClickListener<PopMenu>() {
-                    @Override
-                    public boolean onClick(PopMenu dialog, CharSequence text, int index) {
-                        switch (index){
-                            case 0:
-                                toCameraX();
-//                                startPhoto();
-                                break;
-                            case 1:
-                                choosePhoto();
-                                break;
-                            default:
-                                break;
-                        }
-                        return false;
-                    }
-                })
-                .setOnIconChangeCallBack(new OnIconChangeCallBack<PopMenu>(true) {
-                    @Override
-                    public int getIcon(PopMenu dialog, int index, String menuText) {
-                        switch (index) {
-                            case 0:
-                                return R.drawable.img_dialogx_pai_zhao;
-                            case 1:
-                                return R.drawable.img_dialogx_xiang_ce;
-                            case 2:
-                                return R.drawable.img_dialogx_qu_xiao;
-                            default:
-                                return 0;
-                        }
-                    }
-                });
-    }
-    public void toCameraX(){
-        Intent intent = new Intent(getApplicationContext(),CameraxActivity.class);
-        startActivity(intent);
-    }
-    private void choosePhoto(){
-        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        }else {
-            openAlbum();
-        }
-    }
-    private void openAlbum(){
-        Intent intent = new Intent("android.intent.action.GET_CONTENT");
-        intent.setType("image/*");
-        startActivityForResult(intent,CHOOSE_PHOTO);
-    }
-    public void startPhoto(){
-        SimpleDateFormat timeStampFormat = new SimpleDateFormat("HH_mm_ss");
-        String filename = timeStampFormat.format(new Date());
-        //创建File对象
-        outputImage = new File(getActivity().getExternalCacheDir(), "takePhoto" + filename + ".jpg");
-        Uri imageUri;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            imageUri = FileProvider.getUriForFile(getActivity(),
-                    "com.example.chinaplus.cameraalbumtest.fileprovider", outputImage);
-        } else {
-            imageUri = Uri.fromFile(outputImage);
-        }
-        //打开相机
-        Intent intent = new Intent();
-        intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        startActivityForResult(intent, TAKE_PHOTO);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode== RESULT_OK){
-            if(requestCode==TAKE_PHOTO){
-                if (outputImage.exists()) {
-                    String imagePath = outputImage.getAbsolutePath();
-                    Thread thread = new Thread(new NetworkTask(imagePath));
-                    WaitDialog.show("正在识别中！");
-                    thread.start();
-                } else {
-                    System.out.println("图片不存在");
-                }
-            }else if(requestCode == CHOOSE_PHOTO){
-                //打开相册返回
-                String image_Path;
-                if (Build.VERSION.SDK_INT>=19){
-                    //用这个方法处理图片
-                    image_Path = handleImageOnKitKat(data);
-                }else{
-                    image_Path = handleImageBeforeKitKat(data);
-                }
-                //识别
-                Thread thread = new Thread(new NetworkTask(image_Path));
-                WaitDialog.show("正在识别中！ ");
-                thread.start();
-            }
-        }
-    }
-    private String handleImageOnKitKat(@NonNull Intent data){
-        String imagePath = null;
-        Uri uri = data.getData();
-        if(DocumentsContract.isDocumentUri(getApplicationContext(),uri)){
-            String docId = DocumentsContract.getDocumentId(uri);
-            if("com.android.providers.media.documents".equals(uri.getAuthority())){
-                String id = docId.split(":")[1];
-                String selection = MediaStore.Images.Media._ID + "=" + id;
-                imagePath = getImagePath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,selection);
-            }
-        }else if("content".equalsIgnoreCase(uri.getScheme())){
-            imagePath = getImagePath(uri,null);
-        }else if ("file".equalsIgnoreCase(uri.getScheme())){
-            imagePath = uri.getPath();
-        }
-        return imagePath;
-    }
-    private String handleImageBeforeKitKat(@NonNull Intent data){
-        Uri uri = data.getData();
-        String imagePath = getImagePath(uri,null);
-        return imagePath;
-    }
-    private void handleResult(String result) {
-        if (result != null) {
-            // 处理和显示结果
-            System.out.println("这是处理和显示结果：" + result);
-        } else {
-            System.out.println("请求失败,请根据日志情况查询错误原因");
-            WaitDialog.dismiss();
-            TipDialog.show("图片过大，请重新选择图片!", WaitDialog.TYPE.ERROR, 800);
-        }
-    }
-    @SuppressLint("Range")
-    private String getImagePath(Uri uri, String selection){
-        String path = null;
-        Cursor cursor = getApplicationContext().getContentResolver().query(uri,null,selection,null,null);
-        if(cursor!=null){
-            if(cursor.moveToFirst()){
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            }
-            cursor.close();
-        }
-        return path;
-    }
     private class NetworkTask implements Runnable {
         private String imagePath;
 
@@ -345,8 +238,8 @@ public class TestFragment2 extends Fragment {
             AsyncTask.execute(() -> {
                 try {
                     //按字节读取文件
-                    byte[] imgData = FileUtil.readFileByBytes(imagePath);
-                    bitmapDialog = BitmapFactory.decodeFile(imagePath);
+                    byte[] imgData = FileUtil.readFileByBytes(imagePath.toString());
+                    bitmapDialog = BitmapFactory.decodeFile(imagePath.toString());
                     //字节转Base64
                     String imageBase64 = compressAndEncodeImage(imgData, 3 * 1024 * 1024);
                     System.out.println("这是imageBase64：" + imageBase64);
@@ -376,7 +269,7 @@ public class TestFragment2 extends Fragment {
                     Results data = gson.fromJson(result, Results.class);
                     ResultEasydl firstResult = data.results[0];
                     // 在UI线程中更新UI和展示对话框
-                    getActivity().runOnUiThread(() -> {
+                    runOnUiThread(() -> {
                         WaitDialog.dismiss();
                         System.out.println(firstResult.name + "，识别度: " + String.format("%.2f", firstResult.score));
                         CustomDialog.build()
@@ -390,13 +283,14 @@ public class TestFragment2 extends Fragment {
                                         String text = map.get(firstResult.name);
                                         accuracy.setText(text);
 //                                        accuracy.setText(("准确度："+(int)(firstResult.score*100)+ "%"));
-                                        //                                        存在一个问题 就是如果正常设置图像的话 这个最终图像会逆时针旋转90° 不知道原因
+//                                        imageView.setImageBitmap(bitmapDialog);
+//                                        存在一个问题 就是如果正常设置图像的话 这个最终图像会逆时针旋转90° 不知道原因
 //                                        下面是对逆时针旋转90°的图片做的处理 让它变成正常
                                         Matrix matrix = new Matrix();
                                         matrix.postRotate(90); // 顺时针旋转90°
                                         Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapDialog, 0, 0, bitmapDialog.getWidth(), bitmapDialog.getHeight(), matrix, true);
                                         imageView.setImageBitmap(rotatedBitmap);
-//                                        imageView.setImageBitmap(bitmapDialog);
+
                                     }
                                 })
                                 .setMaskColor(Color.parseColor("#4D000000"))
@@ -450,5 +344,14 @@ public class TestFragment2 extends Fragment {
         return Base64.encodeToString(imageBytes, Base64.DEFAULT)
                 .replaceAll(System.lineSeparator(), "");
     }
-
+    private void handleResult(String result) {
+        if (result != null) {
+            // 处理和显示结果
+            System.out.println("这是处理和显示结果：" + result);
+        } else {
+            System.out.println("请求失败,请根据日志情况查询错误原因");
+            WaitDialog.dismiss();
+            TipDialog.show("图片过大，请重新选择图片!", WaitDialog.TYPE.ERROR, 800);
+        }
+    }
 }

@@ -61,39 +61,39 @@ public class MyCollectionActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
-    public void initBinding(){
+    public void initBinding() {
         binding = ActivityMyCollectionBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
     }
 
-    public void initStatusBarTransparency(){
+    public void initStatusBarTransparency() {
         myStatusBarTransparency = new MyStatusBarTransparency();
-        myStatusBarTransparency.setFullscreen(true,true,this);
-        myStatusBarTransparency.setAndroidNativeLightStatusBar(this,true);
+        myStatusBarTransparency.setFullscreen(true, true, this);
+        myStatusBarTransparency.setAndroidNativeLightStatusBar(this, true);
 
 //        setSupportActionBar(binding.myCollectionToolbar);
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.setTitle("");
     }
 
-    private void initMmkv(){
+    private void initMmkv() {
         String rootDir = MMKV.initialize(this);
         kv = MMKV.defaultMMKV();
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.myCollectionsRecyclerView.setLayoutManager(layoutManager);
         adapter = new MyCollectionAdapter(mList);
         binding.myCollectionsRecyclerView.setAdapter(adapter);
     }
 
-    private void initData(){
+    private void initData() {
         mList = dao.queryAllMyCollections();
     }
 
-    private void initDatabase(){
+    private void initDatabase() {
         db = AppDataBase.getInstance(this);
         dao = db.myCollectionDao();
     }

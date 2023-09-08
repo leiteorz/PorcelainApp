@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/dialog_bg_with_round_corner"
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/shibie_img"
         android:src="@drawable/cixin_1"
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
+        android:scaleType="fitCenter"
         android:layout_gravity="center"
-        android:layout_height="match_parent"/>
+        android:layout_height="600dp"/>
     <TextView
         android:id="@+id/shibie_name"
         android:text="瓷器的名称"

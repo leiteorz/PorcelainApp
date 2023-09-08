@@ -17,10 +17,6 @@ import com.tencent.mmkv.MMKV;
 
 import java.util.List;
 
-/**
- * @Author Crwei
- * date 2023/4/21 18:33
- */
 
 public class PorcelainShapeAdapter extends RecyclerView.Adapter<PorcelainShapeAdapter.ViewHolder> {
     private List<PorcelainShape> porcelainShapeList;
