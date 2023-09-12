@@ -250,18 +250,7 @@ public class CameraxActivity extends AppCompatActivity {
                     Response response = PostToken.getToken();
                     String responseBody = response.body().string();
                     JSONObject jsonObject = new JSONObject(responseBody);
-                    // 获取access_token的值 30天更新一次
-                    String mmkvToken = kv.decodeString("token");
-                    int mmkvToken_day = kv.decodeInt("time");
-                    if(!TextUtils.isEmpty(mmkvToken)||mmkvToken_day>=28){
-                        accessToken = jsonObject.getString("access_token");
-                        kv.encode("token",accessToken);
-                        kv.removeValueForKey("time");
-                        kv.encode("time",1);
-                    }else{
-                        accessToken = mmkvToken;
-                        kv.encode("time",mmkvToken_day+1);
-                    }
+                    accessToken = jsonObject.getString("access_token");
                     System.out.println(accessToken);
                     String result = HttpUtil.post(url, accessToken, "application/json", param);
                     handleResult(result);
