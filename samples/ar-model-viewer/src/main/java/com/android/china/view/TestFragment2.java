@@ -5,9 +5,6 @@ import static com.kongzue.dialogx.interfaces.BaseDialog.getApplicationContext;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ActivityOptions;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -27,29 +24,25 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.china.model.Item;
 import com.android.china.model.ResultEasydl;
 import com.android.china.model.Results;
-import com.android.china.taocishibie.Base64Util;
+import com.android.china.model.tokenBean;
+import com.android.china.retrofit.Api;
+import com.android.china.retrofit.RetrofitClient;
 import com.android.china.taocishibie.FileUtil;
 import com.android.china.taocishibie.GsonUtils;
 import com.android.china.taocishibie.HttpUtil;
-import com.android.china.utils.MyApplication;
-import com.android.china.utils.PostToken;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.google.ar.sceneform.samples.gltf.databinding.FragmentTest2Binding;
 import com.google.gson.Gson;
@@ -68,21 +61,14 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-import javax.xml.transform.Result;
-
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 
 public class TestFragment2 extends Fragment {
@@ -94,8 +80,13 @@ public class TestFragment2 extends Fragment {
     private File outputImage;
     private  String accessToken;
     private Map<String,String> map;
+    private Map<String, Object> map1;
+    private Api request;
+    private JSONObject jsonObject;
     private boolean isVisibleToUser = false;
+    private String param;
     private MMKV kv;
+    private List<Item> data_retrofit;
     private String mParam1;
     private String url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/classification/ciyuliling";
     private String mParam2;
@@ -344,30 +335,47 @@ public class TestFragment2 extends Fragment {
             // 异步处理
             AsyncTask.execute(() -> {
                 try {
+//                    使用封装好的Retrofit
+                    request = RetrofitClient.createService(Api.class);
                     //按字节读取文件
                     byte[] imgData = FileUtil.readFileByBytes(imagePath);
                     bitmapDialog = BitmapFactory.decodeFile(imagePath);
                     //字节转Base64
                     String imageBase64 = compressAndEncodeImage(imgData, 3 * 1024 * 1024);
                     System.out.println("这是imageBase64：" + imageBase64);
-                    Map<String, Object> map1 = new HashMap<>();
+                    map1 = new HashMap<>();
                     map1.put("image", imageBase64);
                     map1.put("top_num", "5");
-                    String param = GsonUtils.toJson(map1);
-                    Response response = PostToken.getToken();
-                    String responseBody = response.body().string();
-                    JSONObject jsonObject = new JSONObject(responseBody);
+                    param = GsonUtils.toJson(map1);
                     // 获取access_token的值 30天更新一次
-                    String mmkvToken = kv.decodeString("token");
-                    int mmkvToken_day = kv.decodeInt("time");
-                    if(!TextUtils.isEmpty(mmkvToken)||mmkvToken_day>=28){
-                        accessToken = jsonObject.getString("access_token");
-                        kv.encode("token",accessToken);
-                        kv.removeValueForKey("time");
-                        kv.encode("time",1);
-                    }else{
-                        accessToken = mmkvToken;
-                        kv.encode("time",mmkvToken_day+1);
+                    // 对发送请求进行封装:
+                    Call<tokenBean> call = request.postDataCall("client_credentials", "UyGwSQub0RTgLaghq8Yv4c0o", "1TE1YnRqOxMkriueCPqYEk4Iql7mGhYm");
+                    // 发送网络请求(异步)
+                    call.enqueue(new Callback<tokenBean>() {
+                        @Override
+                        public void onResponse(Call<tokenBean> call, retrofit2.Response<tokenBean> response) {
+                            // 请求成功时回调
+                            if (response.isSuccessful()) {
+//                                String responseBody = response.body().toString();
+                                accessToken = response.body().getAccess_token();
+                                Log.d("Token信息：",response.body().toString());
+//                                    JSONObject jsonObject = new JSONObject(responseBody);
+                                Log.d("Token信息：", accessToken);
+                            } else {
+                                // 请求失败时的处理
+                            }
+                        }
+                        @Override
+                        public void onFailure(Call<tokenBean> call, Throwable t) {
+                            // 网络请求失败时的处理
+                        }
+                    });
+                    while (accessToken==null){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                     System.out.println(accessToken);
                     String result = HttpUtil.post(url, accessToken, "application/json", param);
@@ -390,13 +398,14 @@ public class TestFragment2 extends Fragment {
                                         String text = map.get(firstResult.name);
                                         accuracy.setText(text);
 //                                        accuracy.setText(("准确度："+(int)(firstResult.score*100)+ "%"));
-                                        //                                        存在一个问题 就是如果正常设置图像的话 这个最终图像会逆时针旋转90° 不知道原因
+//                                        imageView.setImageBitmap(bitmapDialog);
+//                                        存在一个问题 就是如果正常设置图像的话 这个最终图像会逆时针旋转90° 不知道原因
 //                                        下面是对逆时针旋转90°的图片做的处理 让它变成正常
                                         Matrix matrix = new Matrix();
                                         matrix.postRotate(90); // 顺时针旋转90°
                                         Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapDialog, 0, 0, bitmapDialog.getWidth(), bitmapDialog.getHeight(), matrix, true);
                                         imageView.setImageBitmap(rotatedBitmap);
-//                                        imageView.setImageBitmap(bitmapDialog);
+
                                     }
                                 })
                                 .setMaskColor(Color.parseColor("#4D000000"))
