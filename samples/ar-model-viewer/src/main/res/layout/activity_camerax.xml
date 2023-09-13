@@ -10,11 +10,16 @@
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-    <Button
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="20dp"
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/camerax"
+        android:text="拍照识别"
+        android:textColor="#fff"
+        app:cornerRadius="15dp"
+        android:layout_gravity="bottom|center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="拍照识别"/>
+        app:backgroundTint="#83AF9B"
+        android:layout_margin="10dp"
+        android:textSize="24dp" />
+
 </FrameLayout>
