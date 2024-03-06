@@ -11,14 +11,11 @@ import com.android.china.view.Activity;
 import com.android.china.model.ArPorcelain;
 import com.google.ar.sceneform.samples.gltf.R;
 import com.tencent.mmkv.MMKV;
-
 import java.util.List;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ArPorcelainAdapter extends RecyclerView.Adapter<ArPorcelainAdapter.ViewHolder> {
     private List<ArPorcelain> mArPorcelainList;
-
     private static MMKV kv;
 
     static class ViewHolder extends RecyclerView.ViewHolder{
@@ -27,7 +24,6 @@ public class ArPorcelainAdapter extends RecyclerView.Adapter<ArPorcelainAdapter.
 
         public ViewHolder(View view){
             super(view);
-
             String rootDir = MMKV.initialize(view.getContext());
             kv = MMKV.defaultMMKV();
 

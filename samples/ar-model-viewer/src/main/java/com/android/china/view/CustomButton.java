@@ -16,6 +16,10 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.google.ar.sceneform.samples.gltf.R;
 
+import java.io.Serializable;
+
+import kotlin.jvm.internal.SerializedIr;
+
 /**
  * @Author Crwei
  * date 2023/4/20 19:13

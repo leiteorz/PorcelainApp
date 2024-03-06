@@ -45,9 +45,6 @@ public class PorcelainShapeAdapter extends RecyclerView.Adapter<PorcelainShapeAd
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**
-                 * 获取点击形状
-                 */
                 int position = holder.getAbsoluteAdapterPosition();
                 //形状1:凤尾瓶
                 if (position == 0) kv.encode("shape",1);
@@ -61,9 +58,6 @@ public class PorcelainShapeAdapter extends RecyclerView.Adapter<PorcelainShapeAd
                 else if (position == 4) kv.encode("shape",5);
                 //形状6:花浇瓶
                 else if (position == 5) kv.encode("shape",6);
-                /**
-                 * 跳转
-                 */
                 Intent intent = new Intent(view.getContext(), DiyPatternActivity.class);
                 view.getContext().startActivity(intent);
             }

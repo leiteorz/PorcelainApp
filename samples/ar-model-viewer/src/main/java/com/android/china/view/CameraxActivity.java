@@ -241,7 +241,7 @@ public class CameraxActivity extends AppCompatActivity {
                     byte[] imgData = FileUtil.readFileByBytes(imagePath.toString());
                     bitmapDialog = BitmapFactory.decodeFile(imagePath.toString());
                     //字节转Base64
-                    String imageBase64 = compressAndEncodeImage(imgData, 3 * 1024 * 1024);
+                    String imageBase64 = compressAndEncodeImage(imgData, 4 * 1024 * 1024);
                     System.out.println("这是imageBase64：" + imageBase64);
                     Map<String, Object> map1 = new HashMap<>();
                     map1.put("image", imageBase64);

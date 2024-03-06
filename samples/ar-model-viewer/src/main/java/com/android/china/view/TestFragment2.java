@@ -24,6 +24,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -377,6 +379,12 @@ public class TestFragment2 extends Fragment {
                             throw new RuntimeException(e);
                         }
                     }
+//                    ResultEasydl firstResult = data.results[0];
+//                    System.out.println(accessToken);
+//                    String result = HttpUtil.post(url, accessToken, "application/json", param);
+//                    handleResult(result);
+//                    Gson gson = new Gson();
+//                    Results data = gson.fromJson(result, Results.class);
                     System.out.println(accessToken);
                     String result = HttpUtil.post(url, accessToken, "application/json", param);
                     handleResult(result);
@@ -398,13 +406,13 @@ public class TestFragment2 extends Fragment {
                                         String text = map.get(firstResult.name);
                                         accuracy.setText(text);
 //                                        accuracy.setText(("准确度："+(int)(firstResult.score*100)+ "%"));
-//                                        imageView.setImageBitmap(bitmapDialog);
+                                        imageView.setImageBitmap(bitmapDialog);
 //                                        存在一个问题 就是如果正常设置图像的话 这个最终图像会逆时针旋转90° 不知道原因
 //                                        下面是对逆时针旋转90°的图片做的处理 让它变成正常
-                                        Matrix matrix = new Matrix();
-                                        matrix.postRotate(90); // 顺时针旋转90°
-                                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapDialog, 0, 0, bitmapDialog.getWidth(), bitmapDialog.getHeight(), matrix, true);
-                                        imageView.setImageBitmap(rotatedBitmap);
+//                                        Matrix matrix = new Matrix();
+//                                        matrix.postRotate(90); // 顺时针旋转90°
+//                                        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmapDialog, 0, 0, bitmapDialog.getWidth(), bitmapDialog.getHeight(), matrix, true);
+//                                        imageView.setImageBitmap(rotatedBitmap);
 
                                     }
                                 })

@@ -8,9 +8,9 @@
         android:id="@+id/shibie_img"
         android:src="@drawable/cixin_1"
         android:layout_width="400dp"
-        android:scaleType="fitCenter"
-        android:layout_gravity="center"
-        android:layout_height="600dp"/>
+        android:layout_marginTop="30dp"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent"/>
     <TextView
         android:id="@+id/shibie_name"
         android:text="瓷器的名称"
