@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="logo">@drawable/logo</item>
+    </style>
+    <style name="btn_diy">
+        <item name="android:background">#4A4B4C</item>
+    </style>
+    <style name="toolbar_testStyle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="GuanCangToolbar">
+        <item name="android:windowTranslucentStatus">true</item>
+<!--        <item name="colorPrimary">#DBDBDB</item>-->
+    </style>
+    <style name="btn">
+        <item name="android:background">#4A4A4B</item>
+    </style>
+    <declare-styleable name="CustomButton">
+        <!-- 是否反光 -->
+        <attr name="reflectLight" format="boolean"/>
+        <!-- 背景 -->
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="bgColor" format="boolean"/>
+
+    </declare-styleable>
+</resources>
+

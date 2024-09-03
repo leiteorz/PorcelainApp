@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp">
+
+        <ImageView
+            android:id="@+id/diy_porcelain_image"
+            android:src="@drawable/qing_hua_ci"
+            android:layout_margin="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="140dp"
+            android:layout_height="140dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="160dp"
+        android:layout_width="120dp"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="45dp">
+
+        <TextView
+            android:id="@+id/diy_porcelain_name"
+            android:text="花浇形状"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

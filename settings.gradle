@@ -1,0 +1,8 @@
+include ':core', ':ux', ':sceneform',
+        // Samples
+        ':sample-ar-model-viewer'
+
+
+// Dirs
+project(':sample-ar-model-viewer').projectDir = new File('samples/ar-model-viewer')
+

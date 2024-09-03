@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/my_Photo"
+        android:layout_marginTop="160dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/header_img"
+        android:layout_width="110dp"
+        android:elevation="15dp"
+        android:layout_height="110dp"/>
+
+    <LinearLayout
+        android:id="@+id/my_background"
+        android:background="@drawable/my_background"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        tools:ignore="Orientation" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="210dp"
+        app:cardCornerRadius="20dp">
+
+        <TextView
+            android:id="@+id/my_Name"
+            android:text="你的名字"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="75dp"
+            android:textSize="18sp"
+            android:textColor="#101010"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/my_Signature"
+            android:text="寒来暑往，秋收冬藏"
+            android:layout_marginTop="110dp"
+            android:textSize="18sp"
+            android:textColor="#101010"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="170dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_height="60dp">
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/jump_collection_btn"
+                    android:background="@drawable/my_collect_logo3"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="2dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/police_badge_outline"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/book"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:background="@drawable/cog"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/blue_wei"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="175dp"
+            android:layout_height="2dp"/>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="250dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="230dp"
+            android:layout_height="2dp"/>
+
+        <TextView
+            android:text="我的作品"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="260dp"
+            android:layout_marginLeft="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ScrollView
+            android:layout_marginTop="310dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/work_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </ScrollView>
+
+        <fragment
+            android:id="@+id/navigation_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            tools:layout="@layout/bottom_navigation_bar"
+            android:name="com.android.china.view.BottomNavigation"/>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

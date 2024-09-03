@@ -1,0 +1,126 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+    compileSdkVersion rootProject.ext.compileSdk
+
+    task prepareKotlinBuildScriptModel {
+
+    }
+
+    viewBinding{
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.android.china"
+
+        // Sceneform requires minSdk >= 24.
+        minSdk rootProject.ext.minSdk
+        targetSdk rootProject.ext.targetSdk
+        versionCode 1
+        versionName "1.0"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    aaptOptions {
+        noCompress 'filamat', 'ktx', 'tflite'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+        mlModelBinding true
+    }
+}
+
+dependencies {
+//    Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'
+    def camerax_version = "1.1.0-beta01"
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-video:${camerax_version}"
+
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.airbnb.android:lottie:6.0.0'
+
+    //可以侧滑的RecyclerView的item
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    //可以设置url的imageView,用法见activity_porcelain_story_detail_page及对应的activity
+    implementation files('src\\lib\\android-smart-image-view-1.0.0.jar')
+    //Room
+    def room_version="2.4.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    //MMKV——基于 mmap 的高性能通用 key-value 组件
+    implementation 'com.tencent:mmkv:1.2.15'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    //请修改为使用 DialogX 的最新版本
+    def dialogx_version = "0.0.47"
+    //添加对应的包文件，可根据需要选择，请将 dialogx_version 的版本号与您正在使用的 DialogX 主库保持一致
+    implementation "com.kongzue.dialogx.style:DialogXIOSStyle:0.0.47"
+    implementation "com.kongzue.dialogx.style:DialogXKongzueStyle:${dialogx_version}"
+    implementation "com.kongzue.dialogx.style:DialogXMIUIStyle:${dialogx_version}"
+    implementation "com.kongzue.dialogx.style:DialogXMaterialYouStyle:${dialogx_version}"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation 'space.darkowlzz:minimaldivider:0.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    //一个圆角图片的导包
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    //Glide加载图片库
+    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    //banner库
+    implementation 'io.github.youth5201314:banner:2.2.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version"
+
+    // AndroidX
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    // Material
+    implementation "com.google.android.material:material:$material_version"
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    // Sceneform
+    releaseImplementation "com.gorisse.thomas.sceneform:sceneform:1.21.0"
+    debugApi project(":sceneform")
+
+    //Tensorflow
+    implementation("org.tensorflow:tensorflow-lite:2.16.1")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.3.0")
+
+}
